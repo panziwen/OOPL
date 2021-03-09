@@ -191,6 +191,7 @@ CGameStateRun::CGameStateRun(CGame *g)
 : CGameState(g), NUMBALLS(28)
 {
 	ball = new CBall [NUMBALLS];
+	picX = picY = 0;
 }
 
 CGameStateRun::~CGameStateRun()
@@ -234,6 +235,17 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	//
 	// 移動背景圖的座標
 	//
+	if (picX <= SIZE_Y)
+	{
+		picX += 5;
+		picY += 5;
+	}
+	else
+	{
+		picX = picY = 8;
+	}
+	practice.SetTopLeft(picX, picY);
+
 	if (background.Top() > SIZE_Y)
 		background.SetTopLeft(60 ,-background.Height());
 	background.SetTopLeft(background.Left(),background.Top()+1);
@@ -304,6 +316,10 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	//
 	// 此OnInit動作會接到CGameStaterOver::OnInit()，所以進度還沒到100%
 	//
+	practice.LoadBitmap(IDB_PORING);
+	//practice.LoadBitmap("Bitmaps/1.bmp");
+	//practice.LoadBitmap(IDB_PORING2,RGB(255,255,255));
+	
 }
 
 void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -387,5 +403,7 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 	corner.SetTopLeft(SIZE_X-corner.Width(), SIZE_Y-corner.Height());
 	corner.ShowBitmap();
+
+	practice.ShowBitmap();
 }
 }
