@@ -280,6 +280,7 @@ void CGameStateRun::OnMove()							// 移動遊戲元素
 	// 移動彈跳的球
 	//
 	bball.OnMove();
+	c_practice.OnMove();
 }
 
 void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -319,6 +320,8 @@ void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
 	practice.LoadBitmap(IDB_PORING);
 	//practice.LoadBitmap("Bitmaps/1.bmp");
 	//practice.LoadBitmap(IDB_PORING2,RGB(255,255,255));
+
+	c_practice.LoadBitmap();
 	
 }
 
@@ -405,5 +408,33 @@ void CGameStateRun::OnShow()
 	corner.ShowBitmap();
 
 	practice.ShowBitmap();
+	c_practice.OnShow();
+}
+
+CPractice::CPractice()
+{
+	x = y = 0;
+}
+void CPractice::OnMove()
+{
+	if (y <= SIZE_Y)
+	{
+		x += 3;
+		y += 3;
+	}
+	else
+	{
+		x = y = 0;
+	}
+}
+
+void CPractice::LoadBitmap()
+{
+	pic.LoadBitmap(IDB_PORING);
+}
+void CPractice::OnShow()
+{
+	pic.SetTopLeft(x, y);
+	pic.ShowBitmap();
 }
 }

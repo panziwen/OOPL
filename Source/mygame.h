@@ -76,6 +76,17 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
+	class CPractice {
+	public:
+		CPractice();
+		void LoadBitmap();
+		void OnMove();
+		void OnShow();
+	private:
+		CMovingBitmap		pic;
+		int					x, y;
+	};
+
 	class CGameStateRun : public CGameState {
 	public:
 		CGameStateRun(CGame *g);
@@ -102,6 +113,7 @@ namespace game_framework {
 		CInteger		hits_left;	// 剩下的撞擊數
 		CBouncingBall   bball;		// 反覆彈跳的球
 		CMovingBitmap	practice;
+		CPractice		c_practice;
 		int				picX, picY;
 	};
 
