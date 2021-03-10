@@ -58,6 +58,39 @@ namespace game_framework {
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
 
+	class CBouncingBall;
+
+	class CPractice {
+	public:
+		CPractice();
+		void LoadBitmap();
+		void OnMove();
+		void OnShow();
+	private:
+		CMovingBitmap		pic;
+		int					x, y;
+	};
+
+	class CGameMap
+	{
+	public:
+		CGameMap();
+		void LoadBitmap();
+		void OnShow();
+		void OnMove();
+		void OnKeyDown(UINT);
+		void RandomBouncingBall();
+		void InitializeBouncingBall(int, int, int);
+		~CGameMap();
+	protected:
+		CMovingBitmap blue, green;
+		int map[4][5];
+		const int X, Y;
+		const int MW, MH;
+		CBouncingBall* bballs;
+		int random_num;
+	};
+
 	class CGameStateInit : public CGameState {
 	public:
 		CGameStateInit(CGame *g);
@@ -75,17 +108,6 @@ namespace game_framework {
 	// 這個class為遊戲的遊戲執行物件，主要的遊戲程式都在這裡
 	// 每個Member function的Implementation都要弄懂
 	/////////////////////////////////////////////////////////////////////////////
-
-	class CPractice {
-	public:
-		CPractice();
-		void LoadBitmap();
-		void OnMove();
-		void OnShow();
-	private:
-		CMovingBitmap		pic;
-		int					x, y;
-	};
 
 	class CGameStateRun : public CGameState {
 	public:
@@ -113,8 +135,9 @@ namespace game_framework {
 		CInteger		hits_left;	// 剩下的撞擊數
 		CBouncingBall   bball;		// 反覆彈跳的球
 		CMovingBitmap	practice;
-		CPractice		c_practice;
 		int				picX, picY;
+		CPractice		c_practice;
+		CGameMap		gamemap;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
