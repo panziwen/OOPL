@@ -41,6 +41,7 @@
 #include "CEraser.h"
 #include "CBall.h"
 #include "CBouncingBall.h"
+#include "CIsaac.h"
 
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
@@ -138,6 +139,7 @@ namespace game_framework {
 		int				picX, picY;
 		CPractice		c_practice;
 		CGameMap		gamemap;
+		CIsaac			isaac;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////

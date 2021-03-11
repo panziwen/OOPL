@@ -58,7 +58,7 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "mygame.h"
-
+#include <iostream>
 namespace game_framework {
 	/////////////////////////////////////////////////////////////////////////////
 	// 這個class為遊戲的遊戲開頭畫面物件
@@ -217,6 +217,7 @@ namespace game_framework {
 			ball[i].SetIsAlive(true);
 		}
 		eraser.Initialize();
+		isaac.Initialize();
 		background.SetTopLeft(BACKGROUND_X,0);				// 設定背景的起始座標
 		help.SetTopLeft(0, SIZE_Y - help.Height());			// 設定說明圖的起始座標
 		hits_left.SetInteger(HITS_LEFT);					// 指定剩下的撞擊數
@@ -282,6 +283,7 @@ namespace game_framework {
 		bball.OnMove();
 		c_practice.OnMove();
 		gamemap.OnMove();
+		isaac.OnMove();
 	}
 
 	void CGameStateRun::OnInit()  								// 遊戲的初值及圖形設定
@@ -324,6 +326,7 @@ namespace game_framework {
 
 		c_practice.LoadBitmap();
 		gamemap.LoadBitmap();
+		isaac.LoadBitmap();
 	
 	}
 
@@ -342,6 +345,15 @@ namespace game_framework {
 		if (nChar == KEY_DOWN)
 			eraser.SetMovingDown(true);
 		gamemap.OnKeyDown(nChar);
+
+		if (nChar == KEY_LEFT)
+			isaac.SetMovingLeft(true);
+		if (nChar == KEY_RIGHT)
+			isaac.SetMovingRight(true);
+		if (nChar == KEY_UP)
+			isaac.SetMovingUp(true);
+		if (nChar == KEY_DOWN)
+			isaac.SetMovingDown(true);
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -358,16 +370,28 @@ namespace game_framework {
 			eraser.SetMovingUp(false);
 		if (nChar == KEY_DOWN)
 			eraser.SetMovingDown(false);
+
+		if (nChar == KEY_LEFT)
+			isaac.SetMovingLeft(false);
+		if (nChar == KEY_RIGHT)
+			isaac.SetMovingRight(false);
+		if (nChar == KEY_UP)
+			isaac.SetMovingUp(false);
+		if (nChar == KEY_DOWN)
+			isaac.SetMovingDown(false);
+		isaac.Reset();
 	}
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
 		eraser.SetMovingLeft(true);
+		isaac.SetMovingLeft(true);
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
 		eraser.SetMovingLeft(false);
+		isaac.SetMovingLeft(false);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -378,11 +402,13 @@ namespace game_framework {
 	void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
 		eraser.SetMovingRight(true);
+		isaac.SetMovingRight(true);
 	}
 
 	void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
 		eraser.SetMovingRight(false);
+		isaac.SetMovingRight(false);
 	}
 
 	void CGameStateRun::OnShow()
@@ -413,6 +439,7 @@ namespace game_framework {
 		practice.ShowBitmap();
 		c_practice.OnShow();
 		gamemap.OnShow();
+		isaac.OnShow();
 	}
 
 //CPractice
@@ -538,7 +565,7 @@ namespace game_framework {
 	}
 	CGameMap::~CGameMap()
 	{
-		delete[] bballs;
+		//delete[] bballs;
 	}
 
 //CBouncingBall
