@@ -37,46 +37,44 @@ namespace game_framework
 	}
 	void CIsaac::LoadBitmap()
 	{
-		char *filename[9] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
+		char *filename[19] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
 								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
-								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp" };
-
-		for (int i = 0; i < 9; i++)
-		{
-			animation.AddBitmap(filename[i], RGB(255, 255, 255));
-		}
-
-		/*char *filename2[10] = { ".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
+								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp", 
+								".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
 								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
 								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
 
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 19; i++)
 		{
-			animation2.AddBitmap(filename2[i], RGB(255, 255, 255));
-		}*/
+			animation.AddBitmap(filename[i], RGB(255, 255, 255));
+		}
+		
 	}
 	void CIsaac::OnMove()
 	{
 		const int STEP_SIZE = 5;
 		animation.SetDelayCount(2);
-		//animation2.SetDelayCount(1);
 		if (isMovingLeft)
 		{
 			x -= STEP_SIZE;
+			//isaacWalkLeft.OnMove();
 		}
 		if (isMovingRight)
 		{
 			x += STEP_SIZE;
+			//isaacWalkRight.OnMove();
 		}
 		if (isMovingUp)
 		{
 			y -= STEP_SIZE;
-			//animation2.OnMove();
+			/*animation = isaacWalkUp;*/
+			animation.OnMove(9,18);
 		}
 		if (isMovingDown)
 		{
 			y += STEP_SIZE;
-			animation.OnMove();
+			//animation = isaacWalkDonw;
+			animation.OnMove(0,8);
 		}
 	}
 	void CIsaac::SetMovingDown(bool flag)

@@ -21,9 +21,13 @@ namespace game_framework
 		void Reset();
 	private:
 		CAnimation animation;
-		CAnimation animation2;
-		CAnimation animation3;
-		CAnimation animation4;
+		CAnimation isaacWalkUp;
+		CAnimation isaacWalkDonw;
+		CAnimation isaacWalkRight;
+		CAnimation isaacWalkLeft;
+		list<CMovingBitmap>				bmp;
+		list<CMovingBitmap>::iterator	bmp_iter;
+
 		int x, y;
 		char *filenameDown[9];
 		bool isMovingDown;

@@ -227,7 +227,8 @@ public:
 	int   Height();					// 取得動畫的高度
 	bool  IsFinalBitmap();			// 回傳正在撥放的bitmap是否為最後一個bitmap
 	int   Left();					// 取得動畫的左上角的 x 座標
-	void  OnMove();					// 依頻率更換bitmap
+	void  OnMove();				// 取得動畫的左上角的 x 座標
+	void  OnMove(int begin,int end);					// 依頻率更換bitmap
 	void  OnShow();					// 將動畫貼到螢幕
 	void  Reset();					// 重設播放順序回到第一張圖形
 	void  SetDelayCount(int);		// 設定動畫播放速度的常數(越大越慢)
