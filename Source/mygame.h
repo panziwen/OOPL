@@ -38,59 +38,18 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
-#include "CEraser.h"
-#include "CBall.h"
-#include "CBouncingBall.h"
 #include "CIsaac.h"
 
 namespace game_framework {
-	/////////////////////////////////////////////////////////////////////////////
-	// Constants
-	/////////////////////////////////////////////////////////////////////////////
 
-	enum AUDIO_ID {				// 定義各種音效的編號
-		AUDIO_DING,				// 0
-		AUDIO_LAKE,				// 1
-		AUDIO_NTUT				// 2
+	enum AUDIO_ID {			
+		AUDIO_DING,				 
+		AUDIO_LAKE,				
+		AUDIO_NTUT				
 	};
 
-	/////////////////////////////////////////////////////////////////////////////
-	// 這個class為遊戲的遊戲開頭畫面物件
-	// 每個Member function的Implementation都要弄懂
-	/////////////////////////////////////////////////////////////////////////////
 
-	class CBouncingBall;
-
-	class CPractice {
-	public:
-		CPractice();
-		void LoadBitmap();
-		void OnMove();
-		void OnShow();
-	private:
-		CMovingBitmap		pic;
-		int					x, y;
-	};
-
-	class CGameMap
-	{
-	public:
-		CGameMap();
-		void LoadBitmap();
-		void OnShow();
-		void OnMove();
-		void OnKeyDown(UINT);
-		void RandomBouncingBall();
-		void InitializeBouncingBall(int, int, int);
-		~CGameMap();
-	protected:
-		CMovingBitmap blue, green;
-		int map[4][5];
-		const int X, Y;
-		const int MW, MH;
-		CBouncingBall* bballs;
-		int random_num;
-	};
+	
 
 	class CGameStateInit : public CGameState {
 	public:
@@ -130,15 +89,9 @@ namespace game_framework {
 		const int		NUMBALLS;	// 球的總數
 		CMovingBitmap	background;	// 背景圖
 		CMovingBitmap	help;		// 說明圖
-		CBall			*ball;		// 球的陣列
 		CMovingBitmap	corner;		// 角落圖
-		CEraser			eraser;		// 拍子
 		CInteger		hits_left;	// 剩下的撞擊數
-		CBouncingBall   bball;		// 反覆彈跳的球
-		CMovingBitmap	practice;
 		int				picX, picY;
-		CPractice		c_practice;
-		CGameMap		gamemap;
 		CIsaac			isaac;
 	};
 
