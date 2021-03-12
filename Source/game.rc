@@ -72,7 +72,6 @@ END
 // Cursor
 //
 
-IDC_GAMECURSOR          CURSOR                  "..\\res\\gamecurs.cur"
 
 #endif    // 中文(繁体，中国台湾) resources
 /////////////////////////////////////////////////////////////////////////////
