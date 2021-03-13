@@ -25,11 +25,8 @@ namespace game_framework
 		CAnimation isaacWalkDonw;
 		CAnimation isaacWalkRight;
 		CAnimation isaacWalkLeft;
-		list<CMovingBitmap>				bmp;
-		list<CMovingBitmap>::iterator	bmp_iter;
 
 		int x, y;
-		char *filenameDown[9];
 		bool isMovingDown;
 		bool isMovingLeft;
 		bool isMovingRight;

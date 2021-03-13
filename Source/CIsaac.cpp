@@ -25,7 +25,7 @@ namespace game_framework
 	}
 	int CIsaac::GetY2()
 	{
-		return y + animation.Height();
+		return x + animation.Height();
 	}
 	void CIsaac::Initialize()
 	{
@@ -37,44 +37,70 @@ namespace game_framework
 	}
 	void CIsaac::LoadBitmap()
 	{
-		char *filename[19] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
+		char *filename0 =  ".\\bitmaps\\isaac3.bmp";
+		char *filename1[9] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
 								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
-								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp", 
+								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp",};
+		char *filename2[10] = {".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
+								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
+								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
+		char *filename3[19] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
+								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
+								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp",
 								".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
 								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
 								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
-
+		char *filename4[19] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
+								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
+								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp",
+								".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
+								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
+								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
+		animation.AddBitmap(filename0, RGB(255, 255, 255));
+		for (int i = 0; i < 9; i++)
+		{
+			isaacWalkDonw.AddBitmap(filename1[i], RGB(255, 255, 255));
+		}
+		for (int i = 0; i < 10; i++)
+		{
+			isaacWalkUp.AddBitmap(filename2[i], RGB(255, 255, 255));
+		}
 		for (int i = 0; i < 19; i++)
 		{
-			animation.AddBitmap(filename[i], RGB(255, 255, 255));
+			isaacWalkLeft.AddBitmap(filename3[i], RGB(255, 255, 255));
+		}
+		for (int i = 0; i < 19; i++)
+		{
+			isaacWalkRight.AddBitmap(filename4[i], RGB(255, 255, 255));
 		}
 		
 	}
 	void CIsaac::OnMove()
 	{
 		const int STEP_SIZE = 5;
-		animation.SetDelayCount(2);
 		if (isMovingLeft)
 		{
 			x -= STEP_SIZE;
-			//isaacWalkLeft.OnMove();
+			isaacWalkLeft.SetDelayCount(2);
+			isaacWalkLeft.OnMove();
 		}
 		if (isMovingRight)
 		{
 			x += STEP_SIZE;
-			//isaacWalkRight.OnMove();
+			isaacWalkRight.SetDelayCount(2);
+			isaacWalkRight.OnMove();
 		}
 		if (isMovingUp)
 		{
 			y -= STEP_SIZE;
-			/*animation = isaacWalkUp;*/
-			animation.OnMove(9,18);
+			isaacWalkUp.SetDelayCount(2);
+			isaacWalkUp.OnMove();
 		}
 		if (isMovingDown)
 		{
 			y += STEP_SIZE;
-			//animation = isaacWalkDonw;
-			animation.OnMove(0,8);
+			isaacWalkDonw.SetDelayCount(2);
+			isaacWalkDonw.OnMove();
 		}
 	}
 	void CIsaac::SetMovingDown(bool flag)
@@ -103,17 +129,40 @@ namespace game_framework
 	}
 	void CIsaac::OnShow()
 	{
+		if (isMovingLeft)
+		{
+			isaacWalkLeft.SetTopLeft(x,y);
+			isaacWalkLeft.OnShow();
+			animation = isaacWalkLeft;
+		}
+		if (isMovingRight)
+		{
+			isaacWalkRight.SetTopLeft(x, y);
+			isaacWalkRight.OnShow();
+			animation = isaacWalkRight;
+		}
+		if (isMovingUp)
+		{
+			isaacWalkUp.SetTopLeft(x, y);
+			isaacWalkUp.OnShow();
+			animation = isaacWalkUp;
+		}
+		if (isMovingDown)
+		{
+			isaacWalkDonw.SetTopLeft(x, y);
+			isaacWalkDonw.OnShow();
+			animation = isaacWalkDonw;
+		}
 		animation.SetTopLeft(x, y);
 		animation.OnShow();
-		/*animation2.SetTopLeft(x, y);
-		animation2.OnShow();*/
 	}
 
 	void CIsaac::Reset()
 	{
 		animation.Reset();
-		//animation2.Reset();
-		//animation3.Reset();
-		//animation4.Reset();
+		isaacWalkDonw.Reset();
+		isaacWalkRight.Reset();
+		isaacWalkUp.Reset();
+		isaacWalkLeft.Reset();
 	}
 }
