@@ -38,24 +38,23 @@ namespace game_framework
 	void CIsaac::LoadBitmap()
 	{
 		char *filename0 =  ".\\bitmaps\\isaac3.bmp";
+
 		char *filename1[9] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
 								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
 								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp",};
+
 		char *filename2[10] = {".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
 								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
 								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
-		char *filename3[19] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
-								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
-								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp",
-								".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
-								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
-								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
-		char *filename4[19] = { ".\\bitmaps\\isaac3.bmp", ".\\bitmaps\\isaac4.bmp",".\\bitmaps\\isaac5.bmp",
-								".\\bitmaps\\isaac6.bmp",".\\bitmaps\\isaac7.bmp", ".\\bitmaps\\isaac8.bmp",
-								".\\bitmaps\\isaac9.bmp",".\\bitmaps\\isaac1.bmp",".\\bitmaps\\isaac2.bmp",
-								".\\bitmaps\\isaac10.bmp", ".\\bitmaps\\isaac11.bmp",".\\bitmaps\\isaac12.bmp",
-								".\\bitmaps\\isaac13.bmp",".\\bitmaps\\isaac14.bmp", ".\\bitmaps\\isaac15.bmp",
-								".\\bitmaps\\isaac16.bmp",".\\bitmaps\\isaac17.bmp",".\\bitmaps\\isaac18.bmp",".\\bitmaps\\isaac19.bmp" };
+
+		char *filename3[10] = { ".\\bitmaps\\isaac30.bmp", ".\\bitmaps\\isaac31.bmp",".\\bitmaps\\isaac32.bmp",
+								".\\bitmaps\\isaac33.bmp",".\\bitmaps\\isaac34.bmp", ".\\bitmaps\\isaac35.bmp",
+								".\\bitmaps\\isaac36.bmp",".\\bitmaps\\isaac37.bmp",".\\bitmaps\\isaac38.bmp",".\\bitmaps\\isaac39.bmp" };
+
+		char *filename4[10] = { ".\\bitmaps\\isaac20.bmp", ".\\bitmaps\\isaac21.bmp",".\\bitmaps\\isaac22.bmp",
+								".\\bitmaps\\isaac23.bmp",".\\bitmaps\\isaac24.bmp", ".\\bitmaps\\isaac25.bmp",
+								".\\bitmaps\\isaac26.bmp",".\\bitmaps\\isaac27.bmp",".\\bitmaps\\isaac28.bmp",".\\bitmaps\\isaac29.bmp"};
+
 		animation.AddBitmap(filename0, RGB(255, 255, 255));
 		for (int i = 0; i < 9; i++)
 		{
@@ -65,11 +64,11 @@ namespace game_framework
 		{
 			isaacWalkUp.AddBitmap(filename2[i], RGB(255, 255, 255));
 		}
-		for (int i = 0; i < 19; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			isaacWalkLeft.AddBitmap(filename3[i], RGB(255, 255, 255));
 		}
-		for (int i = 0; i < 19; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			isaacWalkRight.AddBitmap(filename4[i], RGB(255, 255, 255));
 		}
