@@ -72,6 +72,7 @@ namespace game_framework {
 	void CGameStateInit::OnInit()
 	{		
 		ShowInitProgress(0);
+		gameinterface.LoadBitmap();
 		Sleep(300);
 	}
 
@@ -93,9 +94,17 @@ namespace game_framework {
 	{
 		GotoGameState(GAME_STATE_RUN);		// 切換至GAME_STATE_RUN
 	}
+	void CGameStateInit::OnMove()
+	{
+		gameinterface.OnMove();
+	}
 
 	void CGameStateInit::OnShow()
 	{
+		gameinterface.BackgroundOnShow();
+
+		gameinterface.LogoOnShow();
+
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f,*fp;
 		f.CreatePointFont(160,"Times New Roman");	// 產生 font f; 160表示16 point的字
@@ -167,7 +176,6 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
 		CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");
 		isaac.LoadBitmap();
-	
 	}
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)

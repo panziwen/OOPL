@@ -39,6 +39,7 @@
 */
 
 #include "CIsaac.h"
+#include "CInterface.h"
 
 namespace game_framework {
 
@@ -60,8 +61,9 @@ namespace game_framework {
 		void OnLButtonDown(UINT nFlags, CPoint point);  // 處理滑鼠的動作
 	protected:
 		void OnShow();									// 顯示這個狀態的遊戲畫面
+		void OnMove();
 	private:
-		CMovingBitmap logo;								// csie的logo
+		CInterface		gameinterface;// csie的logo
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
