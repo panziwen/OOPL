@@ -101,6 +101,10 @@ namespace game_framework
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
 		}
+		if (isMovingUp && isMovingRight)
+		{
+
+		}
 	}
 	void CIsaac::SetMovingDown(bool flag)
 	{
