@@ -77,7 +77,7 @@ namespace game_framework
 	void CIsaac::OnMove()
 	{
 		const int STEP_SIZE = 5;
-		if (isMovingLeft)
+		if (isMovingLeft || (isMovingUp&&isMovingLeft) || (isMovingDown&&isMovingLeft))
 		{
 			x -= STEP_SIZE;
 			isaacWalkLeft.SetDelayCount(2);
@@ -100,10 +100,6 @@ namespace game_framework
 			y += STEP_SIZE;
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
-		}
-		if (isMovingUp && isMovingRight)
-		{
-
 		}
 	}
 	void CIsaac::SetMovingDown(bool flag)
