@@ -23,19 +23,19 @@ namespace game_framework
 		char *filename4[7] = { ".\\Bitmaps\\interface\\interface_bug1.bmp",".\\Bitmaps\\interface\\interface_bug2.bmp", };
 
 		
-		background.LoadBitmap(filename, RGB(255, 255, 255));
+		background.LoadBitmap(filename, RGB(109, 33, 115));
 
 		for (int i = 0; i < 7; ++i)
 		{
-			logo.AddBitmap(filename2[i], RGB(255, 255, 255));
+			logo.AddBitmap(filename2[i], RGB(109, 33, 115));
 		}
 		for (int i = 0; i < 2; ++i)
 		{
-			start.AddBitmap(filename3[i], RGB(255, 255, 255));
+			start.AddBitmap(filename3[i], RGB(109, 33, 115));
 		}
 		for (int i = 0; i < 2; ++i)
 		{
-			bugs.AddBitmap(filename4[i], RGB(255, 255, 255));
+			bugs.AddBitmap(filename4[i], RGB(109, 33, 115));
 		}
 
 	}

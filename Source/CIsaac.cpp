@@ -55,22 +55,22 @@ namespace game_framework
 								".\\bitmaps\\isaac_origin\\isaac23.bmp",".\\bitmaps\\isaac_origin\\isaac24.bmp", ".\\bitmaps\\isaac_origin\\isaac25.bmp",
 								".\\bitmaps\\isaac_origin\\isaac26.bmp",".\\bitmaps\\isaac_origin\\isaac27.bmp",".\\bitmaps\\isaac_origin\\isaac28.bmp",".\\bitmaps\\isaac_origin\\isaac29.bmp"};
 
-		animation.AddBitmap(filename0, RGB(255, 255, 255));
+		animation.AddBitmap(filename0, RGB(109, 33, 115));
 		for (int i = 0; i < 9; i++)
 		{
-			isaacWalkDonw.AddBitmap(filename1[i], RGB(255, 255, 255));
+			isaacWalkDonw.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
 		for (int i = 0; i < 10; i++)
 		{
-			isaacWalkUp.AddBitmap(filename2[i], RGB(255, 255, 255));
+			isaacWalkUp.AddBitmap(filename2[i], RGB(109, 33, 115));
 		}
 		for (int i = 0; i < 10; i++)
 		{
-			isaacWalkLeft.AddBitmap(filename3[i], RGB(255, 255, 255));
+			isaacWalkLeft.AddBitmap(filename3[i], RGB(109, 33, 115));
 		}
 		for (int i = 0; i < 10; i++)
 		{
-			isaacWalkRight.AddBitmap(filename4[i], RGB(255, 255, 255));
+			isaacWalkRight.AddBitmap(filename4[i], RGB(109, 33, 115));
 		}
 		
 	}
