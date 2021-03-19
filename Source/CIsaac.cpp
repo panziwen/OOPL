@@ -77,29 +77,57 @@ namespace game_framework
 	void CIsaac::OnMove()
 	{
 		const int STEP_SIZE = 5;
-		if (isMovingLeft || (isMovingUp&&isMovingLeft) || (isMovingDown&&isMovingLeft))
+		if (isMovingLeft && !isMovingUp && !isMovingDown)
 		{
 			x -= STEP_SIZE;
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
 		}
-		if (isMovingRight)
+		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
 			x += STEP_SIZE;
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
 		}
-		if (isMovingUp)
+		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
 			y -= STEP_SIZE;
 			isaacWalkUp.SetDelayCount(2);
 			isaacWalkUp.OnMove();
 		}
-		if (isMovingDown)
+		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
 			y += STEP_SIZE;
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
+		}
+		if (isMovingUp && isMovingLeft)
+		{
+			y -= STEP_SIZE;
+			x -= STEP_SIZE;
+			isaacWalkLeft.SetDelayCount(2);
+			isaacWalkLeft.OnMove();
+		}
+		if (isMovingUp && isMovingRight)
+		{
+			y -= STEP_SIZE;
+			x += STEP_SIZE;
+			isaacWalkRight.SetDelayCount(2);
+			isaacWalkRight.OnMove();
+		}
+		if (isMovingDown && isMovingLeft)
+		{
+			y += STEP_SIZE;
+			x -= STEP_SIZE;
+			isaacWalkLeft.SetDelayCount(2);
+			isaacWalkLeft.OnMove();
+		}
+		if (isMovingDown && isMovingRight)
+		{
+			y += STEP_SIZE;
+			x += STEP_SIZE;
+			isaacWalkRight.SetDelayCount(2);
+			isaacWalkRight.OnMove();
 		}
 	}
 	void CIsaac::SetMovingDown(bool flag)
@@ -128,29 +156,53 @@ namespace game_framework
 	}
 	void CIsaac::OnShow()
 	{
-		if (isMovingLeft)
+		if (isMovingLeft && !isMovingUp && !isMovingDown)
 		{
-			isaacWalkLeft.SetTopLeft(x,y);
+			isaacWalkLeft.SetTopLeft(x, y);
 			isaacWalkLeft.OnShow(2);
 			animation = isaacWalkLeft;
 		}
-		if (isMovingRight)
+		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
 			isaacWalkRight.SetTopLeft(x, y);
 			isaacWalkRight.OnShow(2);
 			animation = isaacWalkRight;
 		}
-		if (isMovingUp)
+		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
 			isaacWalkUp.SetTopLeft(x, y);
 			isaacWalkUp.OnShow(2);
 			animation = isaacWalkUp;
 		}
-		if (isMovingDown)
+		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
 			isaacWalkDonw.SetTopLeft(x, y);
 			isaacWalkDonw.OnShow(2);
 			animation = isaacWalkDonw;
+		}
+		if (isMovingUp && isMovingLeft)
+		{
+			isaacWalkLeft.SetTopLeft(x, y);
+			isaacWalkLeft.OnShow(2);
+			animation = isaacWalkLeft;
+		}
+		if (isMovingUp && isMovingRight)
+		{
+			isaacWalkRight.SetTopLeft(x, y);
+			isaacWalkRight.OnShow(2);
+			animation = isaacWalkRight;
+		}
+		if (isMovingDown && isMovingLeft)
+		{
+			isaacWalkLeft.SetTopLeft(x, y);
+			isaacWalkLeft.OnShow(2);
+			animation = isaacWalkLeft;
+		}
+		if (isMovingDown && isMovingRight)
+		{
+			isaacWalkRight.SetTopLeft(x, y);
+			isaacWalkRight.OnShow(2);
+			animation = isaacWalkRight;
 		}
 		animation.SetTopLeft(x, y);
 		animation.OnShow(2);

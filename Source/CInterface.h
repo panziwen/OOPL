@@ -13,6 +13,5 @@ namespace game_framework
 		CAnimation logo;
 		CAnimation bugs;
 		CAnimation start;
-
 	};
 }

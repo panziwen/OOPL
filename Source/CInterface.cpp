@@ -37,7 +37,6 @@ namespace game_framework
 		{
 			bugs.AddBitmap(filename4[i], RGB(109, 33, 115));
 		}
-
 	}
 	void CInterface::OnMove()
 	{
