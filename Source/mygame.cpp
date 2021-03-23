@@ -180,35 +180,43 @@ namespace game_framework {
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		const char KEY_LEFT  = 0x25; // keyboard左箭頭
-		const char KEY_UP    = 0x26; // keyboard上箭頭
-		const char KEY_RIGHT = 0x27; // keyboard右箭頭
-		const char KEY_DOWN  = 0x28; // keyboard下箭頭
+		const char KEY_LEFT = 0x25; 
+		const char KEY_UP = 0x26; 
+		const char KEY_RIGHT = 0x27; 
+		const char KEY_DOWN = 0x28; 
+		const char KEY_W = 'w'; 
+		const char KEY_A = 'a'; 
+		const char KEY_S = 's'; 
+		const char KEY_D = 'd'; 
 
-		if (nChar == KEY_LEFT)
+		if (nChar == KEY_LEFT || nChar==KEY_A)
 			isaac.SetMovingLeft(true);
-		if (nChar == KEY_RIGHT)
+		if (nChar == KEY_RIGHT || nChar == KEY_D)
 			isaac.SetMovingRight(true);
-		if (nChar == KEY_UP)
+		if (nChar == KEY_UP || nChar == KEY_W)
 			isaac.SetMovingUp(true);
-		if (nChar == KEY_DOWN)
+		if (nChar == KEY_DOWN || nChar == KEY_S)
 			isaac.SetMovingDown(true);
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
-		const char KEY_LEFT  = 0x25; // keyboard左箭頭
-		const char KEY_UP    = 0x26; // keyboard上箭頭
-		const char KEY_RIGHT = 0x27; // keyboard右箭頭
-		const char KEY_DOWN  = 0x28; // keyboard下箭頭
+		const char KEY_LEFT  = 0x25; 
+		const char KEY_UP    = 0x26; 
+		const char KEY_RIGHT = 0x27; 
+		const char KEY_DOWN  = 0x28;
+		const char KEY_W = 'w';
+		const char KEY_A = 'a';
+		const char KEY_S = 's';
+		const char KEY_D = 'd';
 
-		if (nChar == KEY_LEFT)
+		if (nChar == KEY_LEFT || nChar == KEY_A)
 			isaac.SetMovingLeft(false);
-		if (nChar == KEY_RIGHT)
+		if (nChar == KEY_RIGHT || nChar == KEY_D)
 			isaac.SetMovingRight(false);
-		if (nChar == KEY_UP)
+		if (nChar == KEY_UP || nChar == KEY_W)
 			isaac.SetMovingUp(false);
-		if (nChar == KEY_DOWN)
+		if (nChar == KEY_DOWN || nChar == KEY_S)
 			isaac.SetMovingDown(false);
 		isaac.Reset();
 	}
