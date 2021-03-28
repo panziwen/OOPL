@@ -11,29 +11,13 @@ namespace game_framework
 	{
 
 	}
-	int CIsaac::GetX1()
-	{
-		return x;
-	}
-	int CIsaac::GetY1()
-	{
-		return y;
-	}
-	int CIsaac::GetX2()
-	{
-		return x + animation.Width();
-	}
-	int CIsaac::GetY2()
-	{
-		return x + animation.Height();
-	}
 	void CIsaac::Initialize()
 	{
 		const int X_POS = SIZE_X/2;
 		const int Y_POS = (SIZE_Y / 5) * 4;
 		x = X_POS;
 		y = Y_POS;
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = false;
 	}
 	void CIsaac::LoadBitmap()
 	{
@@ -72,6 +56,7 @@ namespace game_framework
 		{
 			isaacWalkRight.AddBitmap(filename4[i], RGB(109, 33, 115));
 		}
+		isaacAttack.LoadBitmap();
 		
 	}
 	void CIsaac::OnMove()
@@ -82,24 +67,28 @@ namespace game_framework
 			x -= STEP_SIZE;
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
+			isaacAttack.SetXY(x-isaacAttack.Width(), y);
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
 			x += STEP_SIZE;
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
+			isaacAttack.SetXY(x, y);
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
 			y -= STEP_SIZE;
 			isaacWalkUp.SetDelayCount(2);
 			isaacWalkUp.OnMove();
+			isaacAttack.SetXY(x, y);
 		}
 		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
 			y += STEP_SIZE;
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
+			isaacAttack.SetXY(x, y);
 		}
 		if (isMovingUp && isMovingLeft)
 		{
@@ -107,6 +96,7 @@ namespace game_framework
 			x -= STEP_SIZE;
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
+			isaacAttack.SetXY(x - isaacAttack.Width(), y);
 		}
 		if (isMovingUp && isMovingRight)
 		{
@@ -114,6 +104,7 @@ namespace game_framework
 			x += STEP_SIZE;
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
+			isaacAttack.SetXY(x, y);
 		}
 		if (isMovingDown && isMovingLeft)
 		{
@@ -121,6 +112,7 @@ namespace game_framework
 			x -= STEP_SIZE;
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
+			isaacAttack.SetXY(x - isaacAttack.Width(), y);
 		}
 		if (isMovingDown && isMovingRight)
 		{
@@ -128,31 +120,13 @@ namespace game_framework
 			x += STEP_SIZE;
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
+			isaacAttack.SetXY(x, y);
 		}
-	}
-	void CIsaac::SetMovingDown(bool flag)
-	{
-		isMovingDown = flag;
-	}
-
-	void CIsaac::SetMovingLeft(bool flag)
-	{
-		isMovingLeft = flag;
-	}
-
-	void CIsaac::SetMovingRight(bool flag)
-	{
-		isMovingRight = flag;
-	}
-
-	void CIsaac::SetMovingUp(bool flag)
-	{
-		isMovingUp = flag;
-	}
-	void CIsaac::SetXY(int nx, int ny)
-	{
-		x = nx; 
-		y = ny;
+		if (isAttack)
+		{
+			isaacAttack.SetAttack(isAttack);
+ 			isaacAttack.OnMove();
+		}
 	}
 	void CIsaac::OnShow()
 	{
@@ -204,10 +178,44 @@ namespace game_framework
 			isaacWalkRight.OnShow(2);
 			animation = isaacWalkRight;
 		}
+		if (isAttack)
+		{
+			isaacAttack.OnShow();
+		}
 		animation.SetTopLeft(x, y);
 		animation.OnShow(2);
 	}
+	void CIsaac::BulletDisapear()
+	{
+		isaacAttack.BulletDisapear();
+	}
+	void CIsaac::SetMovingDown(bool flag)
+	{
+		isMovingDown = flag;
+	}
 
+	void CIsaac::SetMovingLeft(bool flag)
+	{
+		isMovingLeft = flag;
+	}
+
+	void CIsaac::SetMovingRight(bool flag)
+	{
+		isMovingRight = flag;
+	}
+
+	void CIsaac::SetMovingUp(bool flag)
+	{
+		isMovingUp = flag;
+	}
+	void CIsaac::SetAttack(bool flag)
+	{
+		isAttack = flag;
+	}
+	void CIsaac::AttackReset()
+	{
+		isaacAttack.Reset();
+	}
 	void CIsaac::Reset()
 	{
 		animation.Reset();

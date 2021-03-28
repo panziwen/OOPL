@@ -85,7 +85,9 @@ namespace game_framework {
 		const char KEY_ESC = 27;
 		const char KEY_SPACE = ' ';
 		if (nChar == KEY_SPACE)
-			GotoGameState(GAME_STATE_RUN);						// 切換至GAME_STATE_RUN
+		{
+			GotoGameState(GAME_STATE_RUN);
+		}// 切換至GAME_STATE_RUN
 		else if (nChar == KEY_ESC)								// Demo 關閉遊戲的方法
 			PostMessage(AfxGetMainWnd()->m_hWnd, WM_CLOSE,0,0);	// 關閉遊戲
 	}
@@ -103,7 +105,6 @@ namespace game_framework {
 	{
 		gameinterface.BackgroundOnShow();
 
-		gameinterface.LogoOnShow();
 
 		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
 		CFont f,*fp;
@@ -158,7 +159,7 @@ namespace game_framework {
 
 	void CGameStateRun::OnBeginState()
 	{
-		
+
 		isaac.Initialize();	
 	}
 
@@ -170,8 +171,7 @@ namespace game_framework {
 	void CGameStateRun::OnInit()  			
 	{
 		ShowInitProgress(50);
-		Sleep(300); 
-		hits_left.LoadBitmap();									
+		Sleep(300); 							
 		CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
 		CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");
@@ -183,11 +183,12 @@ namespace game_framework {
 		const char KEY_LEFT = 0x25; 
 		const char KEY_UP = 0x26; 
 		const char KEY_RIGHT = 0x27; 
-		const char KEY_DOWN = 0x28; 
-		const char KEY_W = 'w'; 
-		const char KEY_A = 'a'; 
-		const char KEY_S = 's'; 
-		const char KEY_D = 'd'; 
+		const char KEY_DOWN = 0x28;
+		const char KEY_SPACE = ' ';
+		const char KEY_W = 'W'; 
+		const char KEY_A = 'A'; 
+		const char KEY_S = 'S'; 
+		const char KEY_D = 'D'; 
 
 		if (nChar == KEY_LEFT || nChar==KEY_A)
 			isaac.SetMovingLeft(true);
@@ -197,6 +198,8 @@ namespace game_framework {
 			isaac.SetMovingUp(true);
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 			isaac.SetMovingDown(true);
+		if (nChar == KEY_SPACE)
+			isaac.SetAttack(true);
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -205,10 +208,11 @@ namespace game_framework {
 		const char KEY_UP    = 0x26; 
 		const char KEY_RIGHT = 0x27; 
 		const char KEY_DOWN  = 0x28;
-		const char KEY_W = 'w';
-		const char KEY_A = 'a';
-		const char KEY_S = 's';
-		const char KEY_D = 'd';
+		const char KEY_SPACE = ' ';
+		const char KEY_W = 'W';
+		const char KEY_A = 'A';
+		const char KEY_S = 'S';
+		const char KEY_D = 'D';
 
 		if (nChar == KEY_LEFT || nChar == KEY_A)
 			isaac.SetMovingLeft(false);
@@ -218,6 +222,8 @@ namespace game_framework {
 			isaac.SetMovingUp(false);
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 			isaac.SetMovingDown(false);
+		if (nChar == KEY_SPACE)
+			isaac.SetAttack(false);
 		isaac.Reset();
 	}
 

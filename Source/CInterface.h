@@ -6,12 +6,13 @@ namespace game_framework
 		CInterface();
 		void OnMove();
 		void BackgroundOnShow();
-		void LogoOnShow();
 		void LoadBitmap();
+		void BackOnMove();
 	private:
 		CMovingBitmap background;
 		CAnimation logo;
 		CAnimation bugs;
 		CAnimation start;
+		CAnimation a;
 	};
 }

@@ -237,6 +237,7 @@
     <None Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAttack.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\CIsaac.cpp" />
     <ClCompile Include="Source\game.cpp">
@@ -282,6 +283,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CAttack.h" />
     <ClInclude Include="Source\CIsaac.h" />
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\game.h" />

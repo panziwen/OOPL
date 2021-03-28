@@ -51,16 +51,19 @@ namespace game_framework
 	{
 		background.SetTopLeft(0,0);
 		background.ShowBitmap(2);
-	}
-	void CInterface::LogoOnShow()
-	{
 		logo.SetTopLeft((SIZE_X - logo.Width()) / 3, (SIZE_Y - logo.Height()) / 17);
 		logo.OnShow(1.5);
 
-		bugs.SetTopLeft((SIZE_X - 5*bugs.Width()), (SIZE_Y - bugs.Height()) / 3);
+		bugs.SetTopLeft((SIZE_X - 5 * bugs.Width()), (SIZE_Y - bugs.Height()) / 3);
 		bugs.OnShow(1.5);
 
-		start.SetTopLeft((SIZE_X - 2*start.Width()) / 2, (SIZE_Y - start.Height()) / 3);
+		start.SetTopLeft((SIZE_X - 2 * start.Width()) / 2, (SIZE_Y - start.Height()) / 3);
 		start.OnShow(2);
+	}
+	void CInterface::BackOnMove()
+	{
+		a.AddBitmap(IDB_CONTINUE);
+		a.OnMove();
+		a.OnShow();
 	}
 }
