@@ -48,7 +48,6 @@ namespace game_framework
 	{
 		const int STEP_SIZE = 5;
 		leftBullet.SetTopLeft(x, y);
-		leftBullet.SetTopLeft(leftBullet.Left(), y);
 		if (isAttack)
 		{
 			bulletDisappear.SetDelayCount(1);
