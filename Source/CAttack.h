@@ -6,12 +6,12 @@ namespace game_framework
 	public:
 		CAttack();
 		int Width();
+		bool GetAttack();
 		void Initialize();
 		void LoadBitmap();
 		void OnMove();
 		void OnShow();
 		void BulletDisapear();
-		void SetAttack(bool flag);
 		void SetXY(int nx, int ny);
 		void Reset();
 	private:
@@ -20,6 +20,7 @@ namespace game_framework
 		CAnimation bulletDisappear;
 		int x, y;
 		bool isAttack;
+		int pos;
 	};
 
 }

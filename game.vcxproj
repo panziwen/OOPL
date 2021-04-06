@@ -237,9 +237,10 @@
     <None Include="res\Toolbar.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CAttack.cpp" />
+    <ClCompile Include="Source\CAttack.cpp" />
+    <ClCompile Include="Source\CGamemap.cpp" />
     <ClCompile Include="Source\audio.cpp" />
-    <ClCompile Include="Source\CIsaac.cpp" />
+    <ClCompile Include="Source\CCharaterCtrol.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -283,8 +284,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CAttack.h" />
-    <ClInclude Include="Source\CIsaac.h" />
+    <ClInclude Include="Source\CAttack.h" />
+    <ClInclude Include="Source\CGamemap.h" />
+    <ClInclude Include="Source\CCharaterCtrol.h" />
     <ClInclude Include="Source\audio.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />

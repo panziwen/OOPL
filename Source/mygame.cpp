@@ -161,11 +161,13 @@ namespace game_framework {
 	{
 
 		isaac.Initialize();	
+		gamemap.Initialize();
 	}
 
 	void CGameStateRun::OnMove()
 	{
 		isaac.OnMove();
+		gamemap.OnShow();
 	}
 
 	void CGameStateRun::OnInit()  			
@@ -176,6 +178,7 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
 		CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");
 		isaac.LoadBitmap();
+		gamemap.LoadBitmap();
 	}
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -223,7 +226,9 @@ namespace game_framework {
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 			isaac.SetMovingDown(false);
 		if (nChar == KEY_SPACE)
-			isaac.SetAttack(false);
+		{
+			//isaac.SetAttack(false);
+		}
 		isaac.Reset();
 	}
 
@@ -254,6 +259,7 @@ namespace game_framework {
 
 	void CGameStateRun::OnShow()
 	{
+		gamemap.OnShow();
 		isaac.OnShow();
 	}
 }

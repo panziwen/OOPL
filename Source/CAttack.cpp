@@ -14,10 +14,6 @@ namespace game_framework
 	}
 	void CAttack::Initialize()
 	{
-		const int X_POS = SIZE_X / 2;
-		const int Y_POS = (SIZE_Y / 5) * 4;
-		x = X_POS;
-		y = Y_POS;
 		isAttack = false;
 	}
 	
@@ -40,35 +36,31 @@ namespace game_framework
 		}
 
 	}
-	void CAttack::SetAttack(bool flag)
-	{
-		isAttack = flag;
-	}
 	void CAttack::OnMove()
 	{
 		const int STEP_SIZE = 5;
-		leftBullet.SetTopLeft(x, y);
-		if (isAttack)
-		{
-			bulletDisappear.SetDelayCount(1);
-			bulletDisappear.OnMove();
-		}
+		bulletDisappear.SetDelayCount(2);
+		bulletDisappear.OnMove();
 	}
 
 	void CAttack::OnShow()
 	{
-		leftBullet.SetTopLeft(x + 1, y);
-		leftBullet.ShowBitmap(2);
-		if (isAttack)
+		if (x != pos)
 		{
-			bulletDisappear.SetTopLeft(x, y);
-			bulletDisappear.OnShow();
+			x += 1;
+			leftBullet.SetTopLeft(x, y);
+			leftBullet.ShowBitmap(2);
+		}
+		else
+		{
+			BulletDisapear();
 		}
 	}
 	void CAttack::BulletDisapear()
 	{
 		bulletDisappear.SetTopLeft(x, y);
 		bulletDisappear.OnShow(2);
+		isAttack = false;
 	}
 	void CAttack::Reset()
 	{
@@ -78,10 +70,15 @@ namespace game_framework
 	{
 		x = nx;
 		y = ny;
+		pos = x + 150;
 	}
 	int CAttack::Width()
 	{
 		return leftBullet.Width();
+	}
+	bool CAttack::GetAttack()
+	{
+		return isAttack;
 	}
 
 }

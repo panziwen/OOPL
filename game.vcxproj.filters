@@ -54,13 +54,16 @@
     <ClCompile Include="Source\mygame.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CIsaac.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
     <ClCompile Include="Source\CInterface.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="CAttack.cpp">
+    <ClCompile Include="Source\CAttack.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CGamemap.cpp">
+      <Filter>MyGame</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CCharaterCtrol.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,13 +95,16 @@
     <ClInclude Include="Source\mygame.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CIsaac.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
     <ClInclude Include="Source\CInterface.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="CAttack.h">
+    <ClInclude Include="Source\CAttack.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CGamemap.h">
+      <Filter>MyGame</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CCharaterCtrol.h">
       <Filter>MyGame</Filter>
     </ClInclude>
   </ItemGroup>
