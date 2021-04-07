@@ -14,13 +14,13 @@ namespace game_framework
 		void LoadBitmap();
 		void OnMove();
 		void OnShow();
-		void AttackReset();
+		bool GetAttack();
 		void SetInSize(bool flag);
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);
 		void SetMovingRight(bool flag);
 		void SetMovingUp(bool flag);
-		void SetAttack(bool flag);
+		void SetAttack(bool flag, bool flag2);
 		void Reset();
 	private:
 		CAnimation animation;
@@ -37,5 +37,6 @@ namespace game_framework
 		bool isInSize;
 		bool isMovingUp;
 		bool isAttack;
+		bool isAttack2;
 	};
 }

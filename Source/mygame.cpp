@@ -202,7 +202,7 @@ namespace game_framework {
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 			isaac.SetMovingDown(true);
 		if (nChar == KEY_SPACE)
-			isaac.SetAttack(true);
+			isaac.SetAttack(true, true);
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -227,7 +227,7 @@ namespace game_framework {
 			isaac.SetMovingDown(false);
 		if (nChar == KEY_SPACE)
 		{
-			//isaac.SetAttack(false);
+			isaac.SetAttack(false, isaac.GetAttack());
 		}
 		isaac.Reset();
 	}

@@ -88,7 +88,10 @@ namespace game_framework
 			}
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
-			isaacAttack.SetXY(x-isaacAttack.Width(), y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+			}
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
@@ -98,7 +101,10 @@ namespace game_framework
 			}
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
-			isaacAttack.SetXY(x, y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x, y);
+			}
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
@@ -108,7 +114,10 @@ namespace game_framework
 			}
 			isaacWalkUp.SetDelayCount(2);
 			isaacWalkUp.OnMove();
-			isaacAttack.SetXY(x, y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x, y);
+			}
 		}
 		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
@@ -118,7 +127,10 @@ namespace game_framework
 			}
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
-			isaacAttack.SetXY(x, y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x, y);
+			}
 		}
 		if (isMovingUp && isMovingLeft)
 		{
@@ -137,7 +149,10 @@ namespace game_framework
 			}
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
-			isaacAttack.SetXY(x - isaacAttack.Width(), y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+			}
 		}
 		if (isMovingUp && isMovingRight)
 		{
@@ -156,7 +171,10 @@ namespace game_framework
 			}
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
-			isaacAttack.SetXY(x, y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x, y);
+			}
 		}
 		if (isMovingDown && isMovingLeft)
 		{
@@ -175,7 +193,10 @@ namespace game_framework
 			}
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
-			isaacAttack.SetXY(x - isaacAttack.Width(), y);
+			if (isAttack)
+			{
+				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+			}
 		}
 		if (isMovingDown && isMovingRight)
 		{
@@ -192,8 +213,14 @@ namespace game_framework
 			{
 				x += STEP_SIZE;
 			}
-			isaacWalkRight.SetDelayCount(2);
-			isaacWalkRight.OnMove();
+			if (isAttack)
+			{
+				isaacWalkRight.SetDelayCount(2);
+				isaacWalkRight.OnMove();
+			}
+		}
+		if (isAttack)
+		{
 			isaacAttack.SetXY(x, y);
 		}
 		isaacAttack.OnMove();
@@ -248,13 +275,9 @@ namespace game_framework
 			isaacWalkRight.OnShow(2);
 			animation = isaacWalkRight;
 		}
-		if (isAttack)
+		if (!isAttack && isaacAttack.GetAttack())
 		{
-			for (int i = 0; i < 7; i++)
-			{
-				isaacAttack.OnShow();
-
-			}
+			isaacAttack.OnShow();
 		}
 		animation.SetTopLeft(x, y);
 		animation.OnShow(2);
@@ -278,17 +301,20 @@ namespace game_framework
 	{
 		isMovingUp = flag;
 	}
-	void CCharaterCtrol::SetAttack(bool flag)
+	void CCharaterCtrol::SetAttack(bool flag, bool flag2)
 	{
 		isAttack = flag;
+		isAttack2 = flag2;
+		isaacAttack.SetAttack(isAttack2);
+
 	}
 	void CCharaterCtrol::SetInSize(bool flag)
 	{
 		isInSize = flag;
 	}
-	void CCharaterCtrol::AttackReset()
+	bool CCharaterCtrol::GetAttack()
 	{
-		isaacAttack.Reset();
+		return isAttack2;
 	}
 	void CCharaterCtrol::Reset()
 	{

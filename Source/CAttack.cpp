@@ -16,6 +16,11 @@ namespace game_framework
 	{
 		isAttack = false;
 	}
+
+	void CAttack::SetAttack(bool flag)
+	{
+		isAttack = flag;
+	}
 	
 	void CAttack::LoadBitmap()
 	{
@@ -45,9 +50,12 @@ namespace game_framework
 
 	void CAttack::OnShow()
 	{
-		if (x != pos)
+		if (x <= pos)
 		{
-			x += 1;
+			for (int i = 0; i < 8; i++)
+			{
+				x += 1;
+			}
 			leftBullet.SetTopLeft(x, y);
 			leftBullet.ShowBitmap(2);
 		}
@@ -59,12 +67,10 @@ namespace game_framework
 	void CAttack::BulletDisapear()
 	{
 		bulletDisappear.SetTopLeft(x, y);
+		bulletDisappear.Reset();
+		bulletDisappear.SetDelayCount(1);
 		bulletDisappear.OnShow(2);
 		isAttack = false;
-	}
-	void CAttack::Reset()
-	{
-		bulletDisappear.Reset();
 	}
 	void CAttack::SetXY(int nx, int ny)
 	{

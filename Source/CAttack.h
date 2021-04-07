@@ -7,13 +7,13 @@ namespace game_framework
 		CAttack();
 		int Width();
 		bool GetAttack();
+		void SetAttack(bool flag);
 		void Initialize();
 		void LoadBitmap();
 		void OnMove();
 		void OnShow();
 		void BulletDisapear();
 		void SetXY(int nx, int ny);
-		void Reset();
 	private:
 		CMovingBitmap leftBullet;
 		CMovingBitmap rightBullet;
