@@ -14,7 +14,7 @@ namespace game_framework
 	}
 	void CGamemap::Initialize()
 	{
-		
+		CreateEnemy();
 	}
 	void CGamemap::LoadBitmap()
 	{
@@ -27,6 +27,7 @@ namespace game_framework
 		map7.LoadBitmap(".\\bitmaps\\map\\nomal\\8.bmp");
 		map8.LoadBitmap(".\\bitmaps\\map\\nomal\\9.bmp");
 		map9.LoadBitmap(".\\bitmaps\\map\\nomal\\5.bmp");
+		enemy.LoadBitmap();
 	}
 	void CGamemap::OnShow()
 	{
@@ -67,9 +68,14 @@ namespace game_framework
 		map3.ShowBitmap();
 		map4.SetTopLeft(SIZE_X - map4.Width(), SIZE_Y - map3.Height());
 		map4.ShowBitmap();
+		enemy.OnShow();
 	}
 	bool CGamemap::IsInSize()
 	{
 		return isInSize;
+	}
+	void CGamemap::CreateEnemy()
+	{
+		enemy.OnMove();
 	}
 }

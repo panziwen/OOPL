@@ -238,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CAttack.cpp" />
+    <ClCompile Include="Source\CEnemy.cpp" />
     <ClCompile Include="Source\CGamemap.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\CCharaterCtrol.cpp" />
@@ -285,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CAttack.h" />
+    <ClInclude Include="Source\CEnemy.h" />
     <ClInclude Include="Source\CGamemap.h" />
     <ClInclude Include="Source\CCharaterCtrol.h" />
     <ClInclude Include="Source\audio.h" />

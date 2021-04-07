@@ -1,3 +1,4 @@
+#include "CEnemy.h"
 namespace game_framework
 {
 	class CGamemap
@@ -8,6 +9,7 @@ namespace game_framework
 		void LoadBitmap();
 		void OnShow();
 		bool IsInSize();
+		void CreateEnemy();
 	private:
 		bool isInSize;
 		CMovingBitmap map1;
@@ -19,5 +21,6 @@ namespace game_framework
 		CMovingBitmap map7;
 		CMovingBitmap map8;
 		CMovingBitmap map9;
+		CEnemy enemy;
 	};
 }
