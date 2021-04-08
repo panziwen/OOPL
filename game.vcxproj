@@ -238,10 +238,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CAttack.cpp" />
+    <ClCompile Include="Source\CDDoor.cpp" />
+    <ClCompile Include="Source\CDmap.cpp" />
+    <ClCompile Include="Source\CDoor.cpp" />
     <ClCompile Include="Source\CEnemy.cpp" />
     <ClCompile Include="Source\CGamemap.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\CCharaterCtrol.cpp" />
+    <ClCompile Include="Source\CNDoor.cpp" />
+    <ClCompile Include="Source\CNmap.cpp" />
     <ClCompile Include="Source\game.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -286,10 +291,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CAttack.h" />
+    <ClInclude Include="Source\CDDoor.h" />
+    <ClInclude Include="Source\CDmap.h" />
+    <ClInclude Include="Source\CDoor.h" />
     <ClInclude Include="Source\CEnemy.h" />
     <ClInclude Include="Source\CGamemap.h" />
     <ClInclude Include="Source\CCharaterCtrol.h" />
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\CNDoor.h" />
+    <ClInclude Include="Source\CNmap.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\gameDoc.h" />
     <ClInclude Include="Source\gameView.h" />

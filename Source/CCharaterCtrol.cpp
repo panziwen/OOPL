@@ -82,7 +82,7 @@ namespace game_framework
 		const int STEP_SIZE = 5;
 		if (isMovingLeft && !isMovingUp && !isMovingDown)
 		{
-			if (x >= 51)
+			if (x >= 150)
 			{
 				x -= STEP_SIZE;
 			}
@@ -90,12 +90,16 @@ namespace game_framework
 			isaacWalkLeft.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFL(true);
+				isaacAttack.SetFR(false);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(false);
 				isaacAttack.SetXY(x - isaacAttack.Width(), y);
 			}
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
-			if (x <= SIZE_X - 100)
+			if (x <= SIZE_X - 180)
 			{
 				x += STEP_SIZE;
 			}
@@ -103,12 +107,16 @@ namespace game_framework
 			isaacWalkRight.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFL(false);
+				isaacAttack.SetFR(true);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(false);
 				isaacAttack.SetXY(x, y);
 			}
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
-			if (y >= -20)
+			if (y >= 60)
 			{
 				y -= STEP_SIZE;
 			}
@@ -116,6 +124,10 @@ namespace game_framework
 			isaacWalkUp.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFL(false);
+				isaacAttack.SetFR(false);
+				isaacAttack.SetFU(true);
+				isaacAttack.SetFD(false);
 				isaacAttack.SetXY(x, y);
 			}
 		}
@@ -129,21 +141,25 @@ namespace game_framework
 			isaacWalkDonw.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFL(false);
+				isaacAttack.SetFR(false);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(true);
 				isaacAttack.SetXY(x, y);
 			}
 		}
 		if (isMovingUp && isMovingLeft)
 		{
-			if (x >= 51 && y >= -20)
+			if (x >= 150 && y >= 60)
 			{
 				y -= STEP_SIZE;
 				x -= STEP_SIZE;
 			}
-			if (!(x >= 51) && (y >= -20))
+			if (!(x >= 150) && (y >= 60))
 			{
 				y -= STEP_SIZE;
 			}
-			if ((x >= 51) && !(y >= -20))
+			if ((x >= 150) && !(y >= 60))
 			{
 				x -= STEP_SIZE;
 			}
@@ -151,21 +167,25 @@ namespace game_framework
 			isaacWalkLeft.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFR(false);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(false);
+				isaacAttack.SetFL(true);
 				isaacAttack.SetXY(x - isaacAttack.Width(), y);
 			}
 		}
 		if (isMovingUp && isMovingRight)
 		{
-			if ((x <= SIZE_X - 100) && (y >= -20))
+			if ((x <= SIZE_X - 180) && (y >= 60))
 			{
 				y -= STEP_SIZE;
 				x += STEP_SIZE;
 			}
-			if (!(x <= SIZE_X - 100) && (y >= -20))
+			if (!(x <= SIZE_X - 180) && (y >= 60))
 			{
 				y -= STEP_SIZE;
 			}
-			if ((x <= SIZE_X - 100) && !(y >= -20))
+			if ((x <= SIZE_X - 180) && !(y >= 60))
 			{
 				x += STEP_SIZE;
 			}
@@ -173,21 +193,25 @@ namespace game_framework
 			isaacWalkRight.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFL(false);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(false);
+				isaacAttack.SetFR(true);
 				isaacAttack.SetXY(x, y);
 			}
 		}
 		if (isMovingDown && isMovingLeft)
 		{
-			if ((x >= 51) && (y <= SIZE_Y - 150))
+			if ((x >= 150) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
 				x -= STEP_SIZE;
 			}
-			if (!(x >= 51) && (y <= SIZE_Y - 150))
+			if (!(x >= 150) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
 			}
-			if ((x >= 51) && !(y <= SIZE_Y - 150))
+			if ((x >= 150) && !(y <= SIZE_Y - 150))
 			{
 				x -= STEP_SIZE;
 			}
@@ -195,28 +219,37 @@ namespace game_framework
 			isaacWalkLeft.OnMove();
 			if (isAttack)
 			{
+				isaacAttack.SetFR(false);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(false);
+				isaacAttack.SetFL(true);
 				isaacAttack.SetXY(x - isaacAttack.Width(), y);
 			}
 		}
 		if (isMovingDown && isMovingRight)
 		{
-			if ((x <= SIZE_X - 100) && (y <= SIZE_Y - 150))
+			if ((x <= SIZE_X - 180) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
 				x += STEP_SIZE;
 			}
-			if (!(x <= SIZE_X - 100) && (y <= SIZE_Y - 150))
+			if (!(x <= SIZE_X - 180) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
 			}
-			if ((x <= SIZE_X - 100) && !(y <= SIZE_Y - 150))
+			if ((x <= SIZE_X - 180) && !(y <= SIZE_Y - 150))
 			{
 				x += STEP_SIZE;
 			}
+			isaacWalkRight.SetDelayCount(2);
+			isaacWalkRight.OnMove();
 			if (isAttack)
 			{
-				isaacWalkRight.SetDelayCount(2);
-				isaacWalkRight.OnMove();
+				isaacAttack.SetFL(false);
+				isaacAttack.SetFU(false);
+				isaacAttack.SetFD(false);
+				isaacAttack.SetFR(true);
+				isaacAttack.SetXY(x - isaacAttack.Width(), y);
 			}
 		}
 		if (isAttack)
@@ -230,49 +263,49 @@ namespace game_framework
 		if (isMovingLeft && !isMovingUp && !isMovingDown)
 		{
 			isaacWalkLeft.SetTopLeft(x, y);
-			isaacWalkLeft.OnShow(2);
+			isaacWalkLeft.OnShow();
 			animation = isaacWalkLeft;
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
 			isaacWalkRight.SetTopLeft(x, y);
-			isaacWalkRight.OnShow(2);
+			isaacWalkRight.OnShow();
 			animation = isaacWalkRight;
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
 			isaacWalkUp.SetTopLeft(x, y);
-			isaacWalkUp.OnShow(2);
+			isaacWalkUp.OnShow();
 			animation = isaacWalkUp;
 		}
 		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
 			isaacWalkDonw.SetTopLeft(x, y);
-			isaacWalkDonw.OnShow(2);
+			isaacWalkDonw.OnShow();
 			animation = isaacWalkDonw;
 		}
 		if (isMovingUp && isMovingLeft)
 		{
 			isaacWalkLeft.SetTopLeft(x, y);
-			isaacWalkLeft.OnShow(2);
+			isaacWalkLeft.OnShow();
 			animation = isaacWalkLeft;
 		}
 		if (isMovingUp && isMovingRight)
 		{
 			isaacWalkRight.SetTopLeft(x, y);
-			isaacWalkRight.OnShow(2);
+			isaacWalkRight.OnShow();
 			animation = isaacWalkRight;
 		}
 		if (isMovingDown && isMovingLeft)
 		{
 			isaacWalkLeft.SetTopLeft(x, y);
-			isaacWalkLeft.OnShow(2);
+			isaacWalkLeft.OnShow();
 			animation = isaacWalkLeft;
 		}
 		if (isMovingDown && isMovingRight)
 		{
 			isaacWalkRight.SetTopLeft(x, y);
-			isaacWalkRight.OnShow(2);
+			isaacWalkRight.OnShow();
 			animation = isaacWalkRight;
 		}
 		if (!isAttack && isaacAttack.GetAttack())
@@ -280,7 +313,7 @@ namespace game_framework
 			isaacAttack.OnShow();
 		}
 		animation.SetTopLeft(x, y);
-		animation.OnShow(2);
+		animation.OnShow();
 	}
 	void CCharaterCtrol::SetMovingDown(bool flag)
 	{
@@ -315,6 +348,14 @@ namespace game_framework
 	bool CCharaterCtrol::GetAttack()
 	{
 		return isAttack2;
+	}
+	int CCharaterCtrol::GetBulltX()
+	{
+		return isaacAttack.GetX();
+	}
+	int CCharaterCtrol::GetBulltY()
+	{
+		return isaacAttack.GetY();
 	}
 	void CCharaterCtrol::Reset()
 	{

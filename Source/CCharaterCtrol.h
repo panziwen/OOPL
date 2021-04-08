@@ -15,6 +15,8 @@ namespace game_framework
 		void OnMove();
 		void OnShow();
 		bool GetAttack();
+		int GetBulltX();
+		int GetBulltY();
 		void SetInSize(bool flag);
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);

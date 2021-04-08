@@ -5,9 +5,15 @@ namespace game_framework
 	{
 	public:
 		CAttack();
+		int  GetX();
+		int  GetY();
 		int Width();
 		bool GetAttack();
 		void SetAttack(bool flag);
+		void SetFR(bool flag);
+		void SetFL(bool flag);
+		void SetFD(bool flag);
+		void SetFU(bool flag);
 		void Initialize();
 		void LoadBitmap();
 		void OnMove();
@@ -18,9 +24,12 @@ namespace game_framework
 		CMovingBitmap leftBullet;
 		CMovingBitmap rightBullet;
 		CAnimation bulletDisappear;
-		int x, y;
+		int x, y, posr, posl, posu, posd;
 		bool isAttack;
-		int pos;
+		bool faceL;
+		bool faceR;
+		bool faceU;
+		bool faceD;
 	};
 
 }

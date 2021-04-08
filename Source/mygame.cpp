@@ -132,6 +132,9 @@ namespace game_framework {
 
 	void CGameStateOver::OnMove()
 	{
+		counter--;
+		if (counter < 0)
+			GotoGameState(GAME_STATE_INIT);
 	}
 
 	void CGameStateOver::OnBeginState()
@@ -141,10 +144,24 @@ namespace game_framework {
 
 	void CGameStateOver::OnInit()
 	{
+		ShowInitProgress(66);	
+		Sleep(300);		
+		ShowInitProgress(100);
 	}
 
 	void CGameStateOver::OnShow()
 	{
+		CDC *pDC = CDDraw::GetBackCDC();			
+		CFont f, *fp;
+		f.CreatePointFont(160, "Times New Roman");	
+		fp = pDC->SelectObject(&f);					
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(255, 255, 0));
+		char str[80];							
+		sprintf(str, "Game Over ! (%d)", counter / 30);
+		pDC->TextOut(240, 210, str);
+		pDC->SelectObject(fp);					
+		CDDraw::ReleaseBackCDC();
 	}
 
 
@@ -166,8 +183,12 @@ namespace game_framework {
 
 	void CGameStateRun::OnMove()
 	{
+		gamemap.OnMove();
 		isaac.OnMove();
-		gamemap.OnShow();
+		if (gamemap.GetAimPos())
+		{
+			GotoGameState(GAME_STATE_OVER);
+		}
 	}
 
 	void CGameStateRun::OnInit()  			
@@ -203,6 +224,9 @@ namespace game_framework {
 			isaac.SetMovingDown(true);
 		if (nChar == KEY_SPACE)
 			isaac.SetAttack(true, true);
+
+		gamemap.SetBulPos(isaac.GetBulltX(), isaac.GetBulltY());
+		gamemap.SetAimPos(isaac.GetX1(), isaac.GetY1());
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -229,6 +253,8 @@ namespace game_framework {
 		{
 			isaac.SetAttack(false, isaac.GetAttack());
 		}
+		gamemap.SetBulPos(isaac.GetBulltX(), isaac.GetBulltY());
+		gamemap.SetAimPos(isaac.GetX1(), isaac.GetY1());
 		isaac.Reset();
 	}
 
@@ -259,6 +285,8 @@ namespace game_framework {
 
 	void CGameStateRun::OnShow()
 	{
+		gamemap.SetBulPos(isaac.GetBulltX(), isaac.GetBulltY());
+		gamemap.SetAimPos(isaac.GetX1(), isaac.GetY1());
 		gamemap.OnShow();
 		isaac.OnShow();
 	}

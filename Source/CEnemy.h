@@ -12,6 +12,9 @@ namespace game_framework
 		int  GetY2();
 		void Initialize();
 		void LoadBitmap();
+		bool GetAimPos();
+		void SetXY(int x, int y);
+		void SetBulXY(int x, int y);
 		void OnMove();
 		void OnShow();
 		bool GetAttack();
@@ -30,7 +33,8 @@ namespace game_framework
 		CAnimation isaacWalkLeft;
 		CAttack isaacAttack;
 
-		int x, y;
+		int x, y, bx, by;
+		int posx, posy;
 		bool isMovingDown;
 		bool isMovingLeft;
 		bool isMovingRight;

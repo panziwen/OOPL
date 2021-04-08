@@ -9,6 +9,7 @@ namespace game_framework
 {
 	CEnemy::CEnemy()
 	{
+		srand((unsigned)time(NULL));
 		Initialize();
 	}
 	int CEnemy::GetX1()
@@ -21,16 +22,16 @@ namespace game_framework
 	}
 	int CEnemy::GetX2()
 	{
-		return x+animation.Width();
+		return x + animation.Width();
 	}
 	int CEnemy::GetY2()
 	{
-		return y + animation.Height();;
+		return y + animation.Height();
 	}
 	void CEnemy::Initialize()
 	{
-		const int X_POS = SIZE_X/5;
-		const int Y_POS = (SIZE_Y / 5) * 4 - 50;
+		int X_POS = 150 + rand() % (SIZE_X - 180);
+		int Y_POS = 50 + rand() % (SIZE_Y - 150);
 		x = X_POS;
 		y = Y_POS;
 		isaacAttack.SetXY(x, y);
@@ -73,215 +74,112 @@ namespace game_framework
 		{
 			isaacWalkRight.AddBitmap(filename4[i], RGB(109, 33, 115));
 		}
-		isaacAttack.LoadBitmap();
 		
 	}
 	void CEnemy::OnMove()
 	{
-		const int STEP_SIZE = 5;
+		const int STEP_SIZE = 1;
 		animation.SetDelayCount(2);
 		animation.OnMove();
-		if (isMovingLeft && !isMovingUp && !isMovingDown)
+		if (x > posx&&y > posy)
 		{
-			if (x >= 51)
-			{
-				x -= STEP_SIZE;
-			}
+			x -= STEP_SIZE;
+			y -= STEP_SIZE;
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
-			}
 		}
-		if (isMovingRight && !isMovingUp && !isMovingDown)
+		if (x < posx&&y > posy)
 		{
-			if (x <= SIZE_X - 100)
-			{
-				x += STEP_SIZE;
-			}
+			x += STEP_SIZE;
+			y -= STEP_SIZE;
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x, y);
-			}
 		}
-		if (isMovingUp && !isMovingLeft && !isMovingRight)
+		if (x > posx&&y < posy)
 		{
-			if (y >= -20)
-			{
-				y -= STEP_SIZE;
-			}
-			isaacWalkUp.SetDelayCount(2);
-			isaacWalkUp.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x, y);
-			}
+			x -= STEP_SIZE;
+			y += STEP_SIZE;
+			isaacWalkLeft.SetDelayCount(2);
+			isaacWalkLeft.OnMove();
 		}
-		if (isMovingDown && !isMovingLeft && !isMovingRight)
+		if (x < posx&&y < posy)
 		{
-			if (y <= SIZE_Y - 150)
-			{
-				y += STEP_SIZE;
-			}
+			x += STEP_SIZE;
+			y += STEP_SIZE;
+			isaacWalkRight.SetDelayCount(2);
+			isaacWalkRight.OnMove();
+		}
+		if (x > posx&&y == posy)
+		{
+			x -= STEP_SIZE;
+			isaacWalkLeft.SetDelayCount(2);
+			isaacWalkLeft.OnMove();
+		}
+		if (x < posx&&y == posy)
+		{
+			x += STEP_SIZE;
+			isaacWalkRight.SetDelayCount(2);
+			isaacWalkRight.OnMove();
+		}
+		if (x == posx&&y < posy)
+		{
+			y += STEP_SIZE;
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x, y);
-			}
 		}
-		if (isMovingUp && isMovingLeft)
+		if (x == posx&&y > posy)
 		{
-			if (x >= 51 && y >= -20)
-			{
-				y -= STEP_SIZE;
-				x -= STEP_SIZE;
-			}
-			if (!(x >= 51) && (y >= -20))
-			{
-				y -= STEP_SIZE;
-			}
-			if ((x >= 51) && !(y >= -20))
-			{
-				x -= STEP_SIZE;
-			}
-			isaacWalkLeft.SetDelayCount(2);
-			isaacWalkLeft.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
-			}
+			y -= STEP_SIZE;
+			isaacWalkUp.SetDelayCount(2);
+			isaacWalkUp.OnMove();
 		}
-		if (isMovingUp && isMovingRight)
+		if (x == posx && y == posy)
 		{
-			if ((x <= SIZE_X - 100) && (y >= -20))
-			{
-				y -= STEP_SIZE;
-				x += STEP_SIZE;
-			}
-			if (!(x <= SIZE_X - 100) && (y >= -20))
-			{
-				y -= STEP_SIZE;
-			}
-			if ((x <= SIZE_X - 100) && !(y >= -20))
-			{
-				x += STEP_SIZE;
-			}
-			isaacWalkRight.SetDelayCount(2);
-			isaacWalkRight.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x, y);
-			}
+
 		}
-		if (isMovingDown && isMovingLeft)
-		{
-			if ((x >= 51) && (y <= SIZE_Y - 150))
-			{
-				y += STEP_SIZE;
-				x -= STEP_SIZE;
-			}
-			if (!(x >= 51) && (y <= SIZE_Y - 150))
-			{
-				y += STEP_SIZE;
-			}
-			if ((x >= 51) && !(y <= SIZE_Y - 150))
-			{
-				x -= STEP_SIZE;
-			}
-			isaacWalkLeft.SetDelayCount(2);
-			isaacWalkLeft.OnMove();
-			if (isAttack)
-			{
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
-			}
-		}
-		if (isMovingDown && isMovingRight)
-		{
-			if ((x <= SIZE_X - 100) && (y <= SIZE_Y - 150))
-			{
-				y += STEP_SIZE;
-				x += STEP_SIZE;
-			}
-			if (!(x <= SIZE_X - 100) && (y <= SIZE_Y - 150))
-			{
-				y += STEP_SIZE;
-			}
-			if ((x <= SIZE_X - 100) && !(y <= SIZE_Y - 150))
-			{
-				x += STEP_SIZE;
-			}
-			if (isAttack)
-			{
-				isaacWalkRight.SetDelayCount(2);
-				isaacWalkRight.OnMove();
-			}
-		}
-		if (isAttack)
-		{
-			isaacAttack.SetXY(x, y);
-		}
-		isaacAttack.OnMove();
 	}
 	void CEnemy::OnShow()
 	{
-		if (isMovingLeft && !isMovingUp && !isMovingDown)
+		if (x > posx&&y > posy)
 		{
 			isaacWalkLeft.SetTopLeft(x, y);
-			isaacWalkLeft.OnShow(2);
-			animation = isaacWalkLeft;
+			isaacWalkLeft.OnShow();
 		}
-		if (isMovingRight && !isMovingUp && !isMovingDown)
+		if (x < posx&&y > posy)
 		{
 			isaacWalkRight.SetTopLeft(x, y);
-			isaacWalkRight.OnShow(2);
-			animation = isaacWalkRight;
+			isaacWalkRight.OnShow();
 		}
-		if (isMovingUp && !isMovingLeft && !isMovingRight)
+		if (x > posx&&y < posy)
 		{
-			isaacWalkUp.SetTopLeft(x, y);
-			isaacWalkUp.OnShow(2);
-			animation = isaacWalkUp;
+			isaacWalkLeft.SetTopLeft(x, y);
+			isaacWalkLeft.OnShow();
 		}
-		if (isMovingDown && !isMovingLeft && !isMovingRight)
+		if (x < posx&&y < posy)
+		{
+			isaacWalkRight.SetTopLeft(x, y);
+			isaacWalkRight.OnShow();
+		}
+		if (x > posx&&y == posy)
+		{
+			isaacWalkLeft.SetTopLeft(x, y);
+			isaacWalkLeft.OnShow();	
+		}
+		if (x < posx&&y == posy)
+		{
+			isaacWalkRight.SetTopLeft(x, y);
+			isaacWalkRight.OnShow();
+		}
+		if (x == posx && y < posy)
 		{
 			isaacWalkDonw.SetTopLeft(x, y);
-			isaacWalkDonw.OnShow(2);
-			animation = isaacWalkDonw;
+			isaacWalkDonw.OnShow();
 		}
-		if (isMovingUp && isMovingLeft)
+		if (x == posx && y > posy)
 		{
-			isaacWalkLeft.SetTopLeft(x, y);
-			isaacWalkLeft.OnShow(2);
-			animation = isaacWalkLeft;
+			isaacWalkUp.SetTopLeft(x, y);
+			isaacWalkUp.OnShow();
 		}
-		if (isMovingUp && isMovingRight)
-		{
-			isaacWalkRight.SetTopLeft(x, y);
-			isaacWalkRight.OnShow(2);
-			animation = isaacWalkRight;
-		}
-		if (isMovingDown && isMovingLeft)
-		{
-			isaacWalkLeft.SetTopLeft(x, y);
-			isaacWalkLeft.OnShow(2);
-			animation = isaacWalkLeft;
-		}
-		if (isMovingDown && isMovingRight)
-		{
-			isaacWalkRight.SetTopLeft(x, y);
-			isaacWalkRight.OnShow(2);
-			animation = isaacWalkRight;
-		}
-		if (!isAttack && isaacAttack.GetAttack())
-		{
-			isaacAttack.OnShow();
-		}
-		animation.SetTopLeft(x, y);
-		animation.OnShow(2);
 	}
 	void CEnemy::SetMovingDown(bool flag)
 	{
@@ -324,5 +222,30 @@ namespace game_framework
 		isaacWalkRight.Reset();
 		isaacWalkUp.Reset();
 		isaacWalkLeft.Reset();
+	}
+	void CEnemy::SetXY(int x, int y)
+	{
+		posx = x;
+		posy = y;
+	}
+	void CEnemy::SetBulXY(int x, int y)
+	{
+		bx = x;
+		by = y;
+	}
+	bool CEnemy::GetAimPos()
+	{
+		if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
+		{
+			return true;
+		}
+		else if (bx >= x && by >= y && bx <= x + 5 && by <= y + 5)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }

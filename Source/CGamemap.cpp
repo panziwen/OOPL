@@ -14,68 +14,80 @@ namespace game_framework
 	}
 	void CGamemap::Initialize()
 	{
-		CreateEnemy();
+		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
+		nmap.Initialize();
+		dmap.Initialize();
+		door.Initialize();
 	}
 	void CGamemap::LoadBitmap()
 	{
-		map1.LoadBitmap(".\\bitmaps\\map\\nomal\\1.bmp");
-		map2.LoadBitmap(".\\bitmaps\\map\\nomal\\2.bmp");
-		map3.LoadBitmap(".\\bitmaps\\map\\nomal\\3.bmp");
-		map4.LoadBitmap(".\\bitmaps\\map\\nomal\\4.bmp");
-		map5.LoadBitmap(".\\bitmaps\\map\\nomal\\6.bmp");
-		map6.LoadBitmap(".\\bitmaps\\map\\nomal\\7.bmp");
-		map7.LoadBitmap(".\\bitmaps\\map\\nomal\\8.bmp");
-		map8.LoadBitmap(".\\bitmaps\\map\\nomal\\9.bmp");
-		map9.LoadBitmap(".\\bitmaps\\map\\nomal\\5.bmp");
-		enemy.LoadBitmap();
+		nmap.LoadBitmap();
+		dmap.LoadBitmap();
+		door.LoadBitmap();
+	}
+	void CGamemap::OnMove()
+	{
+		const int dx = SIZE_X/2;
+		const int dy = 50;
+		door.SetAimPos(dx, dy);
+		door.SetCPos(x, y);
+		IsInDoor();
+		if (isInDDoor)
+		{
+			nmap.SetBulPos(bx, by);
+			dmap.SetAimPos(x, y);
+			dmap.CreateEn();
+		}
+		else
+		{
+			nmap.SetBulPos(bx, by);
+			nmap.SetAimPos(x, y);
+			nmap.CreateEn();
+		}
 	}
 	void CGamemap::OnShow()
 	{
-		for (int j = 1; j < SIZE_Y / map5.Height(); j++)
+		if (isInDDoor)
 		{
-			map5.SetTopLeft(0, j*map5.Height());
-			map5.ShowBitmap();
+			dmap.OnShow();
 		}
-		for (int j = 1; j < SIZE_Y / map6.Height(); j++)
+		else
 		{
-			map6.SetTopLeft(SIZE_X - map6.Width(), j*map5.Height());
-			map6.ShowBitmap();
+			nmap.OnShow();
 		}
-		for (int j = 1; j < SIZE_X / map7.Width(); j++)
-		{
-			map7.SetTopLeft(j*map7.Width(), 0);
-			map7.ShowBitmap();
-		}
-		for (int j = 1; j < SIZE_X / map8.Width(); j++)
-		{
-			map8.SetTopLeft(j* map8.Width(), SIZE_Y - map8.Height());
-			map8.ShowBitmap();
-		}
-		for (int i = 1; i < SIZE_X / map9.Width(); i++)
-		{
-			for (int j = 1; j < SIZE_Y / map9.Height(); j++)
-			{
-
-				map9.SetTopLeft(i* map8.Width(), j*map9.Height());
-				map9.ShowBitmap();
-			}
-		}
-		map1.SetTopLeft(0, 0);
-		map1.ShowBitmap();
-		map2.SetTopLeft(SIZE_X - map1.Width(), 0);
-		map2.ShowBitmap();
-		map3.SetTopLeft(0, SIZE_Y - map3.Height());
-		map3.ShowBitmap();
-		map4.SetTopLeft(SIZE_X - map4.Width(), SIZE_Y - map3.Height());
-		map4.ShowBitmap();
-		enemy.OnShow();
+		door.OnShow();
 	}
 	bool CGamemap::IsInSize()
 	{
 		return isInSize;
 	}
-	void CGamemap::CreateEnemy()
+	void CGamemap::IsInDoor()
 	{
-		enemy.OnMove();
+		isInNDoor = door.IsInNDoor();
+		isInDDoor = door.IsInDDoor();
+		isInADoor = door.IsInADoor();
+		isInPDoor = door.IsInPDoor();
+	}
+	void CGamemap::SetAimPos(int nx, int ny)
+	{
+		x = nx;
+		y = ny;
+	}
+	void CGamemap::SetBulPos(int nx, int ny)
+	{
+		bx = nx;
+		by = ny;
+	}
+	bool CGamemap::GetAimPos()
+	{
+		if (isInDDoor)
+		{
+			isdead = dmap.GetAimPos();
+		}
+		else
+		{
+			isdead = nmap.GetAimPos();
+		}
+		return isdead;
 	}
 }

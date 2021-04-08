@@ -12,14 +12,39 @@ namespace game_framework
 	{
 		Initialize();
 	}
+	int CAttack::GetX()
+	{
+		return x;
+	}
+	int CAttack::GetY()
+	{
+		return y;
+	}
 	void CAttack::Initialize()
 	{
-		isAttack = false;
+		faceD = true;
+		faceL = faceR = faceU = isAttack = false;
 	}
 
 	void CAttack::SetAttack(bool flag)
 	{
 		isAttack = flag;
+	}
+	void CAttack::SetFL(bool flag)
+	{
+		faceL = flag;
+	}
+	void CAttack::SetFR(bool flag)
+	{
+		faceR = flag;
+	}
+	void CAttack::SetFD(bool flag)
+	{
+		faceD = flag;
+	}
+	void CAttack::SetFU(bool flag)
+	{
+		faceU = flag;
 	}
 	
 	void CAttack::LoadBitmap()
@@ -50,18 +75,69 @@ namespace game_framework
 
 	void CAttack::OnShow()
 	{
-		if (x <= pos)
+		if (faceR)
 		{
-			for (int i = 0; i < 8; i++)
+			if (x <= posr)
 			{
-				x += 1;
+				for (int i = 0; i < 8; i++)
+				{
+					x += 1;
+				}
+				leftBullet.SetTopLeft(x, y);
+				leftBullet.ShowBitmap();
 			}
-			leftBullet.SetTopLeft(x, y);
-			leftBullet.ShowBitmap(2);
+			else
+			{
+				BulletDisapear();
+			}
 		}
-		else
+		if (faceL)
 		{
-			BulletDisapear();
+			if (x >= posl)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					x -= 1;
+				}
+				leftBullet.SetTopLeft(x, y);
+				leftBullet.ShowBitmap();
+			}
+			else
+			{
+				BulletDisapear();
+			}
+		}
+		if (faceU)
+		{
+			if (y >= posu)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					y -= 1;
+				}
+				leftBullet.SetTopLeft(x, y);
+				leftBullet.ShowBitmap();
+			}
+			else
+			{
+				BulletDisapear();
+			}
+		}
+		if (faceD)
+		{
+			if (y <= posd)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					y += 1;
+				}
+				leftBullet.SetTopLeft(x, y);
+				leftBullet.ShowBitmap();
+			}
+			else
+			{
+				BulletDisapear();
+			}
 		}
 	}
 	void CAttack::BulletDisapear()
@@ -69,14 +145,17 @@ namespace game_framework
 		bulletDisappear.SetTopLeft(x, y);
 		bulletDisappear.Reset();
 		bulletDisappear.SetDelayCount(1);
-		bulletDisappear.OnShow(2);
-		isAttack = false;
+		bulletDisappear.OnShow();
+		faceD = faceL = faceR = faceU = isAttack = false;
 	}
 	void CAttack::SetXY(int nx, int ny)
 	{
+		posr = x + 150;
+		posl = x - 150;
+		posu = y - 150;
+		posd = y + 150;
 		x = nx;
 		y = ny;
-		pos = x + 150;
 	}
 	int CAttack::Width()
 	{
