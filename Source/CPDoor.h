@@ -1,9 +1,9 @@
 namespace game_framework
 {
-	class CNDoor
+	class CPDoor
 	{
 	public:
-		CNDoor();
+		CPDoor();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();

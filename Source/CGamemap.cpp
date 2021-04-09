@@ -24,10 +24,11 @@ namespace game_framework
 		nmap.LoadBitmap();
 		dmap.LoadBitmap();
 		door.LoadBitmap();
+		amap.LoadBitmap();
 	}
 	void CGamemap::OnMove()
 	{
-		const int dx = SIZE_X/2;
+		const int dx = SIZE_X / 2 - 50;
 		const int dy = 50;
 		door.SetAimPos(dx, dy);
 		door.SetCPos(x, y);
@@ -35,6 +36,8 @@ namespace game_framework
 		if (isInDDoor)
 		{
 			nmap.SetBulPos(bx, by);
+			/*amap.SetAimPos(x, y);
+			amap.CreateEn();*/
 			dmap.SetAimPos(x, y);
 			dmap.CreateEn();
 		}
@@ -49,6 +52,7 @@ namespace game_framework
 	{
 		if (isInDDoor)
 		{
+			//amap.OnShow();
 			dmap.OnShow();
 		}
 		else

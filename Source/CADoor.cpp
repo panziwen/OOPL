@@ -4,33 +4,33 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CNDoor.h"
+#include "CADoor.h"
 
 namespace game_framework
 {
-	CNDoor::CNDoor()
+	CADoor::CADoor()
 	{
 	}
-	void CNDoor::Initialize()
+	void CADoor::Initialize()
 	{
 		isInDoor = false;
 	}
-	void CNDoor::LoadBitmap()
+	void CADoor::LoadBitmap()
 	{
-		door.LoadBitmap(".\\bitmaps\\map\\nomal\\door4.bmp", RGB(109, 33, 115));
+		door.LoadBitmap(".\\bitmaps\\map\\angle\\door3.bmp", RGB(109, 33, 115));
 	}
-	void CNDoor::OnShow()
+	void CADoor::OnShow()
 	{
-		const int posx = SIZE_X - 160;
+		const int posx = 110;
 		const int posy = SIZE_Y/2;
 		door.SetTopLeft(posx, posy);
 		door.ShowBitmap();
 	}
-	bool CNDoor::IsInSize()
+	bool CADoor::IsInSize()
 	{
 		return isInSize;
 	}
-	bool CNDoor::IsInDoor()
+	bool CADoor::IsInDoor()
 	{
 		if (isInDoor)
 		{
@@ -52,12 +52,12 @@ namespace game_framework
 		}
 		return isInDoor;
 	}
-	void CNDoor::SetAimPos(int nx, int ny)
+	void CADoor::SetAimPos(int nx, int ny)
 	{
 		x = nx;
 		y = ny;
 	}
-	void CNDoor::SetCPos(int nx, int ny)
+	void CADoor::SetCPos(int nx, int ny)
 	{
 		cx = nx;
 		cy = ny;

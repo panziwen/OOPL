@@ -18,22 +18,22 @@ namespace game_framework
 		isInDDoor = isInNDoor = isInADoor = isInDDoor = false;
 		ddoor.Initialize();
 		ndoor.Initialize();
+		adoor.Initialize();
+		pdoor.Initialize();
 	}
 	void CDoor::LoadBitmap()
 	{
 		ddoor.LoadBitmap();
 		ndoor.LoadBitmap();
+		adoor.LoadBitmap();
+		pdoor.LoadBitmap();
 	}
 	void CDoor::OnShow()
 	{
-		if (isInDDoor)
-		{
-			ddoor.OnShow();
-		}
-		else
-		{
-			ddoor.OnShow();
-		}
+		ddoor.OnShow();
+		ndoor.OnShow();
+		adoor.OnShow();
+		pdoor.OnShow();
 	}
 	bool CDoor::IsInSize()
 	{

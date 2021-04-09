@@ -14,6 +14,21 @@
     <Filter Include="MyGame">
       <UniqueIdentifier>{0c798913-b7d2-4e26-8241-0f83266cd626}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyGame\MAP">
+      <UniqueIdentifier>{b9f9e271-619b-42ed-9600-c8a6df35ebf8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyGame\DOOR">
+      <UniqueIdentifier>{764b59fa-91c5-4928-a6d5-a75409fd86ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyGame\CHARAERCONTROL">
+      <UniqueIdentifier>{094b9117-3352-4510-b9b8-3d4a3dd0c6c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyGame\INTERFACE">
+      <UniqueIdentifier>{f8c24810-ecf1-4c4a-b706-5752228e8127}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyGame\ENEMY">
+      <UniqueIdentifier>{3632de73-9486-4a7d-b3ab-aa66607d5018}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\game.ico">
@@ -54,35 +69,47 @@
     <ClCompile Include="Source\mygame.cpp">
       <Filter>MyGame</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CInterface.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CAttack.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CGamemap.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CCharaterCtrol.cpp">
-      <Filter>MyGame</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CEnemy.cpp">
-      <Filter>MyGame</Filter>
+    <ClCompile Include="Source\CAmap.cpp">
+      <Filter>MyGame\MAP</Filter>
     </ClCompile>
     <ClCompile Include="Source\CDmap.cpp">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\MAP</Filter>
     </ClCompile>
     <ClCompile Include="Source\CNmap.cpp">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\MAP</Filter>
     </ClCompile>
-    <ClCompile Include="Source\CDoor.cpp">
-      <Filter>MyGame</Filter>
+    <ClCompile Include="Source\CPmap.cpp">
+      <Filter>MyGame\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CADoor.cpp">
+      <Filter>MyGame\DOOR</Filter>
     </ClCompile>
     <ClCompile Include="Source\CDDoor.cpp">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\DOOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CDoor.cpp">
+      <Filter>MyGame\DOOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CPDoor.cpp">
+      <Filter>MyGame\DOOR</Filter>
     </ClCompile>
     <ClCompile Include="Source\CNDoor.cpp">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\DOOR</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CCharaterCtrol.cpp">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CAttack.cpp">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CInterface.cpp">
+      <Filter>MyGame\INTERFACE</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CGamemap.cpp">
+      <Filter>MyGame\MAP</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CEnemy.cpp">
+      <Filter>MyGame\ENEMY</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,35 +140,47 @@
     <ClInclude Include="Source\mygame.h">
       <Filter>MyGame</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CInterface.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CAttack.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CGamemap.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CCharaterCtrol.h">
-      <Filter>MyGame</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CEnemy.h">
-      <Filter>MyGame</Filter>
+    <ClInclude Include="Source\CAmap.h">
+      <Filter>MyGame\MAP</Filter>
     </ClInclude>
     <ClInclude Include="Source\CDmap.h">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\MAP</Filter>
     </ClInclude>
     <ClInclude Include="Source\CNmap.h">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\MAP</Filter>
     </ClInclude>
-    <ClInclude Include="Source\CDoor.h">
-      <Filter>MyGame</Filter>
+    <ClInclude Include="Source\CPmap.h">
+      <Filter>MyGame\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CADoor.h">
+      <Filter>MyGame\DOOR</Filter>
     </ClInclude>
     <ClInclude Include="Source\CDDoor.h">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\DOOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CDoor.h">
+      <Filter>MyGame\DOOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CPDoor.h">
+      <Filter>MyGame\DOOR</Filter>
     </ClInclude>
     <ClInclude Include="Source\CNDoor.h">
-      <Filter>MyGame</Filter>
+      <Filter>MyGame\DOOR</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CCharaterCtrol.h">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CAttack.h">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CInterface.h">
+      <Filter>MyGame\INTERFACE</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CGamemap.h">
+      <Filter>MyGame\MAP</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CEnemy.h">
+      <Filter>MyGame\ENEMY</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

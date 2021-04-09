@@ -1,5 +1,7 @@
 #include "CDDoor.h"
 #include "CNDoor.h"
+#include "CADoor.h"
+#include "CPDoor.h"
 namespace game_framework
 {
 	class CDoor
@@ -21,6 +23,8 @@ namespace game_framework
 		int x, y;
 		CDDoor ddoor;
 		CNDoor ndoor;
+		CADoor adoor;
+		CPDoor pdoor;
 		bool isInNDoor;
 		bool isInDDoor;
 		bool isInADoor;

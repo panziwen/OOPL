@@ -4,33 +4,33 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CNDoor.h"
+#include "CPDoor.h"
 
 namespace game_framework
 {
-	CNDoor::CNDoor()
+	CPDoor::CPDoor()
 	{
 	}
-	void CNDoor::Initialize()
+	void CPDoor::Initialize()
 	{
 		isInDoor = false;
 	}
-	void CNDoor::LoadBitmap()
+	void CPDoor::LoadBitmap()
 	{
-		door.LoadBitmap(".\\bitmaps\\map\\nomal\\door4.bmp", RGB(109, 33, 115));
+		door.LoadBitmap(".\\bitmaps\\map\\price\\door2.bmp", RGB(109, 33, 115));
 	}
-	void CNDoor::OnShow()
+	void CPDoor::OnShow()
 	{
-		const int posx = SIZE_X - 160;
-		const int posy = SIZE_Y/2;
+		const int posx = SIZE_X / 2 - 50;
+		const int posy = SIZE_Y-110;
 		door.SetTopLeft(posx, posy);
 		door.ShowBitmap();
 	}
-	bool CNDoor::IsInSize()
+	bool CPDoor::IsInSize()
 	{
 		return isInSize;
 	}
-	bool CNDoor::IsInDoor()
+	bool CPDoor::IsInDoor()
 	{
 		if (isInDoor)
 		{
@@ -52,12 +52,12 @@ namespace game_framework
 		}
 		return isInDoor;
 	}
-	void CNDoor::SetAimPos(int nx, int ny)
+	void CPDoor::SetAimPos(int nx, int ny)
 	{
 		x = nx;
 		y = ny;
 	}
-	void CNDoor::SetCPos(int nx, int ny)
+	void CPDoor::SetCPos(int nx, int ny)
 	{
 		cx = nx;
 		cy = ny;

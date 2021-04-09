@@ -1,31 +1,27 @@
-#include "CDmap.h"
-#include "CNmap.h"
-#include "CAmap.h"
-#include "CDoor.h"
+#include "CEnemy.h"
 namespace game_framework
 {
-	class CGamemap
+	class CAmap
 	{
 	public:
-		CGamemap();
+		CAmap();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
-		void OnMove();
 		bool IsInSize();
-		void IsInDoor();
-		bool GetAimPos();
+		void CreateEn();
 		void SetAimPos(int x, int y);
 		void SetBulPos(int x, int y);
-
+		bool GetAimPos();
 	private:
 		bool isInSize;
 		int x, y, bx, by;
-		CDmap dmap;
-		CAmap amap;
-		CNmap nmap;
-		CDoor door;
-		bool isdead;
+		CEnemy enemy;
+		CMovingBitmap map1;
+		CMovingBitmap map2;
+		CMovingBitmap map3;
+		CMovingBitmap map4;
+
 		bool isInNDoor;
 		bool isInDDoor;
 		bool isInADoor;

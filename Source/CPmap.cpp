@@ -5,19 +5,19 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CCharaterCtrol.h"
-#include "CDmap.h"
+#include "CPmap.h"
 
 namespace game_framework
 {
-	CDmap::CDmap()
+	CPmap::CPmap()
 	{
 		isInSize = true;
 	}
-	void CDmap::Initialize()
+	void CPmap::Initialize()
 	{
 		isInDDoor = isInNDoor = isInADoor = isInDDoor = false;
 	}
-	void CDmap::LoadBitmap()
+	void CPmap::LoadBitmap()
 	{
 		map1.LoadBitmap(".\\bitmaps\\map\\demo\\1.bmp");
 		map2.LoadBitmap(".\\bitmaps\\map\\demo\\2.bmp");
@@ -31,12 +31,12 @@ namespace game_framework
 		mapd.LoadBitmap(".\\bitmaps\\map\\demo\\d.bmp", RGB(109, 33, 115));
 		enemy.LoadBitmap();
 	}
-	void CDmap::CreateEn()
+	void CPmap::CreateEn()
 	{
 		enemy.SetXY(x, y);
 		enemy.OnMove();
 	}
-	void CDmap::OnShow()
+	void CPmap::OnShow()
 	{
 		for (int i = 2; i < 4; i++)
 		{
@@ -74,25 +74,25 @@ namespace game_framework
 		map3.ShowBitmap();
 		map4.SetTopLeft(SIZE_X - map4.Width() - 100, SIZE_Y - map3.Height() - 50);
 		map4.ShowBitmap();
-		mapd.SetTopLeft((SIZE_X / 2-50), (SIZE_Y / 3));
+		mapd.SetTopLeft((SIZE_X / 2), (SIZE_Y / 3));
 		mapd.ShowBitmap();
 		enemy.OnShow();
 	}
-	bool CDmap::IsInSize()
+	bool CPmap::IsInSize()
 	{
 		return isInSize;
 	}
-	void CDmap::SetAimPos(int nx, int ny)
+	void CPmap::SetAimPos(int nx, int ny)
 	{
 		x = nx;
 		y = ny;
 	}
-	void CDmap::SetBulPos(int nx, int ny)
+	void CPmap::SetBulPos(int nx, int ny)
 	{
 		bx = nx;
 		by = ny;
 	}
-	bool CDmap::GetAimPos()
+	bool CPmap::GetAimPos()
 	{
 		return enemy.GetAimPos();
 	}
