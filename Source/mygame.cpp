@@ -177,14 +177,12 @@ namespace game_framework {
 	void CGameStateRun::OnBeginState()
 	{
 
-		isaac.Initialize();	
 		gamemap.Initialize();
 	}
 
 	void CGameStateRun::OnMove()
 	{
 		gamemap.OnMove();
-		isaac.OnMove();
 		if (gamemap.GetAimPos())
 		{
 			GotoGameState(GAME_STATE_OVER);
@@ -198,7 +196,6 @@ namespace game_framework {
 		CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
 		CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");
-		isaac.LoadBitmap();
 		gamemap.LoadBitmap();
 	}
 
@@ -215,18 +212,17 @@ namespace game_framework {
 		const char KEY_D = 'D'; 
 
 		if (nChar == KEY_LEFT || nChar==KEY_A)
-			isaac.SetMovingLeft(true);
+			gamemap.SetMovingLeft(true);
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
-			isaac.SetMovingRight(true);
+			gamemap.SetMovingRight(true);
 		if (nChar == KEY_UP || nChar == KEY_W)
-			isaac.SetMovingUp(true);
+			gamemap.SetMovingUp(true);
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-			isaac.SetMovingDown(true);
+			gamemap.SetMovingDown(true);
 		if (nChar == KEY_SPACE)
-			isaac.SetAttack(true, true);
-
-		gamemap.SetBulPos(isaac.GetBulltX(), isaac.GetBulltY());
-		gamemap.SetAimPos(isaac.GetX1(), isaac.GetY1());
+		{
+			gamemap.SetAttack(true, true);
+		}
 	}
 
 	void CGameStateRun::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -242,30 +238,26 @@ namespace game_framework {
 		const char KEY_D = 'D';
 
 		if (nChar == KEY_LEFT || nChar == KEY_A)
-			isaac.SetMovingLeft(false);
+			gamemap.SetMovingLeft(false);
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
-			isaac.SetMovingRight(false);
+			gamemap.SetMovingRight(false);
 		if (nChar == KEY_UP || nChar == KEY_W)
-			isaac.SetMovingUp(false);
+			gamemap.SetMovingUp(false);
 		if (nChar == KEY_DOWN || nChar == KEY_S)
-			isaac.SetMovingDown(false);
+			gamemap.SetMovingDown(false);
 		if (nChar == KEY_SPACE)
 		{
-			isaac.SetAttack(false, isaac.GetAttack());
+			gamemap.SetAttack(false, true);
 		}
-		gamemap.SetBulPos(isaac.GetBulltX(), isaac.GetBulltY());
-		gamemap.SetAimPos(isaac.GetX1(), isaac.GetY1());
-		isaac.Reset();
+		gamemap.Reset();
 	}
 
 	void CGameStateRun::OnLButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		isaac.SetMovingLeft(true);
 	}
 
 	void CGameStateRun::OnLButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		isaac.SetMovingLeft(false);
 	}
 
 	void CGameStateRun::OnMouseMove(UINT nFlags, CPoint point)	// 處理滑鼠的動作
@@ -275,19 +267,14 @@ namespace game_framework {
 
 	void CGameStateRun::OnRButtonDown(UINT nFlags, CPoint point)  // 處理滑鼠的動作
 	{
-		isaac.SetMovingRight(true);
 	}
 
 	void CGameStateRun::OnRButtonUp(UINT nFlags, CPoint point)	// 處理滑鼠的動作
 	{
-		isaac.SetMovingRight(false);
 	}
 
 	void CGameStateRun::OnShow()
 	{
-		gamemap.SetBulPos(isaac.GetBulltX(), isaac.GetBulltY());
-		gamemap.SetAimPos(isaac.GetX1(), isaac.GetY1());
 		gamemap.OnShow();
-		isaac.OnShow();
 	}
 }

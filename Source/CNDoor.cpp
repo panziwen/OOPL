@@ -13,6 +13,7 @@ namespace game_framework
 	}
 	void CNDoor::Initialize()
 	{
+		tmp = 1 + rand() % 4;
 		isInDoor = false;
 	}
 	void CNDoor::LoadBitmap()
@@ -21,8 +22,29 @@ namespace game_framework
 	}
 	void CNDoor::OnShow()
 	{
-		const int posx = SIZE_X - 160;
-		const int posy = SIZE_Y/2;
+		int posx;
+		int posy;
+		switch (tmp)
+		{
+		case 1:
+			posx = SIZE_X / 2 - 50;
+			posy = SIZE_Y - 110;
+			break;
+		case 2:
+			posx = SIZE_X - 160;
+			posy = SIZE_Y / 2;
+			break;
+		case 3:
+			posx = SIZE_X / 2 - 50;
+			posy = 50;
+			break;
+		case 4:
+			posx = 110;
+			posy = SIZE_Y / 2;
+			break;
+		default:
+			break;
+		}
 		door.SetTopLeft(posx, posy);
 		door.ShowBitmap();
 	}

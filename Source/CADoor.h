@@ -14,7 +14,7 @@ namespace game_framework
 	private:
 		CMovingBitmap door;
 		bool isInSize;
-		int x, y, cx, cy;
+		int x, y, cx, cy, tmp;
 		bool isInDoor;
 	};
 }

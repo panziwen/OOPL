@@ -4,73 +4,53 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CCharaterCtrol.h"
 #include "CGamemap.h"
 namespace game_framework
 {
 	CGamemap::CGamemap()
 	{
-		isInSize = true;
 	}
 	void CGamemap::Initialize()
 	{
-		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
+		isInNMap = isInDMap = isInAMap = isInPMap = isDoor = false;
 		nmap.Initialize();
 		dmap.Initialize();
-		door.Initialize();
+		ctr.Initialize();
 	}
 	void CGamemap::LoadBitmap()
 	{
 		nmap.LoadBitmap();
 		dmap.LoadBitmap();
-		door.LoadBitmap();
 		amap.LoadBitmap();
+		ctr.LoadBitmap();
 	}
 	void CGamemap::OnMove()
 	{
-		const int dx = SIZE_X / 2 - 50;
-		const int dy = 50;
-		door.SetAimPos(dx, dy);
-		door.SetCPos(x, y);
-		IsInDoor();
-		if (isInDDoor)
-		{
-			nmap.SetBulPos(bx, by);
-			/*amap.SetAimPos(x, y);
-			amap.CreateEn();*/
-			dmap.SetAimPos(x, y);
-			dmap.CreateEn();
-		}
-		else
-		{
-			nmap.SetBulPos(bx, by);
-			nmap.SetAimPos(x, y);
-			nmap.CreateEn();
-		}
+		ctr.OnMove();
+		nmap.CreateEn();
 	}
 	void CGamemap::OnShow()
 	{
-		if (isInDDoor)
-		{
-			//amap.OnShow();
-			dmap.OnShow();
-		}
-		else
+		nmap.SetCPos(ctr.GetX1(), ctr.GetY1(), ctr.GetX2(), ctr.GetY2());
+		GetInDoor();
+		WhichMap();
+		if (isInPMap && isDoor)
 		{
 			nmap.OnShow();
 		}
-		door.OnShow();
-	}
-	bool CGamemap::IsInSize()
-	{
-		return isInSize;
-	}
-	void CGamemap::IsInDoor()
-	{
-		isInNDoor = door.IsInNDoor();
-		isInDDoor = door.IsInDDoor();
-		isInADoor = door.IsInADoor();
-		isInPDoor = door.IsInPDoor();
+		else if (isInDMap && isDoor)
+		{
+			dmap.OnShow();
+		}
+		else if (isInAMap && isDoor)
+		{
+			amap.OnShow();
+		}
+		else 
+		{
+			nmap.OnShow();
+		}
+		ctr.OnShow();
 	}
 	void CGamemap::SetAimPos(int nx, int ny)
 	{
@@ -84,14 +64,58 @@ namespace game_framework
 	}
 	bool CGamemap::GetAimPos()
 	{
-		if (isInDDoor)
-		{
-			isdead = dmap.GetAimPos();
-		}
-		else
-		{
-			isdead = nmap.GetAimPos();
-		}
+		isdead = false;
 		return isdead;
+	}	
+	void CGamemap::SetMovingDown(bool flag)
+	{
+		ctr.SetMovingDown(flag);
+	}
+
+	void CGamemap::SetMovingLeft(bool flag)
+	{
+		ctr.SetMovingLeft(flag);
+	}
+
+	void CGamemap::SetMovingRight(bool flag)
+	{
+		ctr.SetMovingRight(flag);
+	}
+
+	void CGamemap::SetMovingUp(bool flag)
+	{
+		ctr.SetMovingUp(flag);
+	}
+	void CGamemap::SetAttack(bool flag, bool flag2)
+	{
+		ctr.SetAttack(flag, flag2);
+
+	}
+	void CGamemap::Reset()
+	{
+		ctr.Reset();
+	}
+	void CGamemap::GetInDoor()
+	{
+		isDoor = nmap.IsInDoor();
+	}
+	void CGamemap::WhichMap()
+	{
+		if (nmap.IsInADoor())
+		{
+			isInAMap = nmap.IsInADoor();
+		}
+		if (nmap.IsInDDoor())
+		{
+			isInDMap = nmap.IsInDDoor();
+		}
+		if (nmap.IsInPDoor())
+		{
+			isInPMap = nmap.IsInPDoor();
+		}
+		if (nmap.IsInNDoor())
+		{
+			isInNMap = nmap.IsInNDoor();
+		}
 	}
 }

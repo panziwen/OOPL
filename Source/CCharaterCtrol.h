@@ -36,8 +36,8 @@ namespace game_framework
 		bool isMovingDown;
 		bool isMovingLeft;
 		bool isMovingRight;
-		bool isInSize;
 		bool isMovingUp;
+		bool isInSize;
 		bool isAttack;
 		bool isAttack2;
 	};

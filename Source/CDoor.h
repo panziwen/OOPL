@@ -8,10 +8,13 @@ namespace game_framework
 	{
 	public:
 		CDoor();
+		int  GetX1();
+		int  GetY1();
+		int  GetX2();
+		int  GetY2();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
-		bool IsInSize();
 		bool IsInDDoor();
 		bool IsInNDoor();
 		bool IsInPDoor();
@@ -20,7 +23,7 @@ namespace game_framework
 		void SetAimPos(int x, int y);
 	private:
 		bool isInSize;
-		int x, y;
+		int x, y, tmp, dx, dy, dnx, dny;
 		CDDoor ddoor;
 		CNDoor ndoor;
 		CADoor adoor;
@@ -29,5 +32,6 @@ namespace game_framework
 		bool isInDDoor;
 		bool isInADoor;
 		bool isInPDoor;
+		void GetDPos(int x, int y, int nx, int ny);
 	};
 }

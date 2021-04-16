@@ -11,8 +11,25 @@ namespace game_framework
 	CDDoor::CDDoor()
 	{
 	}
+	int CDDoor::GetX1()
+	{
+		return posx;
+	}
+	int CDDoor::GetY1()
+	{
+		return posy;
+	}
+	int CDDoor::GetX2()
+	{
+		return posx + door.Width();
+	}
+	int CDDoor::GetY2()
+	{
+		return posy + door.Height();;
+	}
 	void CDDoor::Initialize()
 	{
+		tmp = 1 + rand() % 4;
 		isInDoor = false;
 	}
 	void CDDoor::LoadBitmap()
@@ -21,35 +38,33 @@ namespace game_framework
 	}
 	void CDDoor::OnShow()
 	{
-		door.SetTopLeft(x, y);
+		/*switch (tmp)
+		{
+		case 1:
+			posx = SIZE_X / 2 - 50;
+			posy = SIZE_Y - 110;
+			break;
+		case 2:
+			posx = SIZE_X - 160;
+			posy = SIZE_Y / 2;
+			break;
+		case 3:
+			posx = SIZE_X / 2 - 50;
+			posy = 50;
+			break;
+		case 4:
+			posx = 110;
+			posy = SIZE_Y / 2;
+			break;
+		default:
+			break;
+		}*/
+		posx = SIZE_X / 2 - 50;
+		posy = 50;
+		door.SetTopLeft(posx, posy);
 		door.ShowBitmap();
 	}
-	bool CDDoor::IsInSize()
-	{
-		return isInSize;
-	}
-	bool CDDoor::IsInDoor()
-	{
-		if (isInDoor)
-		{
-			if (cx >= x + 15 && cx < x + 20 && cy>y && cy < y + 10)
-			{
-				isInDoor = false;
-
-			}
-
-		}
-		else if (!isInDoor)
-		{
-			if (cx >= x + 15 && cx < x + 20 && cy>y && cy < y + 10)
-			{
-				isInDoor = true;
-
-			}
-
-		}
-		return isInDoor;
-	}
+	
 	void CDDoor::SetAimPos(int nx, int ny)
 	{
 		x = nx;

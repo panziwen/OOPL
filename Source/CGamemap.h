@@ -1,7 +1,7 @@
+#include "CCharaterCtrol.h"
 #include "CDmap.h"
 #include "CNmap.h"
 #include "CAmap.h"
-#include "CDoor.h"
 namespace game_framework
 {
 	class CGamemap
@@ -12,23 +12,27 @@ namespace game_framework
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();
-		bool IsInSize();
-		void IsInDoor();
 		bool GetAimPos();
+		void WhichMap();
 		void SetAimPos(int x, int y);
 		void SetBulPos(int x, int y);
+		void SetMovingDown(bool flag);
+		void SetMovingLeft(bool flag);
+		void SetMovingRight(bool flag);
+		void SetMovingUp(bool flag);
+		void SetAttack(bool flag, bool flag2);
+		void Reset();
 
 	private:
-		bool isInSize;
 		int x, y, bx, by;
+		CCharaterCtrol ctr;
 		CDmap dmap;
 		CAmap amap;
 		CNmap nmap;
-		CDoor door;
 		bool isdead;
-		bool isInNDoor;
-		bool isInDDoor;
-		bool isInADoor;
-		bool isInPDoor;
+		bool isDoor;
+		bool isInNMap, isInDMap, isInAMap, isInPMap;
+		bool isMovingDown, isMovingLeft, isMovingRight, isMovingUp;
+		void GetInDoor();
 	};
 }

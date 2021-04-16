@@ -4,18 +4,35 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CCharaterCtrol.h"
 #include "CNmap.h"
 
 namespace game_framework
 {
 	CNmap::CNmap()
 	{
-		isInSize = true;
+	}
+	bool CNmap::IsInADoor()
+	{
+		return isInADoor;
+	}
+	bool CNmap::IsInDDoor()
+	{
+		return isInDDoor;
+	}
+	bool CNmap::IsInNDoor()
+	{
+
+		return isInNDoor;
+	}
+	bool CNmap::IsInPDoor()
+	{
+		return isInPDoor;
 	}
 	void CNmap::Initialize()
 	{
-		isInDDoor = isInNDoor = isInADoor = isInDDoor = false;
+		door.Initialize();
+		isDoor = false;
+		isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
 	}
 	void CNmap::LoadBitmap()
 	{
@@ -29,12 +46,13 @@ namespace game_framework
 		map8.LoadBitmap(".\\bitmaps\\map\\nomal\\9.bmp");
 		map9.LoadBitmap(".\\bitmaps\\map\\nomal\\5.bmp");
 		enemy.LoadBitmap();
+		door.LoadBitmap();
 	}
 	void CNmap::CreateEn()
 	{
-		enemy.SetXY(x, y);
+		/*enemy.SetXY(x, y);
 		enemy.SetBulXY(bx, by);
-		enemy.OnMove();
+		enemy.OnMove();*/
 		GetAimPos();
 	}
 	void CNmap::OnShow()
@@ -75,11 +93,17 @@ namespace game_framework
 		map3.ShowBitmap();
 		map4.SetTopLeft(SIZE_X - map4.Width() - 100, SIZE_Y - map3.Height() - 50);
 		map4.ShowBitmap();
-		enemy.OnShow();
+
+		door.OnShow();
+		//enemy.OnShow();
+		GetDoor();
 	}
-	bool CNmap::IsInSize()
+	void CNmap::SetCPos(int x, int y, int nx, int ny)
 	{
-		return isInSize;
+		px = x;
+		py = y;
+		pnx = nx;
+		pny = ny;
 	}
 	void CNmap::SetAimPos(int nx, int ny)
 	{
@@ -91,8 +115,23 @@ namespace game_framework
 		bx = nx;
 		by = ny;
 	}
+	void CNmap::GetDoor()
+	{
+		isInADoor = door.IsInADoor();
+		isInNDoor = door.IsInNDoor();
+		isInPDoor = door.IsInPDoor();
+		isInDDoor = door.IsInDDoor();
+	}
 	bool CNmap::GetAimPos()
 	{
 		return enemy.GetAimPos();
+	}
+	bool CNmap::IsInDoor()
+	{
+		if (((px >= door.GetX1() && px <= door.GetX2()) && (py > door.GetY1() && py <= door.GetY2())) || ((pnx >= door.GetX1() && pnx <= door.GetX2()) && (pny > door.GetY1() && pny <= door.GetY2())))
+		{
+			isDoor = true;
+		}
+		return isDoor;
 	}
 }

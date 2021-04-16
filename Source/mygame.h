@@ -38,7 +38,6 @@
  *      3. Use ShowInitProgress(percent) to display loading progress.
 */
 
-#include "CCharaterCtrol.h"
 #include "CGamemap.h"
 #include "CInterface.h"
 
@@ -87,7 +86,6 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
-		CCharaterCtrol			isaac;
 		CGamemap		gamemap;
 	};
 
