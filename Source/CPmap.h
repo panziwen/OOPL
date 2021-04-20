@@ -7,6 +7,7 @@ namespace game_framework
 		CPmap();
 		void Initialize();
 		void LoadBitmap();
+		bool IsInDoor();
 		void OnShow();
 		bool IsInSize();
 		void CreateEn();
@@ -15,6 +16,7 @@ namespace game_framework
 		bool GetAimPos();
 	private:
 		bool isInSize;
+		int px, py, pnx, pny;
 		int x, y, bx, by;
 		CEnemy enemy;
 		CMovingBitmap map1;
@@ -32,5 +34,6 @@ namespace game_framework
 		bool isInDDoor;
 		bool isInADoor;
 		bool isInPDoor;
+		bool isDoor;
 	};
 }

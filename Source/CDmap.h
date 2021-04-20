@@ -1,4 +1,5 @@
 #include "CEnemy.h"
+//#include "CDoor.h"
 namespace game_framework
 {
 	class CDmap
@@ -8,6 +9,11 @@ namespace game_framework
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
+		bool IsInDoor();
+		bool IsInDDoor();
+		bool IsInNDoor();
+		bool IsInPDoor();
+		bool IsInADoor();
 		bool IsInSize();
 		void CreateEn();
 		void SetAimPos(int x, int y);
@@ -15,8 +21,10 @@ namespace game_framework
 		bool GetAimPos();
 	private:
 		bool isInSize;
+		int px, py, pnx, pny;
 		int x, y, bx, by;
 		CEnemy enemy;
+		//CDoor door;
 		CMovingBitmap map1;
 		CMovingBitmap map2;
 		CMovingBitmap map3;
@@ -32,5 +40,6 @@ namespace game_framework
 		bool isInDDoor;
 		bool isInADoor;
 		bool isInPDoor;
+		bool isDoor;
 	};
 }

@@ -21,6 +21,7 @@ namespace game_framework
 	{
 		nmap.LoadBitmap();
 		dmap.LoadBitmap();
+		pmap.LoadBitmap();
 		amap.LoadBitmap();
 		ctr.LoadBitmap();
 	}
@@ -32,11 +33,10 @@ namespace game_framework
 	void CGamemap::OnShow()
 	{
 		nmap.SetCPos(ctr.GetX1(), ctr.GetY1(), ctr.GetX2(), ctr.GetY2());
-		GetInDoor();
 		WhichMap();
 		if (isInPMap && isDoor)
 		{
-			nmap.OnShow();
+			pmap.OnShow();
 		}
 		else if (isInDMap && isDoor)
 		{
@@ -95,10 +95,7 @@ namespace game_framework
 	{
 		ctr.Reset();
 	}
-	void CGamemap::GetInDoor()
-	{
-		isDoor = nmap.IsInDoor();
-	}
+
 	void CGamemap::WhichMap()
 	{
 		if (nmap.IsInADoor())
@@ -117,5 +114,6 @@ namespace game_framework
 		{
 			isInNMap = nmap.IsInNDoor();
 		}
+		isDoor = nmap.IsInDoor();
 	}
 }

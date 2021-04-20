@@ -10,69 +10,68 @@ namespace game_framework
 {
 	CPDoor::CPDoor()
 	{
+		tmp = 1 + rand() % 4;
+	}
+	int CPDoor::GetX1()
+	{
+		return posx;
+	}
+	int CPDoor::GetY1()
+	{
+		return posy;
+	}
+	int CPDoor::GetX2()
+	{
+		return posx + door1.Width();
+	}
+	int CPDoor::GetY2()
+	{
+		return posy + door1.Height();;
 	}
 	void CPDoor::Initialize()
 	{
-		tmp = 1 + rand() % 4;
 		isInDoor = false;
 	}
 	void CPDoor::LoadBitmap()
 	{
-		door.LoadBitmap(".\\bitmaps\\map\\price\\door2.bmp", RGB(109, 33, 115));
+		door1.LoadBitmap(".\\bitmaps\\map\\price\\door1.bmp", RGB(109, 33, 115));
+		door2.LoadBitmap(".\\bitmaps\\map\\price\\door2.bmp", RGB(109, 33, 115));
+		door3.LoadBitmap(".\\bitmaps\\map\\price\\door3.bmp", RGB(109, 33, 115));
+		door4.LoadBitmap(".\\bitmaps\\map\\price\\door4.bmp", RGB(109, 33, 115));
 	}
 	void CPDoor::OnShow()
 	{
-		int posx;
-		int posy;
 		switch (tmp)
 		{
 		case 1:
 			posx = SIZE_X / 2 - 50;
-			posy = SIZE_Y - 110;
+			posy = 60;
+			door1.SetTopLeft(posx, posy);
+			posy -= 45;
+			door1.ShowBitmap();
 			break;
 		case 2:
-			posx = SIZE_X - 160;
-			posy = SIZE_Y / 2;
+			posx = SIZE_X / 2 - 50;
+			posy = SIZE_Y - 110;
+			door2.SetTopLeft(posx, posy);
+			door2.ShowBitmap();
 			break;
 		case 3:
-			posx = SIZE_X / 2 - 50;
-			posy = 50;
-			break;
-		case 4:
 			posx = 110;
 			posy = SIZE_Y / 2;
+			door3.SetTopLeft(posx, posy);
+			door3.ShowBitmap();
+			break;
+		case 4:
+			posx = SIZE_X - 160;
+			posy = SIZE_Y / 2;
+			door4.SetTopLeft(posx, posy);
+			posx += 15;
+			door4.ShowBitmap();
 			break;
 		default:
 			break;
 		}
-		door.SetTopLeft(posx, posy);
-		door.ShowBitmap();
-	}
-	bool CPDoor::IsInSize()
-	{
-		return isInSize;
-	}
-	bool CPDoor::IsInDoor()
-	{
-		if (isInDoor)
-		{
-			if (cx >= x + 15 && cx < x + 20 && cy>y && cy < y + 10)
-			{
-				isInDoor = false;
-
-			}
-
-		}
-		else if (!isInDoor)
-		{
-			if (cx >= x + 15 && cx < x + 20 && cy>y && cy < y + 10)
-			{
-				isInDoor = true;
-
-			}
-
-		}
-		return isInDoor;
 	}
 	void CPDoor::SetAimPos(int nx, int ny)
 	{

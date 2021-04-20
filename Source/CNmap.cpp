@@ -31,8 +31,7 @@ namespace game_framework
 	void CNmap::Initialize()
 	{
 		door.Initialize();
-		isDoor = false;
-		isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
+		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
 	}
 	void CNmap::LoadBitmap()
 	{
@@ -95,7 +94,7 @@ namespace game_framework
 		map4.ShowBitmap();
 
 		door.OnShow();
-		//enemy.OnShow();
+		enemy.OnShow();
 		GetDoor();
 	}
 	void CNmap::SetCPos(int x, int y, int nx, int ny)

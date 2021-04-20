@@ -15,7 +15,24 @@ namespace game_framework
 	}
 	void CDmap::Initialize()
 	{
-		isInDDoor = isInNDoor = isInADoor = isInDDoor = false;
+		isDoor = isInDDoor = isInNDoor = isInADoor = isInDDoor = false;
+	}
+	bool CDmap::IsInADoor()
+	{
+		return isInADoor;
+	}
+	bool CDmap::IsInDDoor()
+	{
+		return isInDDoor;
+	}
+	bool CDmap::IsInNDoor()
+	{
+
+		return isInNDoor;
+	}
+	bool CDmap::IsInPDoor()
+	{
+		return isInPDoor;
 	}
 	void CDmap::LoadBitmap()
 	{
@@ -95,5 +112,13 @@ namespace game_framework
 	bool CDmap::GetAimPos()
 	{
 		return enemy.GetAimPos();
+	}
+	bool CDmap::IsInDoor()
+	{
+		/*if (((px >= door.GetX1() && px <= door.GetX2()) && (py > door.GetY1() && py <= door.GetY2())) || ((pnx >= door.GetX1() && pnx <= door.GetX2()) && (pny > door.GetY1() && pny <= door.GetY2())))
+		{
+			isDoor = true;
+		}*/
+		return isDoor;
 	}
 }

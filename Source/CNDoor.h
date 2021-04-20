@@ -4,17 +4,22 @@ namespace game_framework
 	{
 	public:
 		CNDoor();
+		int  GetX1();
+		int  GetY1();
+		int  GetX2();
+		int  GetY2();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
-		bool IsInSize();
-		bool IsInDoor();
 		void SetAimPos(int x, int y);
 		void SetCPos(int x, int y);
 	private:
-		CMovingBitmap door;
+		CMovingBitmap door1;
+		CMovingBitmap door2;
+		CMovingBitmap door3;
+		CMovingBitmap door4;
 		bool isInSize;
-		int x, y, cx, cy, tmp;
+		int x, y, cx, cy, posx, posy, tmp;
 		bool isInDoor;
 	};
 }

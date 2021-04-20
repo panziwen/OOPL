@@ -31,7 +31,7 @@ namespace game_framework
 	}
 	void CDoor::Initialize()
 	{
-		tmp = 1 + rand() % 4;
+		tmp = 1 + rand() % 100;
 		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
 		ddoor.Initialize();
 		ndoor.Initialize();
@@ -55,7 +55,6 @@ namespace game_framework
 	}
 	bool CDoor::IsInNDoor()
 	{
-
 		return isInNDoor;
 	}
 	bool CDoor::IsInPDoor()
@@ -64,34 +63,34 @@ namespace game_framework
 	}
 	void CDoor::OnShow()
 	{
-		/*switch (tmp)
+		if (tmp <= 70 && tmp >= 1)
 		{
-		case 1:
-			ddoor.OnShow();
-			isInDDoor = true;
-			isInNDoor = isInADoor = isInPDoor = false;
-			break;
-		case 2:
 			ndoor.OnShow();
 			isInNDoor = true;
+			GetDPos(ndoor.GetX1(), ndoor.GetY1(), ndoor.GetX2(), ndoor.GetY2());
 			isInDDoor = isInADoor = isInPDoor = false;
-			break;
-		case 3:
-			adoor.OnShow();
-			isInADoor = true;
-			isInDDoor = isInNDoor = isInPDoor = false;
-			break;
-		case 4:
+		}
+		if (tmp <= 90 && tmp > 70)
+		{
 			pdoor.OnShow();
 			isInPDoor = true;
+			GetDPos(pdoor.GetX1(), pdoor.GetY1(), pdoor.GetX2(), pdoor.GetY2());
 			isInDDoor = isInNDoor = isInADoor = false;
-			break;
-		default:
-			break;
-		}*/
-		ddoor.OnShow();
-		GetDPos(ddoor.GetX1(), ddoor.GetY1(), ddoor.GetX2(), ddoor.GetY2() - 50);
-		isInDDoor = true;
+		}
+		if (tmp <= 95 && tmp >= 90)
+		{
+			ddoor.OnShow();
+			isInDDoor = true;
+			GetDPos(ddoor.GetX1(), ddoor.GetY1(), ddoor.GetX2(), ddoor.GetY2());
+			isInNDoor = isInADoor = isInPDoor = false;
+		}
+		if (tmp <= 100 && tmp > 95)
+		{
+			adoor.OnShow();
+			isInADoor = true;
+			GetDPos(adoor.GetX1(), adoor.GetY1(), adoor.GetX2(), adoor.GetY2());
+			isInDDoor = isInNDoor = isInPDoor = false;
+		}
 	}
 	void CDoor::SetAimPos(int nx, int ny)
 	{

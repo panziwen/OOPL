@@ -2,6 +2,7 @@
 #include "CDmap.h"
 #include "CNmap.h"
 #include "CAmap.h"
+#include "CPmap.h"
 namespace game_framework
 {
 	class CGamemap
@@ -29,10 +30,10 @@ namespace game_framework
 		CDmap dmap;
 		CAmap amap;
 		CNmap nmap;
+		CPmap pmap;
 		bool isdead;
 		bool isDoor;
 		bool isInNMap, isInDMap, isInAMap, isInPMap;
 		bool isMovingDown, isMovingLeft, isMovingRight, isMovingUp;
-		void GetInDoor();
 	};
 }

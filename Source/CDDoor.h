@@ -14,8 +14,11 @@ namespace game_framework
 		void SetAimPos(int x, int y);
 		void SetCPos(int x, int y);
 	private:
-		CMovingBitmap door;
-		int x, y, cx, cy, tmp, posx, posy;
+		CMovingBitmap door1;
+		CMovingBitmap door2;
+		CMovingBitmap door3;
+		CMovingBitmap door4;
+		int x, y, cx, cy, posx, posy, tmp;
 		bool isInDoor;
 	};
 }
