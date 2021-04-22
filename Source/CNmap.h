@@ -6,11 +6,16 @@ namespace game_framework
 	{
 	public:
 		CNmap();
+		~CNmap();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
 		void CreateEn();
 		bool IsInDDoor();
+		bool Up();
+		bool Down();
+		bool Left();
+		bool Right();
 		bool IsInNDoor();
 		bool IsInPDoor();
 		bool IsInADoor();
@@ -23,7 +28,7 @@ namespace game_framework
 		int px, py, pnx, pny;
 		int x, y, bx, by;
 		CEnemy enemy;
-		CDoor door;
+		CDoor *door;
 		CMovingBitmap map1;
 		CMovingBitmap map2;
 		CMovingBitmap map3;
@@ -34,12 +39,8 @@ namespace game_framework
 		CMovingBitmap map8;
 		CMovingBitmap map9;
 
-		bool isInNDoor;
-		bool isInDDoor;
-		bool isInADoor;
-		bool isInPDoor;
 		bool isDoor;
-
+		bool isInNDoor, isInDDoor, isInADoor, isInPDoor;
 		void GetDoor();
 	};
 }

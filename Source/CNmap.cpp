@@ -10,6 +10,11 @@ namespace game_framework
 {
 	CNmap::CNmap()
 	{
+		door = new CDoor();
+	}
+	CNmap::~CNmap()
+	{
+		delete door;
 	}
 	bool CNmap::IsInADoor()
 	{
@@ -28,10 +33,28 @@ namespace game_framework
 	{
 		return isInPDoor;
 	}
+
+	bool CNmap::Up()
+	{
+		return door->Up();
+	}
+	bool CNmap::Down()
+	{
+		return door->Down();
+	}
+	bool CNmap::Left()
+	{
+		return door->Left();
+	}
+	bool CNmap::Right()
+	{
+		return door->Right();
+	}
+
 	void CNmap::Initialize()
 	{
-		door.Initialize();
 		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
+		door->Initialize();
 	}
 	void CNmap::LoadBitmap()
 	{
@@ -45,7 +68,7 @@ namespace game_framework
 		map8.LoadBitmap(".\\bitmaps\\map\\nomal\\9.bmp");
 		map9.LoadBitmap(".\\bitmaps\\map\\nomal\\5.bmp");
 		enemy.LoadBitmap();
-		door.LoadBitmap();
+		door->LoadBitmap();
 	}
 	void CNmap::CreateEn()
 	{
@@ -93,9 +116,9 @@ namespace game_framework
 		map4.SetTopLeft(SIZE_X - map4.Width() - 100, SIZE_Y - map3.Height() - 50);
 		map4.ShowBitmap();
 
-		door.OnShow();
-		enemy.OnShow();
+		//enemy.OnShow();
 		GetDoor();
+		door->OnShow();
 	}
 	void CNmap::SetCPos(int x, int y, int nx, int ny)
 	{
@@ -116,10 +139,10 @@ namespace game_framework
 	}
 	void CNmap::GetDoor()
 	{
-		isInADoor = door.IsInADoor();
-		isInNDoor = door.IsInNDoor();
-		isInPDoor = door.IsInPDoor();
-		isInDDoor = door.IsInDDoor();
+		isInADoor = door->IsInADoor();
+		isInNDoor = door->IsInNDoor();
+		isInPDoor = door->IsInPDoor();
+		isInDDoor = door->IsInDDoor();
 	}
 	bool CNmap::GetAimPos()
 	{
@@ -127,7 +150,7 @@ namespace game_framework
 	}
 	bool CNmap::IsInDoor()
 	{
-		if (((px >= door.GetX1() && px <= door.GetX2()) && (py > door.GetY1() && py <= door.GetY2())) || ((pnx >= door.GetX1() && pnx <= door.GetX2()) && (pny > door.GetY1() && pny <= door.GetY2())))
+		if (((px >= door->GetX1() && px <= door->GetX2()) && (py > door->GetY1() && py <= door->GetY2())) || ((pnx >= door->GetX1() && pnx <= door->GetX2()) && (pny > door->GetY1() && pny <= door->GetY2())))
 		{
 			isDoor = true;
 		}

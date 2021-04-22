@@ -11,7 +11,12 @@ namespace game_framework
 {
 	CDoor::CDoor()
 	{
-		isInSize = true;
+		ndoor = new CNDoor();
+		tmp = 1 + rand() % 10;
+	}
+	CDoor::~CDoor()
+	{
+		delete ndoor;
 	}
 	int CDoor::GetX1()
 	{
@@ -31,17 +36,18 @@ namespace game_framework
 	}
 	void CDoor::Initialize()
 	{
-		tmp = 1 + rand() % 100;
 		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
+		isUp = isDown = isLeft = isRight = false;
+		GetDPos(0,0,0,0);
 		ddoor.Initialize();
-		ndoor.Initialize();
+		ndoor->Initialize();
 		adoor.Initialize();
 		pdoor.Initialize();
 	}
 	void CDoor::LoadBitmap()
 	{
 		ddoor.LoadBitmap();
-		ndoor.LoadBitmap();
+		ndoor->LoadBitmap();
 		adoor.LoadBitmap();
 		pdoor.LoadBitmap();
 	}
@@ -61,13 +67,31 @@ namespace game_framework
 	{
 		return isInPDoor;
 	}
+
+	bool CDoor::Up()
+	{
+		return isUp;
+	}
+	bool CDoor::Down()
+	{
+		return isDown;
+	}
+	bool CDoor::Left()
+	{
+		return isLeft;
+	}
+	bool CDoor::Right()
+	{
+		return isRight;
+	}
+
 	void CDoor::OnShow()
 	{
 		if (tmp <= 70 && tmp >= 1)
 		{
-			ndoor.OnShow();
+			ndoor->OnShow();
 			isInNDoor = true;
-			GetDPos(ndoor.GetX1(), ndoor.GetY1(), ndoor.GetX2(), ndoor.GetY2());
+			GetDPos(ndoor->GetX1(), ndoor->GetY1(), ndoor->GetX2(), ndoor->GetY2());
 			isInDDoor = isInADoor = isInPDoor = false;
 		}
 		if (tmp <= 90 && tmp > 70)
@@ -106,5 +130,25 @@ namespace game_framework
 		this->dy = dy;
 		this->dnx = dnx;
 		this->dny = dny;
+		if (dx == (SIZE_X / 2 - 50) && dy == 15)
+		{
+			isUp = true;
+			isDown = isLeft = isRight = false;
+		}
+		if (dx == (SIZE_X / 2 - 50) && dy == (SIZE_Y - 110))
+		{
+			isDown = true;
+			isUp = isLeft = isRight = false;
+		}
+		if (dx == 110 && dy == (SIZE_Y / 2))
+		{
+			isLeft = true;
+			isUp = isDown = isRight = false;
+		}
+		if (dx == (SIZE_X - 145) && dy == (SIZE_Y / 2))
+		{
+			isRight = true;
+			isUp = isDown = isLeft = false;
+		}
 	}
 }

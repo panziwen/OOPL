@@ -10,7 +10,8 @@ namespace game_framework
 {
 	CNDoor::CNDoor()
 	{
-		tmp = 1 + rand() % 4;
+		const int a = 1 + rand() % 4;
+		tmp = a;
 	}
 	int CNDoor::GetX1()
 	{
@@ -30,7 +31,6 @@ namespace game_framework
 	}
 	void CNDoor::Initialize()
 	{
-		isInDoor = false;
 	}
 	void CNDoor::LoadBitmap()
 	{
@@ -48,24 +48,28 @@ namespace game_framework
 			posy = 60;
 			door1.SetTopLeft(posx, posy);
 			posy -= 45;
+			door = door1;
 			door1.ShowBitmap();
 			break;
 		case 2:
 			posx = SIZE_X / 2 - 50;
 			posy = SIZE_Y - 110;
 			door2.SetTopLeft(posx, posy);
+			door = door2;
 			door2.ShowBitmap();
 			break;
 		case 3:
 			posx = 110;
 			posy = SIZE_Y / 2;
 			door3.SetTopLeft(posx, posy);
+			door = door3;
 			door3.ShowBitmap();
 			break;
 		case 4:
 			posx = SIZE_X - 160;
 			posy = SIZE_Y / 2;
 			door4.SetTopLeft(posx, posy);
+			door = door4;
 			posx += 15;
 			door4.ShowBitmap();
 			break;
@@ -77,6 +81,10 @@ namespace game_framework
 	{
 		x = nx;
 		y = ny;
+	}
+	void CNDoor::ReSet()
+	{
+		//tmp = 1 + rand() % 4;
 	}
 	void CNDoor::SetCPos(int nx, int ny)
 	{

@@ -365,4 +365,10 @@ namespace game_framework
 		isaacWalkUp.Reset();
 		isaacWalkLeft.Reset();
 	}
+	void CCharaterCtrol::SetPos(int x, int y)
+	{
+		this->x = x;
+		this->y = y;
+		
+	}
 }

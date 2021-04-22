@@ -8,12 +8,14 @@ namespace game_framework
 		int  GetY1();
 		int  GetX2();
 		int  GetY2();
+		void ReSet();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
 		void SetAimPos(int x, int y);
 		void SetCPos(int x, int y);
 	private:
+		CMovingBitmap door;
 		CMovingBitmap door1;
 		CMovingBitmap door2;
 		CMovingBitmap door3;

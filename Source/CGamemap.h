@@ -1,14 +1,12 @@
 #include "CCharaterCtrol.h"
-#include "CDmap.h"
 #include "CNmap.h"
-#include "CAmap.h"
-#include "CPmap.h"
 namespace game_framework
 {
 	class CGamemap
 	{
 	public:
 		CGamemap();
+		~CGamemap();
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
@@ -25,12 +23,9 @@ namespace game_framework
 		void Reset();
 
 	private:
-		int x, y, bx, by;
+		int x, y, bx, by, fx, fy;
+		vector<vector<CNmap*>> a;
 		CCharaterCtrol ctr;
-		CDmap dmap;
-		CAmap amap;
-		CNmap nmap;
-		CPmap pmap;
 		bool isdead;
 		bool isDoor;
 		bool isInNMap, isInDMap, isInAMap, isInPMap;

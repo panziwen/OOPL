@@ -9,48 +9,69 @@ namespace game_framework
 {
 	CGamemap::CGamemap()
 	{
+		fx = rand() % 3;
+		fy = rand() % 4;
+		/*fx = 2;
+		fy = 2;*/
+	}
+	CGamemap::~CGamemap()
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				delete a[i][j];
+			}
+		}
 	}
 	void CGamemap::Initialize()
 	{
+		vector<CNmap*> tmp1;
+		vector<CNmap*> tmp2;
+		vector<CNmap*> tmp3;
+		vector<CNmap*> tmp4;
+		for (int j = 0; j < 5; j++)
+		{
+			tmp1.push_back(new CNmap());
+			tmp2.push_back(new CNmap());
+			tmp3.push_back(new CNmap());
+			tmp4.push_back(new CNmap());
+		}
+		a.push_back(tmp1);
+		a.push_back(tmp2);
+		a.push_back(tmp3);
+		a.push_back(tmp4);
 		isInNMap = isInDMap = isInAMap = isInPMap = isDoor = false;
-		nmap.Initialize();
-		dmap.Initialize();
 		ctr.Initialize();
 	}
 	void CGamemap::LoadBitmap()
 	{
-		nmap.LoadBitmap();
-		dmap.LoadBitmap();
-		pmap.LoadBitmap();
-		amap.LoadBitmap();
 		ctr.LoadBitmap();
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				a[i][j]->LoadBitmap();
+			}
+		}
 	}
 	void CGamemap::OnMove()
 	{
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				a[i][j]->Initialize();
+			}
+		}
 		ctr.OnMove();
-		nmap.CreateEn();
 	}
 	void CGamemap::OnShow()
 	{
-		nmap.SetCPos(ctr.GetX1(), ctr.GetY1(), ctr.GetX2(), ctr.GetY2());
-		WhichMap();
-		if (isInPMap && isDoor)
-		{
-			pmap.OnShow();
-		}
-		else if (isInDMap && isDoor)
-		{
-			dmap.OnShow();
-		}
-		else if (isInAMap && isDoor)
-		{
-			amap.OnShow();
-		}
-		else 
-		{
-			nmap.OnShow();
-		}
+		a[fx][fy]->SetCPos(ctr.GetX1(), ctr.GetY1(), ctr.GetX2(), ctr.GetY2());
+		a[fx][fy]->OnShow();
 		ctr.OnShow();
+		WhichMap();
 	}
 	void CGamemap::SetAimPos(int nx, int ny)
 	{
@@ -98,22 +119,41 @@ namespace game_framework
 
 	void CGamemap::WhichMap()
 	{
-		if (nmap.IsInADoor())
+		if (a[fx][fy]->IsInDoor())
 		{
-			isInAMap = nmap.IsInADoor();
+			if (a[fx][fy]->Up())
+			{
+				if (fx > 0 && fx <= 3)
+				{
+					fx -= 1;
+					ctr.SetPos(SIZE_PUX, SIZE_PUY);
+				}
+			}
+			if (a[fx][fy]->Down())
+			{
+				if (fx >= 0 && fx < 3)
+				{
+					fx += 1;
+					ctr.SetPos(SIZE_PDX, SIZE_PDY);
+				}
+			}
+			if (a[fx][fy]->Left())
+			{
+				if (fy > 0 && fy <= 4)
+				{
+					fy -= 1;
+					ctr.SetPos(SIZE_PLX, SIZE_PLY);
+				}
+
+			}
+			if (a[fx][fy]->Right())
+			{
+				if (fy >= 0 && fy < 4)
+				{
+					fy += 1;
+					ctr.SetPos(SIZE_PRX, SIZE_PRY);
+				}
+			}
 		}
-		if (nmap.IsInDDoor())
-		{
-			isInDMap = nmap.IsInDDoor();
-		}
-		if (nmap.IsInPDoor())
-		{
-			isInPMap = nmap.IsInPDoor();
-		}
-		if (nmap.IsInNDoor())
-		{
-			isInNMap = nmap.IsInNDoor();
-		}
-		isDoor = nmap.IsInDoor();
 	}
 }

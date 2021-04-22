@@ -176,8 +176,7 @@ namespace game_framework {
 
 	void CGameStateRun::OnBeginState()
 	{
-
-		gamemap.Initialize();
+		gamemap.LoadBitmap();
 	}
 
 	void CGameStateRun::OnMove()
@@ -191,12 +190,12 @@ namespace game_framework {
 
 	void CGameStateRun::OnInit()  			
 	{
+		gamemap.Initialize();
 		ShowInitProgress(50);
 		Sleep(300); 							
 		CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
 		CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");
-		gamemap.LoadBitmap();
 	}
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)

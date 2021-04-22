@@ -75,6 +75,14 @@
 #define SHOW_GAME_CYCLE_TIME false		// 是否在debug mode顯示cycle time
 #define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
 #define ENABLE_AUDIO		 true		// 啟動音效介面
+#define SIZE_PUX				 SIZE_X / 2 - 50		// 設定遊戲畫面的解析度為640x480
+#define SIZE_PUY				 SIZE_Y - 150
+#define SIZE_PDX				 SIZE_X / 2 - 50		// 設定遊戲畫面的解析度為640x480
+#define SIZE_PDY				 60
+#define SIZE_PLX				 SIZE_X - 180		// 設定遊戲畫面的解析度為640x480
+#define SIZE_PLY				 SIZE_Y / 2
+#define SIZE_PRX				 150		// 設定遊戲畫面的解析度為640x480
+#define SIZE_PRY				 SIZE_Y / 2
 
 /////////////////////////////////////////////////////////////////////////////
 // 定義CGame及CGameState所使用的三個狀態常數
