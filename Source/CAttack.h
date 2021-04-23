@@ -20,11 +20,12 @@ namespace game_framework
 		void OnShow();
 		void BulletDisapear();
 		void SetXY(int nx, int ny);
+		void SetXY2();
 	private:
 		CMovingBitmap leftBullet;
 		CMovingBitmap rightBullet;
 		CAnimation bulletDisappear;
-		int x, y, posr, posl, posu, posd;
+		int x, y, nx, ny, posr, posl, posu, posd;
 		bool isAttack;
 		bool faceL;
 		bool faceR;

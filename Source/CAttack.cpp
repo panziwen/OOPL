@@ -5,6 +5,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CAttack.h"
+#include <iostream> 
+#include <ctime>
 
 namespace game_framework
 {
@@ -69,7 +71,7 @@ namespace game_framework
 	void CAttack::OnMove()
 	{
 		const int STEP_SIZE = 5;
-		bulletDisappear.SetDelayCount(2);
+		bulletDisappear.SetDelayCount(1);
 		bulletDisappear.OnMove();
 	}
 
@@ -142,6 +144,12 @@ namespace game_framework
 	}
 	void CAttack::BulletDisapear()
 	{
+		/*int now = clock();
+		while(clock() - now < 5 * 1000)
+		{
+			
+		}*/
+		//Sleep(5*1000);
 		bulletDisappear.SetTopLeft(x, y);
 		bulletDisappear.Reset();
 		bulletDisappear.SetDelayCount(1);
@@ -154,8 +162,8 @@ namespace game_framework
 		posl = x - 150;
 		posu = y - 150;
 		posd = y + 150;
-		x = nx;
-		y = ny;
+		x = nx-32;
+		y = ny-32;
 	}
 	int CAttack::Width()
 	{

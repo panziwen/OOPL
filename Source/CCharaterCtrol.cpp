@@ -21,11 +21,11 @@ namespace game_framework
 	}
 	int CCharaterCtrol::GetX2()
 	{
-		return x+animation.Width();
+		return nx;
 	}
 	int CCharaterCtrol::GetY2()
 	{
-		return y + animation.Height();;
+		return ny;
 	}
 	void CCharaterCtrol::Initialize()
 	{
@@ -34,7 +34,7 @@ namespace game_framework
 		const int Y_POS = (SIZE_Y / 5) * 4 - 50;
 		x = X_POS;
 		y = Y_POS;
-		isaacAttack.SetXY(x, y);
+		isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = false;
 	}
 	void CCharaterCtrol::LoadBitmap()
@@ -88,13 +88,14 @@ namespace game_framework
 			}
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFL(true);
 				isaacAttack.SetFR(false);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(false);
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
@@ -105,13 +106,14 @@ namespace game_framework
 			}
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFL(false);
 				isaacAttack.SetFR(true);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(false);
-				isaacAttack.SetXY(x, y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
@@ -122,13 +124,14 @@ namespace game_framework
 			}
 			isaacWalkUp.SetDelayCount(2);
 			isaacWalkUp.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFL(false);
 				isaacAttack.SetFR(false);
 				isaacAttack.SetFU(true);
 				isaacAttack.SetFD(false);
-				isaacAttack.SetXY(x, y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingDown && !isMovingLeft && !isMovingRight)
@@ -139,13 +142,14 @@ namespace game_framework
 			}
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFL(false);
 				isaacAttack.SetFR(false);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(true);
-				isaacAttack.SetXY(x, y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingUp && isMovingLeft)
@@ -165,13 +169,14 @@ namespace game_framework
 			}
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFR(false);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(false);
 				isaacAttack.SetFL(true);
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingUp && isMovingRight)
@@ -191,13 +196,14 @@ namespace game_framework
 			}
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFL(false);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(false);
 				isaacAttack.SetFR(true);
-				isaacAttack.SetXY(x, y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingDown && isMovingLeft)
@@ -217,13 +223,14 @@ namespace game_framework
 			}
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFR(false);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(false);
 				isaacAttack.SetFL(true);
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isMovingDown && isMovingRight)
@@ -243,18 +250,19 @@ namespace game_framework
 			}
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
+			MP();
 			if (isAttack)
 			{
 				isaacAttack.SetFL(false);
 				isaacAttack.SetFU(false);
 				isaacAttack.SetFD(false);
 				isaacAttack.SetFR(true);
-				isaacAttack.SetXY(x - isaacAttack.Width(), y);
+				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 			}
 		}
 		if (isAttack)
 		{
-			isaacAttack.SetXY(x, y);
+			isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
 		}
 		isaacAttack.OnMove();
 	}
@@ -370,5 +378,10 @@ namespace game_framework
 		this->x = x;
 		this->y = y;
 		
+	}
+	void CCharaterCtrol::MP()
+	{
+		nx = x + animation.Width();
+		ny = y + animation.Height()+16;
 	}
 }
