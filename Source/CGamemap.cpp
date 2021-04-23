@@ -9,10 +9,9 @@ namespace game_framework
 {
 	CGamemap::CGamemap()
 	{
+		srand((unsigned)time(NULL));
 		fx = rand() % 3;
 		fy = rand() % 4;
-		/*fx = 2;
-		fy = 2;*/
 	}
 	CGamemap::~CGamemap()
 	{
@@ -51,7 +50,14 @@ namespace game_framework
 		{
 			for (int j = 0; j < 5; j++)
 			{
-				a[i][j]->LoadBitmap();
+				if (i%2==0&&j%2==0)
+				{
+					a[i][j]->LoadBitmap();
+				}
+				else 
+				{
+					a[i][j]->LoadBitmap2();
+				}
 			}
 		}
 	}
@@ -68,10 +74,18 @@ namespace game_framework
 	}
 	void CGamemap::OnShow()
 	{
-		a[fx][fy]->SetCPos(ctr.GetX1(), ctr.GetY1(), ctr.GetX2(), ctr.GetY2());
-		a[fx][fy]->OnShow();
-		ctr.OnShow();
 		WhichMap();
+		a[fx][fy]->SetCPos(ctr.GetX1(), ctr.GetY1(), ctr.GetX2(), ctr.GetY2());
+		if (fx%2==0&&fy%2==0)
+		{
+			a[fx][fy]->OnShow();
+		}
+		else
+		{
+			a[fx][fy]->OnShow2();
+		}
+		ctr.OnShow();
+		
 	}
 	void CGamemap::SetAimPos(int nx, int ny)
 	{

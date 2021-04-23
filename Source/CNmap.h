@@ -9,7 +9,9 @@ namespace game_framework
 		~CNmap();
 		void Initialize();
 		void LoadBitmap();
+		void LoadBitmap2();
 		void OnShow();
+		void OnShow2();
 		void CreateEn();
 		bool IsInDDoor();
 		bool Up();
@@ -29,15 +31,8 @@ namespace game_framework
 		int x, y, bx, by;
 		CEnemy enemy;
 		CDoor *door;
-		CMovingBitmap map1;
-		CMovingBitmap map2;
-		CMovingBitmap map3;
-		CMovingBitmap map4;
-		CMovingBitmap map5;
-		CMovingBitmap map6;
-		CMovingBitmap map7;
-		CMovingBitmap map8;
-		CMovingBitmap map9;
+		CMovingBitmap map1, map2, map3, map4, map5, map6, map7, map8, map9;
+		CMovingBitmap map11, map22, map33, map44, map55, map66, map77, map88, map99;
 
 		bool isDoor;
 		bool isInNDoor, isInDDoor, isInADoor, isInPDoor;

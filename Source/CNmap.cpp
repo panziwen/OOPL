@@ -10,7 +10,10 @@ namespace game_framework
 {
 	CNmap::CNmap()
 	{
+		
 		door = new CDoor();
+		door->Initialize();
+		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
 	}
 	CNmap::~CNmap()
 	{
@@ -53,8 +56,6 @@ namespace game_framework
 
 	void CNmap::Initialize()
 	{
-		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
-		door->Initialize();
 	}
 	void CNmap::LoadBitmap()
 	{
@@ -70,11 +71,25 @@ namespace game_framework
 		enemy.LoadBitmap();
 		door->LoadBitmap();
 	}
+	void CNmap::LoadBitmap2()
+	{
+		map11.LoadBitmap(".\\bitmaps\\map\\demo\\1.bmp");
+		map22.LoadBitmap(".\\bitmaps\\map\\demo\\2.bmp");
+		map33.LoadBitmap(".\\bitmaps\\map\\demo\\3.bmp");
+		map44.LoadBitmap(".\\bitmaps\\map\\demo\\4.bmp");
+		map55.LoadBitmap(".\\bitmaps\\map\\demo\\6.bmp");
+		map66.LoadBitmap(".\\bitmaps\\map\\demo\\7.bmp");
+		map77.LoadBitmap(".\\bitmaps\\map\\demo\\8.bmp");
+		map88.LoadBitmap(".\\bitmaps\\map\\demo\\9.bmp");
+		map99.LoadBitmap(".\\bitmaps\\map\\demo\\5.bmp");
+		enemy.LoadBitmap();
+		door->LoadBitmap();
+	}
 	void CNmap::CreateEn()
 	{
-		/*enemy.SetXY(x, y);
+		enemy.SetXY(x, y);
 		enemy.SetBulXY(bx, by);
-		enemy.OnMove();*/
+		enemy.OnMove();
 		GetAimPos();
 	}
 	void CNmap::OnShow()
@@ -116,9 +131,52 @@ namespace game_framework
 		map4.SetTopLeft(SIZE_X - map4.Width() - 100, SIZE_Y - map3.Height() - 50);
 		map4.ShowBitmap();
 
-		//enemy.OnShow();
-		GetDoor();
 		door->OnShow();
+		enemy.OnShow();
+		GetDoor();
+	}
+	void CNmap::OnShow2()
+	{
+		for (int i = 2; i < 4; i++)
+		{
+			map55.SetTopLeft(100, i*map55.Height());
+			map55.ShowBitmap();
+		}
+		for (int i = 2; i < 4; i++)
+		{
+			map66.SetTopLeft(SIZE_X - map66.Width() - 100, i*map66.Height());
+			map66.ShowBitmap();
+		}
+		for (int i = 1; i < 4; i++)
+		{
+			map77.SetTopLeft(i*map77.Width(), 50);
+			map77.ShowBitmap();
+		}
+		for (int i = 1; i < 4; i++)
+		{
+			map88.SetTopLeft(i*map88.Width(), SIZE_Y - map88.Height() - 50);
+			map88.ShowBitmap();
+		}
+		for (int i = 1; i < 4; i++)
+		{
+			for (int j = 2; j < 4; j++)
+			{
+				map99.SetTopLeft(i * map99.Width(), j * map99.Height());
+				map99.ShowBitmap();
+			}
+		}
+		map11.SetTopLeft(100, 50);
+		map11.ShowBitmap();
+		map22.SetTopLeft(SIZE_X - map11.Width() - 100, 50);
+		map22.ShowBitmap();
+		map33.SetTopLeft(100, SIZE_Y - map33.Height() - 50);
+		map33.ShowBitmap();
+		map44.SetTopLeft(SIZE_X - map44.Width() - 100, SIZE_Y - map33.Height() - 50);
+		map44.ShowBitmap();
+
+		door->OnShow();
+		enemy.OnShow();
+		GetDoor();
 	}
 	void CNmap::SetCPos(int x, int y, int nx, int ny)
 	{
@@ -139,10 +197,10 @@ namespace game_framework
 	}
 	void CNmap::GetDoor()
 	{
-		isInADoor = door->IsInADoor();
+		/*isInADoor = door->IsInADoor();
 		isInNDoor = door->IsInNDoor();
 		isInPDoor = door->IsInPDoor();
-		isInDDoor = door->IsInDDoor();
+		isInDDoor = door->IsInDDoor();*/
 	}
 	bool CNmap::GetAimPos()
 	{

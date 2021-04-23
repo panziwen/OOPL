@@ -26,9 +26,6 @@
     <Filter Include="MyGame\INTERFACE">
       <UniqueIdentifier>{f8c24810-ecf1-4c4a-b706-5752228e8127}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MyGame\ENEMY">
-      <UniqueIdentifier>{3632de73-9486-4a7d-b3ab-aa66607d5018}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\game.ico">
@@ -109,7 +106,7 @@
       <Filter>MyGame\MAP</Filter>
     </ClCompile>
     <ClCompile Include="Source\CEnemy.cpp">
-      <Filter>MyGame\ENEMY</Filter>
+      <Filter>MyGame\CHARAERCONTROL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,7 +177,7 @@
       <Filter>MyGame\MAP</Filter>
     </ClInclude>
     <ClInclude Include="Source\CEnemy.h">
-      <Filter>MyGame\ENEMY</Filter>
+      <Filter>MyGame\CHARAERCONTROL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

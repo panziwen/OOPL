@@ -9,7 +9,7 @@ namespace game_framework
 {
 	CEnemy::CEnemy()
 	{
-		srand((unsigned)time(NULL));
+		// srand((unsigned)time(NULL));
 		Initialize();
 	}
 	int CEnemy::GetX1()

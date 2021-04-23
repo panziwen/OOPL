@@ -13,6 +13,7 @@ namespace game_framework
 	{
 		ndoor = new CNDoor();
 		tmp = 1 + rand() % 10;
+		isInSize = true;
 	}
 	CDoor::~CDoor()
 	{
@@ -36,9 +37,9 @@ namespace game_framework
 	}
 	void CDoor::Initialize()
 	{
+		GetDPos(0,0,0,0);
 		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
 		isUp = isDown = isLeft = isRight = false;
-		GetDPos(0,0,0,0);
 		ddoor.Initialize();
 		ndoor->Initialize();
 		adoor.Initialize();
