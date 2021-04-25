@@ -5,6 +5,7 @@ namespace game_framework
 	{
 	public:
 		CAttack();
+		~CAttack();
 		int  GetX();
 		int  GetY();
 		int Width();
@@ -20,10 +21,10 @@ namespace game_framework
 		void OnShow();
 		void BulletDisapear();
 		void SetXY(int nx, int ny);
-		void SetXY2();
+		//void SetXY2();
 	private:
-		CMovingBitmap leftBullet;
-		CMovingBitmap rightBullet;
+		int max_bulletNmu, attTimes;
+		vector<CMovingBitmap*> bullet;
 		CAnimation bulletDisappear;
 		int x, y, nx, ny, posr, posl, posu, posd;
 		bool isAttack;

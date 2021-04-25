@@ -35,7 +35,7 @@ namespace game_framework
 		x = X_POS;
 		y = Y_POS;
 		isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = false;
+		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = isAttack2 = false;
 	}
 	void CCharaterCtrol::LoadBitmap()
 	{
@@ -82,6 +82,10 @@ namespace game_framework
 		const int STEP_SIZE = 5;
 		if (isMovingLeft && !isMovingUp && !isMovingDown)
 		{
+			isaacAttack.SetFL(true);
+			isaacAttack.SetFR(false);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(false);
 			if (x >= 150)
 			{
 				x -= STEP_SIZE;
@@ -89,17 +93,13 @@ namespace game_framework
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFL(true);
-				isaacAttack.SetFR(false);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
+			isaacAttack.SetFL(false);
+			isaacAttack.SetFR(true);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(false);
 			if (x <= SIZE_X - 180)
 			{
 				x += STEP_SIZE;
@@ -107,17 +107,13 @@ namespace game_framework
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFL(false);
-				isaacAttack.SetFR(true);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
+			isaacAttack.SetFL(false);
+			isaacAttack.SetFR(false);
+			isaacAttack.SetFU(true);
+			isaacAttack.SetFD(false);
 			if (y >= 60)
 			{
 				y -= STEP_SIZE;
@@ -125,17 +121,13 @@ namespace game_framework
 			isaacWalkUp.SetDelayCount(2);
 			isaacWalkUp.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFL(false);
-				isaacAttack.SetFR(false);
-				isaacAttack.SetFU(true);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
+			isaacAttack.SetFL(false);
+			isaacAttack.SetFR(false);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(true);
 			if (y <= SIZE_Y - 150)
 			{
 				y += STEP_SIZE;
@@ -143,17 +135,13 @@ namespace game_framework
 			isaacWalkDonw.SetDelayCount(2);
 			isaacWalkDonw.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFL(false);
-				isaacAttack.SetFR(false);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(true);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingUp && isMovingLeft)
 		{
+			isaacAttack.SetFR(false);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(false);
+			isaacAttack.SetFL(true);
 			if (x >= 150 && y >= 60)
 			{
 				y -= STEP_SIZE;
@@ -170,17 +158,13 @@ namespace game_framework
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFR(false);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetFL(true);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingUp && isMovingRight)
 		{
+			isaacAttack.SetFL(false);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(false);
+			isaacAttack.SetFR(true);
 			if ((x <= SIZE_X - 180) && (y >= 60))
 			{
 				y -= STEP_SIZE;
@@ -197,17 +181,13 @@ namespace game_framework
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFL(false);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetFR(true);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingDown && isMovingLeft)
 		{
+			isaacAttack.SetFR(false);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(false);
+			isaacAttack.SetFL(true);
 			if ((x >= 150) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
@@ -224,17 +204,13 @@ namespace game_framework
 			isaacWalkLeft.SetDelayCount(2);
 			isaacWalkLeft.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFR(false);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetFL(true);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isMovingDown && isMovingRight)
 		{
+			isaacAttack.SetFL(false);
+			isaacAttack.SetFU(false);
+			isaacAttack.SetFD(false);
+			isaacAttack.SetFR(true);
 			if ((x <= SIZE_X - 180) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
@@ -251,14 +227,6 @@ namespace game_framework
 			isaacWalkRight.SetDelayCount(2);
 			isaacWalkRight.OnMove();
 			MP();
-			if (isAttack)
-			{
-				isaacAttack.SetFL(false);
-				isaacAttack.SetFU(false);
-				isaacAttack.SetFD(false);
-				isaacAttack.SetFR(true);
-				isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
-			}
 		}
 		if (isAttack)
 		{

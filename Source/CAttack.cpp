@@ -6,13 +6,25 @@
 #include "gamelib.h"
 #include "CAttack.h"
 #include <iostream> 
-#include <ctime>
 
 namespace game_framework
 {
 	CAttack::CAttack()
 	{
+		attTimes = 0;
+		max_bulletNmu = 2;
+		for (int i = 0; i < max_bulletNmu; i++)
+		{
+			bullet.push_back(new CMovingBitmap());
+		}
 		Initialize();
+	}
+	CAttack::~CAttack()
+	{
+		for (int i = 0; i < max_bulletNmu; i++)
+		{
+			delete bullet[i];
+		}
 	}
 	int CAttack::GetX()
 	{
@@ -59,8 +71,8 @@ namespace game_framework
 								".\\bitmaps\\attack\\attack10.bmp",".\\bitmaps\\attack\\attack11.bmp", ".\\bitmaps\\attack\\attack12.bmp",
 								".\\bitmaps\\attack\\attack13.bmp",".\\bitmaps\\attack\\attack14.bmp",".\\bitmaps\\attack\\attack15.bmp"};
 
-		leftBullet.LoadBitmap(filename0, RGB(109, 33, 115));
-		rightBullet.LoadBitmap(filename0, RGB(109, 33, 115));
+		bullet[0]->LoadBitmap(filename0, RGB(109, 33, 115));
+		bullet[1]->LoadBitmap(filename0, RGB(109, 33, 115));
 
 		for (int i = 0; i < 15; i++)
 		{
@@ -85,12 +97,20 @@ namespace game_framework
 				{
 					x += 1;
 				}
-				leftBullet.SetTopLeft(x, y);
-				leftBullet.ShowBitmap();
+				bullet[attTimes]->SetTopLeft(x, y);
+				bullet[attTimes]->ShowBitmap();
+
 			}
 			else
 			{
-				BulletDisapear();
+				bulletDisappear.SetTopLeft(x, y);
+				bulletDisappear.SetDelayCount(1);
+				bulletDisappear.OnShow();
+				if (bulletDisappear.IsFinalBitmap())
+				{
+					bulletDisappear.Reset();
+					faceD = faceL = faceR = faceU = isAttack = false;
+				}
 			}
 		}
 		if (faceL)
@@ -101,12 +121,20 @@ namespace game_framework
 				{
 					x -= 1;
 				}
-				leftBullet.SetTopLeft(x, y);
-				leftBullet.ShowBitmap();
+
+				bullet[attTimes]->SetTopLeft(x, y);
+				bullet[attTimes]->ShowBitmap();
 			}
 			else
 			{
-				BulletDisapear();
+				bulletDisappear.SetTopLeft(x, y);
+				bulletDisappear.SetDelayCount(1);
+				bulletDisappear.OnShow();
+				if (bulletDisappear.IsFinalBitmap())
+				{
+					bulletDisappear.Reset();
+					faceD = faceL = faceR = faceU = isAttack = false;
+				}
 			}
 		}
 		if (faceU)
@@ -117,12 +145,20 @@ namespace game_framework
 				{
 					y -= 1;
 				}
-				leftBullet.SetTopLeft(x, y);
-				leftBullet.ShowBitmap();
+
+				bullet[attTimes]->SetTopLeft(x, y);
+				bullet[attTimes]->ShowBitmap();
 			}
 			else
 			{
-				BulletDisapear();
+				bulletDisappear.SetTopLeft(x, y);
+				bulletDisappear.SetDelayCount(1);
+				bulletDisappear.OnShow();
+				if (bulletDisappear.IsFinalBitmap())
+				{
+					bulletDisappear.Reset();
+					faceD = faceL = faceR = faceU = isAttack = false;
+				}
 			}
 		}
 		if (faceD)
@@ -133,28 +169,22 @@ namespace game_framework
 				{
 					y += 1;
 				}
-				leftBullet.SetTopLeft(x, y);
-				leftBullet.ShowBitmap();
+
+				bullet[attTimes]->SetTopLeft(x, y);
+				bullet[attTimes]->ShowBitmap();
 			}
 			else
 			{
-				BulletDisapear();
+				bulletDisappear.SetTopLeft(x, y);
+				bulletDisappear.SetDelayCount(1);
+				bulletDisappear.OnShow();
+				if (bulletDisappear.IsFinalBitmap())
+				{
+					bulletDisappear.Reset();
+					faceD = faceL = faceR = faceU = isAttack = false;
+				}
 			}
 		}
-	}
-	void CAttack::BulletDisapear()
-	{
-		/*int now = clock();
-		while(clock() - now < 5 * 1000)
-		{
-			
-		}*/
-		//Sleep(5*1000);
-		bulletDisappear.SetTopLeft(x, y);
-		bulletDisappear.Reset();
-		bulletDisappear.SetDelayCount(1);
-		bulletDisappear.OnShow();
-		faceD = faceL = faceR = faceU = isAttack = false;
 	}
 	void CAttack::SetXY(int nx, int ny)
 	{
@@ -167,7 +197,7 @@ namespace game_framework
 	}
 	int CAttack::Width()
 	{
-		return leftBullet.Width();
+		return bullet[0]->Width();
 	}
 	bool CAttack::GetAttack()
 	{

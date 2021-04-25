@@ -191,7 +191,6 @@ namespace game_framework {
 	void CGameStateRun::OnInit()  			
 	{
 		gamemap.Initialize();
-		ShowInitProgress(50);
 		Sleep(300); 							
 		CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
@@ -210,14 +209,22 @@ namespace game_framework {
 		const char KEY_S = 'S'; 
 		const char KEY_D = 'D'; 
 
-		if (nChar == KEY_LEFT || nChar==KEY_A)
+		if (nChar == KEY_LEFT || nChar == KEY_A)
+		{
 			gamemap.SetMovingLeft(true);
+		}
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
+		{
 			gamemap.SetMovingRight(true);
+		}
 		if (nChar == KEY_UP || nChar == KEY_W)
+		{
 			gamemap.SetMovingUp(true);
+		}
 		if (nChar == KEY_DOWN || nChar == KEY_S)
+		{
 			gamemap.SetMovingDown(true);
+		}
 		if (nChar == KEY_SPACE)
 		{
 			gamemap.SetAttack(true, true);
@@ -237,13 +244,21 @@ namespace game_framework {
 		const char KEY_D = 'D';
 
 		if (nChar == KEY_LEFT || nChar == KEY_A)
+		{
 			gamemap.SetMovingLeft(false);
+		}
 		if (nChar == KEY_RIGHT || nChar == KEY_D)
+		{
 			gamemap.SetMovingRight(false);
+		}
 		if (nChar == KEY_UP || nChar == KEY_W)
+		{
 			gamemap.SetMovingUp(false);
+		}
 		if (nChar == KEY_DOWN || nChar == KEY_S)
+		{
 			gamemap.SetMovingDown(false);
+		}
 		if (nChar == KEY_SPACE)
 		{
 			gamemap.SetAttack(false, true);
