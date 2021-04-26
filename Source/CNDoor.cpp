@@ -27,9 +27,15 @@ namespace game_framework
 	{
 		return posy + door1.Height();;
 	}
+	void CNDoor::SetDoor(int x, int y)
+	{
+		dx = x;
+		dy = y;
+	}
 	void CNDoor::Initialize()
 	{
 		tmp = 1 + rand() % 4;
+		
 		//TRACE("Initialize:tmp:%d\n",tmp);
 		isInDoor = false;
 	}
@@ -39,6 +45,38 @@ namespace game_framework
 		door2.LoadBitmap(".\\bitmaps\\map\\nomal\\door2.bmp", RGB(109, 33, 115));
 		door3.LoadBitmap(".\\bitmaps\\map\\nomal\\door3.bmp", RGB(109, 33, 115));
 		door4.LoadBitmap(".\\bitmaps\\map\\nomal\\door4.bmp", RGB(109, 33, 115));
+	}
+	void CNDoor::OnMove()
+	{
+		if (dx == 0)
+		{
+			if (tmp==1)
+			{
+				tmp =+ 1;
+			}
+		}
+		if (dy == 0)
+		{
+			if (tmp == 3)
+			{
+				tmp += 1;
+			}
+
+		}
+		if (dx == 3 )
+		{
+			if (tmp == 2)
+			{
+				tmp -= 1;
+			}
+		}
+		if (dy == 4)
+		{
+			if (tmp == 4)
+			{
+				tmp -= 1;
+			}
+		}
 	}
 	void CNDoor::OnShow()
 	{

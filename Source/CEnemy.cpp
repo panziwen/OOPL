@@ -9,8 +9,6 @@ namespace game_framework
 {
 	CEnemy::CEnemy()
 	{
-		// srand((unsigned)time(NULL));
-		Initialize();
 	}
 	int CEnemy::GetX1()
 	{
@@ -30,8 +28,8 @@ namespace game_framework
 	}
 	void CEnemy::Initialize()
 	{
-		int X_POS = 150 + rand() % (SIZE_X - 180);
-		int Y_POS = 50 + rand() % (SIZE_Y - 150);
+		int X_POS = 170 + rand() % (SIZE_X - 180);
+		int Y_POS = 80 + rand() % (SIZE_Y - 180);
 		x = X_POS;
 		y = Y_POS;
 		isaacAttack.SetXY(x, y);
@@ -181,36 +179,7 @@ namespace game_framework
 			isaacWalkUp.OnShow();
 		}
 	}
-	void CEnemy::SetMovingDown(bool flag)
-	{
-		isMovingDown = flag;
-	}
-
-	void CEnemy::SetMovingLeft(bool flag)
-	{
-		isMovingLeft = flag;
-	}
-
-	void CEnemy::SetMovingRight(bool flag)
-	{
-		isMovingRight = flag;
-	}
-
-	void CEnemy::SetMovingUp(bool flag)
-	{
-		isMovingUp = flag;
-	}
-	void CEnemy::SetAttack(bool flag, bool flag2)
-	{
-		isAttack = flag;
-		isAttack2 = flag2;
-		isaacAttack.SetAttack(isAttack2);
-
-	}
-	void CEnemy::SetInSize(bool flag)
-	{
-		isInSize = flag;
-	}
+	
 	bool CEnemy::GetAttack()
 	{
 		return isAttack2;

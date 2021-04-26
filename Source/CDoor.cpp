@@ -12,7 +12,7 @@ namespace game_framework
 	CDoor::CDoor()
 	{
 		ndoor = new CNDoor();
-		tmp = 1 + rand() % 10;
+		tmp = 1 + rand() % 100;
 		isInSize = true;
 	}
 	CDoor::~CDoor()
@@ -85,7 +85,14 @@ namespace game_framework
 	{
 		return isRight;
 	}
-
+	void CDoor::SetDoor(int x, int y)
+	{
+		ndoor->SetDoor(x, y);
+	}
+	void CDoor::OnMove()
+	{
+		ndoor->OnMove();
+	}
 	void CDoor::OnShow()
 	{
 		if (tmp <= 70 && tmp >= 1)

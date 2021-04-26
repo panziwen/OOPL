@@ -78,10 +78,10 @@
 #define SIZE_PUX				 SIZE_X / 2 - 50		// 設定遊戲畫面的解析度為640x480
 #define SIZE_PUY				 SIZE_Y - 150
 #define SIZE_PDX				 SIZE_X / 2 - 50		// 設定遊戲畫面的解析度為640x480
-#define SIZE_PDY				 60
+#define SIZE_PDY				 80
 #define SIZE_PLX				 SIZE_X - 180		// 設定遊戲畫面的解析度為640x480
 #define SIZE_PLY				 SIZE_Y / 2
-#define SIZE_PRX				 160		// 設定遊戲畫面的解析度為640x480
+#define SIZE_PRX				 170		// 設定遊戲畫面的解析度為640x480
 #define SIZE_PRY				 SIZE_Y / 2
 
 /////////////////////////////////////////////////////////////////////////////

@@ -16,6 +16,7 @@ namespace game_framework
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
+		void OnMove();
 		bool IsInDDoor();
 		bool IsInNDoor();
 		bool IsInPDoor();
@@ -24,6 +25,7 @@ namespace game_framework
 		bool Down();
 		bool Left();
 		bool Right();
+		void SetDoor(int x, int y);
 		void SetCPos(int x, int y);
 		void SetAimPos(int x, int y);
 	private:

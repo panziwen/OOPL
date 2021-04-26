@@ -13,7 +13,7 @@ namespace game_framework
 		void OnMove();
 		bool GetAimPos();
 		void WhichMap();
-		void SetAimPos(int x, int y);
+		void SetAimPos();
 		void SetBulPos(int x, int y);
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);

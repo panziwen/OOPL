@@ -40,6 +40,13 @@ namespace game_framework
 		a.push_back(tmp2);
 		a.push_back(tmp3);
 		a.push_back(tmp4);
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				a[i][j]->Initialize();
+			}
+		}
 		isInNMap = isInDMap = isInAMap = isInPMap = isDoor = false;
 		ctr.Initialize();
 	}
@@ -63,13 +70,23 @@ namespace game_framework
 	}
 	void CGamemap::OnMove()
 	{
+		SetAimPos();
 		for (int i = 0; i < 4; i++)
 		{
 			for (int j = 0; j < 5; j++)
 			{
-				a[i][j]->Initialize();
+				a[i][j]->CreateEn();
 			}
 		}
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				a[i][j]->SetAimPos(x, y);
+			}
+		}
+
+		
 		ctr.OnMove();
 	}
 	void CGamemap::OnShow()
@@ -87,10 +104,10 @@ namespace game_framework
 		ctr.OnShow();
 		
 	}
-	void CGamemap::SetAimPos(int nx, int ny)
+	void CGamemap::SetAimPos()
 	{
-		x = nx;
-		y = ny;
+		x = (ctr.GetX2() + ctr.GetX1())/2;
+		y = (ctr.GetY2() + ctr.GetY1()-32) / 2;
 	}
 	void CGamemap::SetBulPos(int nx, int ny)
 	{
@@ -99,7 +116,7 @@ namespace game_framework
 	}
 	bool CGamemap::GetAimPos()
 	{
-		isdead = false;
+		isdead = a[fx][fy]->GetAimPos();
 		return isdead;
 	}	
 	void CGamemap::SetMovingDown(bool flag)
@@ -169,5 +186,6 @@ namespace game_framework
 				}
 			}
 		}
+		a[fx][fy]->SetDoor(fx, fy);
 	}
 }

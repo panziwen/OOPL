@@ -10,14 +10,23 @@ namespace game_framework
 {
 	CNmap::CNmap()
 	{
-		
+		enemyNum = 1 + rand() % 8;
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy.push_back(new CEnemy());
+		}
 		door = new CDoor();
 		door->Initialize();
 		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
 	}
 	CNmap::~CNmap()
 	{
+		for (int i = 0; i < enemyNum; i++)
+		{
+			delete enemy[i];
+		}
 		delete door;
+		
 	}
 	bool CNmap::IsInADoor()
 	{
@@ -53,9 +62,16 @@ namespace game_framework
 	{
 		return door->Right();
 	}
-
+	void CNmap::SetDoor(int x, int y)
+	{
+		door->SetDoor(x, y);
+	}
 	void CNmap::Initialize()
 	{
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->Initialize();
+		}
 	}
 	void CNmap::LoadBitmap()
 	{
@@ -68,7 +84,10 @@ namespace game_framework
 		map7.LoadBitmap(".\\bitmaps\\map\\nomal\\8.bmp");
 		map8.LoadBitmap(".\\bitmaps\\map\\nomal\\9.bmp");
 		map9.LoadBitmap(".\\bitmaps\\map\\nomal\\5.bmp");
-		enemy.LoadBitmap();
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->LoadBitmap();
+		}
 		door->LoadBitmap();
 	}
 	void CNmap::LoadBitmap2()
@@ -82,14 +101,22 @@ namespace game_framework
 		map77.LoadBitmap(".\\bitmaps\\map\\demo\\8.bmp");
 		map88.LoadBitmap(".\\bitmaps\\map\\demo\\9.bmp");
 		map99.LoadBitmap(".\\bitmaps\\map\\demo\\5.bmp");
-		enemy.LoadBitmap();
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->LoadBitmap();
+		}
 		door->LoadBitmap();
 	}
 	void CNmap::CreateEn()
 	{
-		enemy.SetXY(x, y);
-		enemy.SetBulXY(bx, by);
-		enemy.OnMove();
+		door->OnMove();
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->SetXY(x, y);
+			enemy[i]->SetBulXY(bx, by);
+			enemy[i]->OnMove();
+		}
+		
 		GetAimPos();
 	}
 	void CNmap::OnShow()
@@ -132,7 +159,10 @@ namespace game_framework
 		map4.ShowBitmap();
 
 		door->OnShow();
-		enemy.OnShow();
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->OnShow();
+		}
 		GetDoor();
 	}
 	void CNmap::OnShow2()
@@ -174,8 +204,11 @@ namespace game_framework
 		map44.SetTopLeft(SIZE_X - map44.Width() - 100, SIZE_Y - map33.Height() - 50);
 		map44.ShowBitmap();
 
-		door->OnShow();
-		enemy.OnShow();
+		door->OnShow(); 
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->OnShow();
+		}
 		GetDoor();
 	}
 	void CNmap::SetCPos(int x, int y, int nx, int ny)
@@ -204,7 +237,7 @@ namespace game_framework
 	}
 	bool CNmap::GetAimPos()
 	{
-		return enemy.GetAimPos();
+		return enemy[0]->GetAimPos();
 	}
 	bool CNmap::IsInDoor()
 	{

@@ -22,14 +22,15 @@ namespace game_framework
 		bool IsInPDoor();
 		bool IsInADoor();
 		bool IsInDoor();
+		void SetDoor(int x, int y);
 		void SetAimPos(int x, int y);
 		void SetCPos(int x, int y, int nx, int ny);
 		void SetBulPos(int x, int y);
 		bool GetAimPos();
 	private:
-		int px, py, pnx, pny;
+		int px, py, pnx, pny, enemyNum;
 		int x, y, bx, by;
-		CEnemy enemy;
+		vector<CEnemy*> enemy;
 		CDoor *door;
 		CMovingBitmap map1, map2, map3, map4, map5, map6, map7, map8, map9;
 		CMovingBitmap map11, map22, map33, map44, map55, map66, map77, map88, map99;

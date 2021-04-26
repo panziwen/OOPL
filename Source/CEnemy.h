@@ -18,12 +18,12 @@ namespace game_framework
 		void OnMove();
 		void OnShow();
 		bool GetAttack();
-		void SetInSize(bool flag);
+		/*void SetInSize(bool flag);
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);
 		void SetMovingRight(bool flag);
 		void SetMovingUp(bool flag);
-		void SetAttack(bool flag, bool flag2);
+		void SetAttack(bool flag, bool flag2);*/
 		void Reset();
 	private:
 		CAnimation animation;

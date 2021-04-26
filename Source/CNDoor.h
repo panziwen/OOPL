@@ -12,6 +12,8 @@ namespace game_framework
 		void Initialize();
 		void LoadBitmap();
 		void OnShow();
+		void OnMove();
+		void SetDoor(int x, int y);
 		void SetAimPos(int x, int y);
 		void SetCPos(int x, int y);
 	private:
@@ -21,7 +23,7 @@ namespace game_framework
 		CMovingBitmap door3;
 		CMovingBitmap door4;
 		bool isInSize;
-		int x, y, cx, cy, posx, posy, tmp;
+		int x, y, cx, cy, posx, posy, tmp, dx, dy;
 		bool isInDoor;
 	};
 }
