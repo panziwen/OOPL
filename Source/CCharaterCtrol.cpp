@@ -82,10 +82,10 @@ namespace game_framework
 		const int STEP_SIZE = 5;
 		if (isMovingLeft && !isMovingUp && !isMovingDown)
 		{
-			isaacAttack.SetFL(true);
-			isaacAttack.SetFR(false);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(false);
+			fl = true;
+			fr = false;
+			fu = false;
+			fd = false;
 			if (x >= 150)
 			{
 				x -= STEP_SIZE;
@@ -96,10 +96,10 @@ namespace game_framework
 		}
 		if (isMovingRight && !isMovingUp && !isMovingDown)
 		{
-			isaacAttack.SetFL(false);
-			isaacAttack.SetFR(true);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(false);
+			fl = false;
+			fr = true;
+			fu = false;
+			fd = false;
 			if (x <= SIZE_X - 180)
 			{
 				x += STEP_SIZE;
@@ -110,10 +110,10 @@ namespace game_framework
 		}
 		if (isMovingUp && !isMovingLeft && !isMovingRight)
 		{
-			isaacAttack.SetFL(false);
-			isaacAttack.SetFR(false);
-			isaacAttack.SetFU(true);
-			isaacAttack.SetFD(false);
+			fl = false;
+			fr = false;
+			fu = true;
+			fd = false;
 			if (y >= 60)
 			{
 				y -= STEP_SIZE;
@@ -124,10 +124,10 @@ namespace game_framework
 		}
 		if (isMovingDown && !isMovingLeft && !isMovingRight)
 		{
-			isaacAttack.SetFL(false);
-			isaacAttack.SetFR(false);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(true);
+			fl = false;
+			fr = false;
+			fu = false;
+			fd = true;
 			if (y <= SIZE_Y - 150)
 			{
 				y += STEP_SIZE;
@@ -138,10 +138,10 @@ namespace game_framework
 		}
 		if (isMovingUp && isMovingLeft)
 		{
-			isaacAttack.SetFR(false);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(false);
-			isaacAttack.SetFL(true);
+			fl = true;
+			fr = false;
+			fu = false;
+			fd = false;
 			if (x >= 150 && y >= 60)
 			{
 				y -= STEP_SIZE;
@@ -161,10 +161,10 @@ namespace game_framework
 		}
 		if (isMovingUp && isMovingRight)
 		{
-			isaacAttack.SetFL(false);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(false);
-			isaacAttack.SetFR(true);
+			fl = false;
+			fr = true;
+			fu = false;
+			fd = false;
 			if ((x <= SIZE_X - 180) && (y >= 60))
 			{
 				y -= STEP_SIZE;
@@ -184,10 +184,10 @@ namespace game_framework
 		}
 		if (isMovingDown && isMovingLeft)
 		{
-			isaacAttack.SetFR(false);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(false);
-			isaacAttack.SetFL(true);
+			fl = true;
+			fr = false;
+			fu = false;
+			fd = false;
 			if ((x >= 150) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
@@ -207,10 +207,10 @@ namespace game_framework
 		}
 		if (isMovingDown && isMovingRight)
 		{
-			isaacAttack.SetFL(false);
-			isaacAttack.SetFU(false);
-			isaacAttack.SetFD(false);
-			isaacAttack.SetFR(true);
+			fl = false;
+			fr = true;
+			fu = false;
+			fd = false;
 			if ((x <= SIZE_X - 180) && (y <= SIZE_Y - 150))
 			{
 				y += STEP_SIZE;
@@ -230,7 +230,12 @@ namespace game_framework
 		}
 		if (isAttack)
 		{
+			isaacAttack.SetFD(fd);
+			isaacAttack.SetFL(fl);
+			isaacAttack.SetFU(fu);
+			isaacAttack.SetFR(fr);
 			isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
+			
 		}
 		isaacAttack.OnMove();
 	}
@@ -327,11 +332,11 @@ namespace game_framework
 	}
 	int CCharaterCtrol::GetBulltX()
 	{
-		return isaacAttack.GetX();
+		return isaacAttack.GetX()+32;
 	}
 	int CCharaterCtrol::GetBulltY()
 	{
-		return isaacAttack.GetY();
+		return isaacAttack.GetY()+32;
 	}
 	void CCharaterCtrol::Reset()
 	{

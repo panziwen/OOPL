@@ -11,20 +11,10 @@ namespace game_framework
 {
 	CAttack::CAttack()
 	{
-		attTimes = 0;
-		max_bulletNmu = 2;
-		for (int i = 0; i < max_bulletNmu; i++)
-		{
-			bullet.push_back(new CMovingBitmap());
-		}
 		Initialize();
 	}
 	CAttack::~CAttack()
 	{
-		for (int i = 0; i < max_bulletNmu; i++)
-		{
-			delete bullet[i];
-		}
 	}
 	int CAttack::GetX()
 	{
@@ -71,8 +61,7 @@ namespace game_framework
 								".\\bitmaps\\attack\\attack10.bmp",".\\bitmaps\\attack\\attack11.bmp", ".\\bitmaps\\attack\\attack12.bmp",
 								".\\bitmaps\\attack\\attack13.bmp",".\\bitmaps\\attack\\attack14.bmp",".\\bitmaps\\attack\\attack15.bmp"};
 
-		bullet[0]->LoadBitmap(filename0, RGB(109, 33, 115));
-		bullet[1]->LoadBitmap(filename0, RGB(109, 33, 115));
+		bullet.LoadBitmap(filename0, RGB(109, 33, 115));
 
 		for (int i = 0; i < 15; i++)
 		{
@@ -97,8 +86,8 @@ namespace game_framework
 				{
 					x += 1;
 				}
-				bullet[attTimes]->SetTopLeft(x, y);
-				bullet[attTimes]->ShowBitmap();
+				bullet.SetTopLeft(x, y);
+				bullet.ShowBitmap();
 
 			}
 			else
@@ -122,8 +111,8 @@ namespace game_framework
 					x -= 1;
 				}
 
-				bullet[attTimes]->SetTopLeft(x, y);
-				bullet[attTimes]->ShowBitmap();
+				bullet.SetTopLeft(x, y);
+				bullet.ShowBitmap();
 			}
 			else
 			{
@@ -146,8 +135,8 @@ namespace game_framework
 					y -= 1;
 				}
 
-				bullet[attTimes]->SetTopLeft(x, y);
-				bullet[attTimes]->ShowBitmap();
+				bullet.SetTopLeft(x, y);
+				bullet.ShowBitmap();
 			}
 			else
 			{
@@ -170,8 +159,8 @@ namespace game_framework
 					y += 1;
 				}
 
-				bullet[attTimes]->SetTopLeft(x, y);
-				bullet[attTimes]->ShowBitmap();
+				bullet.SetTopLeft(x, y);
+				bullet.ShowBitmap();
 			}
 			else
 			{
@@ -197,7 +186,7 @@ namespace game_framework
 	}
 	int CAttack::Width()
 	{
-		return bullet[0]->Width();
+		return bullet.Width();
 	}
 	bool CAttack::GetAttack()
 	{

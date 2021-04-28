@@ -32,6 +32,7 @@ namespace game_framework
 
 		int x, y, nx, ny, bullt;
 		bool isMovingDown, isMovingLeft, isMovingRight, isMovingUp;
+		bool fl, fr, fu, fd;
 		bool isInSize;
 		bool isAttack;
 		bool isAttack2;

@@ -109,13 +109,13 @@ namespace game_framework
 		x = (ctr.GetX2() + ctr.GetX1())/2;
 		y = (ctr.GetY2() + ctr.GetY1()-32) / 2;
 	}
-	void CGamemap::SetBulPos(int nx, int ny)
+	void CGamemap::SetBulPos()
 	{
-		bx = nx;
-		by = ny;
+		a[fx][fy]->SetBulPos(ctr.GetBulltX(), ctr.GetBulltY());
 	}
 	bool CGamemap::GetAimPos()
 	{
+		SetBulPos();
 		isdead = a[fx][fy]->GetAimPos();
 		return isdead;
 	}	
@@ -141,7 +141,6 @@ namespace game_framework
 	void CGamemap::SetAttack(bool flag, bool flag2)
 	{
 		ctr.SetAttack(flag, flag2);
-
 	}
 	void CGamemap::Reset()
 	{

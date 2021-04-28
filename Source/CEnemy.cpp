@@ -32,7 +32,6 @@ namespace game_framework
 		int Y_POS = 80 + rand() % (SIZE_Y - 180);
 		x = X_POS;
 		y = Y_POS;
-		isaacAttack.SetXY(x, y);
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = false;
 	}
 	void CEnemy::LoadBitmap()
@@ -208,7 +207,7 @@ namespace game_framework
 		{
 			return true;
 		}
-		else if (bx >= x && by >= y && bx <= x + 5 && by <= y + 5)
+		else if (bx >= x && by >= y && bx <= x + animation.Width() && by <= y + animation.Height())
 		{
 			return true;
 		}

@@ -11,6 +11,8 @@ namespace game_framework
 	CNmap::CNmap()
 	{
 		enemyNum = 1 + rand() % 8;
+		item = enemyNum;
+		//enemyNum = 1;
 		for (int i = 0; i < enemyNum; i++)
 		{
 			enemy.push_back(new CEnemy());
@@ -159,7 +161,7 @@ namespace game_framework
 		map4.ShowBitmap();
 
 		door->OnShow();
-		for (int i = 0; i < enemyNum; i++)
+		for (int i = 0; i < item; i++)
 		{
 			enemy[i]->OnShow();
 		}
@@ -225,8 +227,10 @@ namespace game_framework
 	}
 	void CNmap::SetBulPos(int nx, int ny)
 	{
-		bx = nx;
-		by = ny;
+		for (int i = 0; i < enemyNum; i++)
+		{
+			enemy[i]->SetBulXY(nx, ny);
+		}
 	}
 	void CNmap::GetDoor()
 	{
@@ -237,7 +241,12 @@ namespace game_framework
 	}
 	bool CNmap::GetAimPos()
 	{
-		return enemy[0]->GetAimPos();
+		int i = 0;
+		if (enemy[i]->GetAimPos())
+		{
+			item -= 1;
+		}
+		return false;
 	}
 	bool CNmap::IsInDoor()
 	{

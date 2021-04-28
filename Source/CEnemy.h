@@ -31,7 +31,6 @@ namespace game_framework
 		CAnimation isaacWalkDonw;
 		CAnimation isaacWalkRight;
 		CAnimation isaacWalkLeft;
-		CAttack isaacAttack;
 
 		int x, y, bx, by;
 		int posx, posy;
