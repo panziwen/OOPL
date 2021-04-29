@@ -28,8 +28,8 @@ namespace game_framework
 	}
 	void CEnemy::Initialize()
 	{
-		int X_POS = 170 + rand() % (SIZE_X - 180);
-		int Y_POS = 80 + rand() % (SIZE_Y - 180);
+		int X_POS = 170 + rand() % (SIZE_X - 200);
+		int Y_POS = 80 + rand() % (SIZE_Y - 200);
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = false;
@@ -76,6 +76,11 @@ namespace game_framework
 	void CEnemy::OnMove()
 	{
 		const int STEP_SIZE = 1;
+		animation.SetTopLeft(x, y);
+		isaacWalkDonw.SetTopLeft(x, y);
+		isaacWalkUp.SetTopLeft(x, y);
+		isaacWalkRight.SetTopLeft(x, y);
+		isaacWalkLeft.SetTopLeft(x, y);
 		animation.SetDelayCount(2);
 		animation.OnMove();
 		if (x > posx&&y > posy)

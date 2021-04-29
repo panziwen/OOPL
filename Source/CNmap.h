@@ -28,7 +28,7 @@ namespace game_framework
 		void SetBulPos(int x, int y);
 		bool GetAimPos();
 	private:
-		int px, py, pnx, pny, enemyNum, item;
+		int px, py, pnx, pny, enemyNum, item, i;
 		int x, y, bx, by;
 		vector<CEnemy*> enemy;
 		CDoor *door;

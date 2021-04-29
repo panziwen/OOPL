@@ -10,6 +10,7 @@ namespace game_framework
 {
 	CNmap::CNmap()
 	{
+		i = 0;
 		enemyNum = 1 + rand() % 8;
 		item = enemyNum;
 		//enemyNum = 1;
@@ -70,6 +71,8 @@ namespace game_framework
 	}
 	void CNmap::Initialize()
 	{
+		x = SIZE_X / 2;
+		y = (SIZE_Y / 5) * 4 - 50;
 		for (int i = 0; i < enemyNum; i++)
 		{
 			enemy[i]->Initialize();
@@ -241,7 +244,6 @@ namespace game_framework
 	}
 	bool CNmap::GetAimPos()
 	{
-		int i = 0;
 		if (enemy[i]->GetAimPos())
 		{
 			item -= 1;
