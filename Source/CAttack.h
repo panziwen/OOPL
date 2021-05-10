@@ -8,18 +8,17 @@ namespace game_framework
 		~CAttack();
 		int  GetX();
 		int  GetY();
-		int  GetX2();
-		int  GetY2();
 		int Width();
+		bool GetDead();
 		bool GetAttack();
 		void SetAttack(bool flag);
 		void SetFR(bool flag);
 		void SetFL(bool flag);
 		void SetFD(bool flag);
 		void SetFU(bool flag);
+		void SetDead(bool flag);
 		void Initialize();
 		void LoadBitmap();
-		void Times(int times);
 		void OnMove();
 		void OnShow();
 		void SetXY(int nx, int ny);
@@ -27,13 +26,11 @@ namespace game_framework
 	private:
 		int max_bulletNmu;
 		CMovingBitmap bullet;
+		CMovingBitmap bullet1;
 		CAnimation bulletDisappear;
 		int x, y, nx, ny, posr, posl, posu, posd;
-		bool isAttack;
-		bool faceL;
-		bool faceR;
-		bool faceU;
-		bool faceD;
+		bool isAttack, isdead;
+		bool faceL, faceR, faceU, faceD;
 	};
 
 }

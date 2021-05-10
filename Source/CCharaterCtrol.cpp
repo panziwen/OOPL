@@ -27,6 +27,10 @@ namespace game_framework
 	{
 		return ny;
 	}
+	bool CCharaterCtrol::GetDead()
+	{
+		return isaacAttack.GetDead();
+	}
 	void CCharaterCtrol::Initialize()
 	{
 		bullt = 0;
@@ -292,6 +296,7 @@ namespace game_framework
 		if (!isAttack && isaacAttack.GetAttack())
 		{
 			isaacAttack.OnShow();
+			isaacAttack.SetDead(isdead);
 		}
 		animation.SetTopLeft(x, y);
 		animation.OnShow();
@@ -328,7 +333,7 @@ namespace game_framework
 	}
 	bool CCharaterCtrol::GetAttack()
 	{
-		return isAttack2;
+		return isaacAttack.GetAttack();
 	}
 	int CCharaterCtrol::GetBulltX()
 	{
@@ -350,11 +355,15 @@ namespace game_framework
 	{
 		this->x = x;
 		this->y = y;
-		
+
+	}
+	void CCharaterCtrol::SetDead(bool flag)
+	{
+		isdead = flag;
 	}
 	void CCharaterCtrol::MP()
 	{
 		nx = x + animation.Width();
-		ny = y + animation.Height()+16;
+		ny = y + animation.Height() + 16;
 	}
 }

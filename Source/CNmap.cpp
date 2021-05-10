@@ -10,23 +10,27 @@ namespace game_framework
 {
 	CNmap::CNmap()
 	{
-		i = 0;
 		enemyNum = 1 + rand() % 8;
-		item = enemyNum;
 		//enemyNum = 1;
+		//item = enemyNum;
 		for (int i = 0; i < enemyNum; i++)
 		{
 			enemy.push_back(new CEnemy());
 		}
 		door = new CDoor();
 		door->Initialize();
-		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = false;
+		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = isdead = false;
 	}
 	CNmap::~CNmap()
 	{
 		for (int i = 0; i < enemyNum; i++)
 		{
 			delete enemy[i];
+		}
+		if (enemy.empty())
+		{
+			//enemy. (NULL);
+			//delete enemy;
 		}
 		delete door;
 		
@@ -164,11 +168,10 @@ namespace game_framework
 		map4.ShowBitmap();
 
 		door->OnShow();
-		for (int i = 0; i < item; i++)
+		for (int i = 0; i < enemyNum; i++)
 		{
 			enemy[i]->OnShow();
 		}
-		GetDoor();
 	}
 	void CNmap::OnShow2()
 	{
@@ -214,7 +217,6 @@ namespace game_framework
 		{
 			enemy[i]->OnShow();
 		}
-		GetDoor();
 	}
 	void CNmap::SetCPos(int x, int y, int nx, int ny)
 	{
@@ -233,22 +235,47 @@ namespace game_framework
 		for (int i = 0; i < enemyNum; i++)
 		{
 			enemy[i]->SetBulXY(nx, ny);
+			if (enemy[i]->GetAimPos())
+			{
+				KillEnemy(i);
+				isdead=true;
+			}
 		}
 	}
-	void CNmap::GetDoor()
+	void CNmap::KillEnemy(int x)
 	{
-		/*isInADoor = door->IsInADoor();
-		isInNDoor = door->IsInNDoor();
-		isInPDoor = door->IsInPDoor();
-		isInDDoor = door->IsInDDoor();*/
+		CEnemy *t;
+		if (enemy.size() == 1 && x == 0)
+		{
+			t = enemy[x];
+			enemy.pop_back();
+			enemyNum -= 1;
+		}
+		else
+		{
+			if (x==enemy.size()-1)
+			{
+				t = enemy[x];
+				enemy.pop_back();
+				enemyNum -= 1;
+			}
+			else
+			{
+				t = enemy[x];
+				enemy.erase(enemy.begin() + x);
+				enemyNum -= 1;
+			}
+		}
+		delete t;
+
+	}
+	void CNmap::SetDead(bool flag)
+	{
+		isdead = flag;
 	}
 	bool CNmap::GetAimPos()
 	{
-		if (enemy[i]->GetAimPos())
-		{
-			item -= 1;
-		}
-		return false;
+		return isdead;
 	}
 	bool CNmap::IsInDoor()
 	{

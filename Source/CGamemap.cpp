@@ -102,6 +102,7 @@ namespace game_framework
 			a[fx][fy]->OnShow2();
 		}
 		ctr.OnShow();
+		ctr.SetDead(a[fx][fy]->GetAimPos());
 		
 	}
 	void CGamemap::SetAimPos()
@@ -140,6 +141,10 @@ namespace game_framework
 	}
 	void CGamemap::SetAttack(bool flag, bool flag2)
 	{
+		if (ctr.GetDead())
+		{
+			a[fx][fy]->SetDead(!ctr.GetDead());
+		}
 		ctr.SetAttack(flag, flag2);
 	}
 	void CGamemap::Reset()

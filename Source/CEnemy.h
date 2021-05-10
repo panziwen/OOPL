@@ -26,19 +26,12 @@ namespace game_framework
 		void SetAttack(bool flag, bool flag2);*/
 		void Reset();
 	private:
-		CAnimation animation;
-		CAnimation isaacWalkUp;
-		CAnimation isaacWalkDonw;
-		CAnimation isaacWalkRight;
-		CAnimation isaacWalkLeft;
+		CAnimation animation, isaacWalkUp, isaacWalkDonw, isaacWalkRight, isaacWalkLeft;
 
 		int x, y, bx, by;
 		int posx, posy;
-		bool isMovingDown;
-		bool isMovingLeft;
-		bool isMovingRight;
+		bool isMovingDown, isMovingLeft, isMovingRight, isMovingUp;
 		bool isInSize;
-		bool isMovingUp;
 		bool isAttack;
 		bool isAttack2;
 	};

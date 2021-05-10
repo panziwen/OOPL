@@ -15,6 +15,7 @@ namespace game_framework
 		void OnMove();
 		void OnShow();
 		bool GetAttack();
+		bool GetDead();
 		int GetBulltX();
 		int GetBulltY();
 		void SetInSize(bool flag);
@@ -26,6 +27,7 @@ namespace game_framework
 		void SetPos(int x, int y);
 		void Reset();
 		void MP();
+		void SetDead(bool flag);
 	private:
 		CAnimation animation, isaacWalkUp, isaacWalkDonw, isaacWalkRight, isaacWalkLeft;
 		CAttack isaacAttack;
@@ -33,6 +35,7 @@ namespace game_framework
 		int x, y, nx, ny, bullt;
 		bool isMovingDown, isMovingLeft, isMovingRight, isMovingUp;
 		bool fl, fr, fu, fd;
+		bool isdead;
 		bool isInSize;
 		bool isAttack;
 		bool isAttack2;

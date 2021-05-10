@@ -11,6 +11,7 @@ namespace game_framework
 {
 	CAttack::CAttack()
 	{
+		max_bulletNmu = 0;
 		Initialize();
 	}
 	CAttack::~CAttack()
@@ -27,12 +28,16 @@ namespace game_framework
 	void CAttack::Initialize()
 	{
 		faceD = true;
-		faceL = faceR = faceU = isAttack = false;
+		faceL = faceR = faceU = isAttack = isdead = false;
 	}
 
 	void CAttack::SetAttack(bool flag)
 	{
 		isAttack = flag;
+	}
+	void CAttack::SetDead(bool flag)
+	{
+		isdead = flag;
 	}
 	void CAttack::SetFL(bool flag)
 	{
@@ -80,12 +85,13 @@ namespace game_framework
 	{
 		if (faceR)
 		{
-			if (x <= posr)
+			if (x <= posr && x <= (SIZE_X - 180) && !isdead)
 			{
 				for (int i = 0; i < 8; i++)
 				{
 					x += 1;
 				}
+			
 				bullet.SetTopLeft(x, y);
 				bullet.ShowBitmap();
 
@@ -98,13 +104,13 @@ namespace game_framework
 				if (bulletDisappear.IsFinalBitmap())
 				{
 					bulletDisappear.Reset();
-					faceD = faceL = faceR = faceU = isAttack = false;
+					faceD = faceL = faceR = faceU = isAttack = isdead = false;
 				}
 			}
 		}
 		if (faceL)
 		{
-			if (x >= posl)
+			if (x >= posl&& x>=118 && !isdead)
 			{
 				for (int i = 0; i < 8; i++)
 				{
@@ -122,13 +128,13 @@ namespace game_framework
 				if (bulletDisappear.IsFinalBitmap())
 				{
 					bulletDisappear.Reset();
-					faceD = faceL = faceR = faceU = isAttack = false;
+					faceD = faceL = faceR = faceU = isAttack = isdead = false;
 				}
 			}
 		}
 		if (faceU)
 		{
-			if (y >= posu)
+			if (y >= posu&& y >= 60 && !isdead)
 			{
 				for (int i = 0; i < 8; i++)
 				{
@@ -146,13 +152,13 @@ namespace game_framework
 				if (bulletDisappear.IsFinalBitmap())
 				{
 					bulletDisappear.Reset();
-					faceD = faceL = faceR = faceU = isAttack = false;
+					faceD = faceL = faceR = faceU = isAttack = isdead =false;
 				}
 			}
 		}
 		if (faceD)
 		{
-			if (y <= posd)
+			if (y <= posd&& y<=(SIZE_Y - 118) && !isdead)
 			{
 				for (int i = 0; i < 8; i++)
 				{
@@ -170,7 +176,7 @@ namespace game_framework
 				if (bulletDisappear.IsFinalBitmap())
 				{
 					bulletDisappear.Reset();
-					faceD = faceL = faceR = faceU = isAttack = false;
+					faceD = faceL = faceR = faceU = isAttack = isdead = false;
 				}
 			}
 		}
@@ -192,5 +198,8 @@ namespace game_framework
 	{
 		return isAttack;
 	}
-
+	bool CAttack::GetDead()
+	{
+		return isdead;
+	}
 }

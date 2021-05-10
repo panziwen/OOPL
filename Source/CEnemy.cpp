@@ -28,50 +28,37 @@ namespace game_framework
 	}
 	void CEnemy::Initialize()
 	{
-		int X_POS = 170 + rand() % (SIZE_X - 200);
-		int Y_POS = 80 + rand() % (SIZE_Y - 200);
+		int X_POS = 170 + rand() % 700;
+		int Y_POS = 80 + rand() % 320;
 		x = X_POS;
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = false;
 	}
 	void CEnemy::LoadBitmap()
 	{
-		char *filename0 =  ".\\bitmaps\\isaac_origin\\isaac3.bmp";
-
-		char *filename1[9] = { ".\\bitmaps\\isaac_origin\\isaac3.bmp", ".\\bitmaps\\isaac_origin\\isaac4.bmp",".\\bitmaps\\isaac_origin\\isaac5.bmp",
-								".\\bitmaps\\isaac_origin\\isaac6.bmp",".\\bitmaps\\isaac_origin\\isaac7.bmp", ".\\bitmaps\\isaac_origin\\isaac8.bmp",
-								".\\bitmaps\\isaac_origin\\isaac9.bmp",".\\bitmaps\\isaac_origin\\isaac1.bmp",".\\bitmaps\\isaac_origin\\isaac2.bmp",};
-
-		char *filename2[10] = {".\\bitmaps\\isaac_origin\\isaac10.bmp", ".\\bitmaps\\isaac_origin\\isaac11.bmp",".\\bitmaps\\isaac_origin\\isaac12.bmp",
-								".\\bitmaps\\isaac_origin\\isaac13.bmp",".\\bitmaps\\isaac_origin\\isaac14.bmp", ".\\bitmaps\\isaac_origin\\isaac15.bmp",
-								".\\bitmaps\\isaac_origin\\isaac16.bmp",".\\bitmaps\\isaac_origin\\isaac17.bmp",".\\bitmaps\\isaac_origin\\isaac18.bmp",".\\bitmaps\\isaac_origin\\isaac19.bmp" };
-
-		char *filename3[10] = { ".\\bitmaps\\isaac_origin\\isaac30.bmp", ".\\bitmaps\\isaac_origin\\isaac31.bmp",".\\bitmaps\\isaac_origin\\isaac32.bmp",
-								".\\bitmaps\\isaac_origin\\isaac33.bmp",".\\bitmaps\\isaac_origin\\isaac34.bmp", ".\\bitmaps\\isaac_origin\\isaac35.bmp",
-								".\\bitmaps\\isaac_origin\\isaac36.bmp",".\\bitmaps\\isaac_origin\\isaac37.bmp",".\\bitmaps\\isaac_origin\\isaac38.bmp",".\\bitmaps\\isaac_origin\\isaac39.bmp" };
-
-		char *filename4[10] = { ".\\bitmaps\\isaac_origin\\isaac20.bmp", ".\\bitmaps\\isaac_origin\\isaac21.bmp",".\\bitmaps\\isaac_origin\\isaac22.bmp",
-								".\\bitmaps\\isaac_origin\\isaac23.bmp",".\\bitmaps\\isaac_origin\\isaac24.bmp", ".\\bitmaps\\isaac_origin\\isaac25.bmp",
-								".\\bitmaps\\isaac_origin\\isaac26.bmp",".\\bitmaps\\isaac_origin\\isaac27.bmp",".\\bitmaps\\isaac_origin\\isaac28.bmp",".\\bitmaps\\isaac_origin\\isaac29.bmp"};
-
+		char *filename0 =  ".\\bitmaps\\e\\enemy4\\1.bmp";
+		char *filename1[9] = { ".\\bitmaps\\e\\enemy4\\1.bmp",".\\bitmaps\\e\\enemy4\\2.bmp",".\\bitmaps\\e\\enemy4\\3.bmp",
+								".\\bitmaps\\e\\enemy4\\4.bmp",".\\bitmaps\\e\\enemy4\\5.bmp",".\\bitmaps\\e\\enemy4\\6.bmp",
+								".\\bitmaps\\e\\enemy4\\7.bmp",".\\bitmaps\\e\\enemy4\\8.bmp",".\\bitmaps\\e\\enemy4\\9.bmp" };
+		
+		
 		animation.AddBitmap(filename0, RGB(109, 33, 115));
 		for (int i = 0; i < 9; i++)
 		{
 			isaacWalkDonw.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 9; i++)
 		{
-			isaacWalkUp.AddBitmap(filename2[i], RGB(109, 33, 115));
+			isaacWalkUp.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 9; i++)
 		{
-			isaacWalkLeft.AddBitmap(filename3[i], RGB(109, 33, 115));
+			isaacWalkLeft.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 9; i++)
 		{
-			isaacWalkRight.AddBitmap(filename4[i], RGB(109, 33, 115));
+			isaacWalkRight.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		
 	}
 	void CEnemy::OnMove()
 	{
@@ -208,11 +195,11 @@ namespace game_framework
 	}
 	bool CEnemy::GetAimPos()
 	{
-		if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
+		/*if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
 		{
 			return true;
-		}
-		else if (bx >= x && by >= y && bx <= x + animation.Width() && by <= y + animation.Height())
+		}*/
+		 if (bx >= x && by >= y && bx <= x + animation.Width() && by <= y + animation.Height())
 		{
 			return true;
 		}

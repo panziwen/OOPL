@@ -184,7 +184,7 @@ namespace game_framework {
 		gamemap.OnMove();
 		if (gamemap.GetAimPos())
 		{
-			GotoGameState(GAME_STATE_OVER);
+			;
 		}
 	}
 
