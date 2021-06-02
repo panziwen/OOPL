@@ -13,7 +13,7 @@ namespace game_framework
 		int  GetY1();
 		int  GetX2();
 		int  GetY2();
-		void Initialize();
+		void Initialize(bool flag, bool flag2, bool flag3, bool flag4);
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();

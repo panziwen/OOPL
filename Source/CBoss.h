@@ -2,10 +2,10 @@
 #pragma once
 namespace game_framework 
 {
-	class CEnemy
+	class CBoss
 	{
 	public:
-		CEnemy();
+		CBoss();
 		int  GetX1();
 		int  GetY1();
 		int  GetX2();

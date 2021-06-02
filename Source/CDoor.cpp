@@ -13,6 +13,7 @@ namespace game_framework
 	{
 		ndoor = new CNDoor();
 		tmp = 1 + rand() % 100;
+		tmp = 65;
 		isInSize = true;
 	}
 	CDoor::~CDoor()
@@ -35,13 +36,13 @@ namespace game_framework
 	{
 		return dny;
 	}
-	void CDoor::Initialize()
+	void CDoor::Initialize(bool flag, bool flag2, bool flag3, bool flag4)
 	{
 		GetDPos(0,0,0,0);
 		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
 		isUp = isDown = isLeft = isRight = false;
 		ddoor.Initialize();
-		ndoor->Initialize();
+		ndoor->Initialize(flag, flag2, flag3, flag4);
 		adoor.Initialize();
 		pdoor.Initialize();
 	}
@@ -143,17 +144,17 @@ namespace game_framework
 			isUp = true;
 			isDown = isLeft = isRight = false;
 		}
-		if (dx == (SIZE_X / 2 - 50) && dy == (SIZE_Y - 110))
+		else if (dx == (SIZE_X / 2 - 50) && dy == (SIZE_Y - 110))
 		{
 			isDown = true;
 			isUp = isLeft = isRight = false;
 		}
-		if (dx == 110 && dy == (SIZE_Y / 2))
+		else if (dx == 110 && dy == (SIZE_Y / 2))
 		{
 			isLeft = true;
 			isUp = isDown = isRight = false;
 		}
-		if (dx == (SIZE_X - 145) && dy == (SIZE_Y / 2))
+		else if (dx == (SIZE_X - 145) && dy == (SIZE_Y / 2))
 		{
 			isRight = true;
 			isUp = isDown = isLeft = false;

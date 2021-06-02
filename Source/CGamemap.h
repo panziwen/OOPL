@@ -15,6 +15,7 @@ namespace game_framework
 		void WhichMap();
 		void SetAimPos();
 		void SetBulPos();
+		void SetDoor(int i, int j);
 		void SetMovingDown(bool flag);
 		void SetMovingLeft(bool flag);
 		void SetMovingRight(bool flag);
@@ -23,11 +24,11 @@ namespace game_framework
 		void Reset();
 
 	private:
-		int x, y, bx, by, fx, fy;
+		int x, y, bx, by, fx, fy, doorNum;
 		vector<vector<CNmap*>> a;
 		CCharaterCtrol ctr;
 		bool isdead;
-		bool isDoor;
+		bool isDoor, u, d, l, r, isboss;
 		bool isInNMap, isInDMap, isInAMap, isInPMap;
 		bool isMovingDown, isMovingLeft, isMovingRight, isMovingUp;
 	};

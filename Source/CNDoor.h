@@ -9,7 +9,7 @@ namespace game_framework
 		int  GetX2();
 		int  GetY2();
 		void ReSet();
-		void Initialize();
+		void Initialize(bool flag, bool flag2, bool flag3, bool flag4);
 		void LoadBitmap();
 		void OnShow();
 		void OnMove();
@@ -24,6 +24,6 @@ namespace game_framework
 		CMovingBitmap door4;
 		bool isInSize;
 		int x, y, cx, cy, posx, posy, tmp, dx, dy;
-		bool isInDoor;
+		bool isInDoor, u, d, l, r;
 	};
 }

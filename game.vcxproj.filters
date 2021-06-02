@@ -108,6 +108,18 @@
     <ClCompile Include="Source\CEnemy.cpp">
       <Filter>MyGame\CHARAERCONTROL</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CEnemy2.cpp">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CEnemy3.cpp">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CEnemy1.cpp">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CBoss.cpp">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -177,6 +189,18 @@
       <Filter>MyGame\MAP</Filter>
     </ClInclude>
     <ClInclude Include="Source\CEnemy.h">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CEnemy2.h">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CEnemy3.h">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CEnemy1.h">
+      <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CBoss.h">
       <Filter>MyGame\CHARAERCONTROL</Filter>
     </ClInclude>
   </ItemGroup>

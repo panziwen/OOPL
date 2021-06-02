@@ -32,11 +32,12 @@ namespace game_framework
 		dx = x;
 		dy = y;
 	}
-	void CNDoor::Initialize()
+	void CNDoor::Initialize(bool flag, bool flag2, bool flag3, bool flag4)
 	{
-		tmp = 1 + rand() % 4;
-		
-		//TRACE("Initialize:tmp:%d\n",tmp);
+		u = flag;
+		d = flag2;
+		l = flag3;
+		r = flag4;
 		isInDoor = false;
 	}
 	void CNDoor::LoadBitmap()
@@ -48,82 +49,45 @@ namespace game_framework
 	}
 	void CNDoor::OnMove()
 	{
-		if (dx == 0)
-		{
-			if (tmp==1)
-			{
-				tmp =+ 1;
-			}
-		}
-		if (dy == 0)
-		{
-			if (tmp == 3)
-			{
-				tmp += 1;
-			}
-
-		}
-		if (dx == 3 )
-		{
-			if (tmp == 2)
-			{
-				tmp -= 1;
-			}
-		}
-		if (dy == 4)
-		{
-			if (tmp == 4)
-			{
-				tmp -= 1;
-			}
-		}
+		
 	}
 	void CNDoor::OnShow()
 	{
-		switch (tmp)
+		if (u)
 		{
-		case 1:
 			posx = SIZE_X / 2 - 50;
 			posy = 60;
 			door1.SetTopLeft(posx, posy);
 			posy -= 45;
 			door1.ShowBitmap();
-			//TRACE("Onshow:%d\n",tmp);
-			break;
-		case 2:
+		}
+		if (d)
+		{
 			posx = SIZE_X / 2 - 50;
 			posy = SIZE_Y - 110;
 			door2.SetTopLeft(posx, posy);
 			door2.ShowBitmap();
-			//TRACE("Onshow:%d\n", tmp);
-			break;
-		case 3:
+		}
+		if (l)
+		{
 			posx = 110;
 			posy = SIZE_Y / 2;
 			door3.SetTopLeft(posx, posy);
 			door3.ShowBitmap();
-			//TRACE("Onshow:%d\n", tmp);
-			break;
-		case 4:
+		}
+		if (r)
+		{
 			posx = SIZE_X - 160;
 			posy = SIZE_Y / 2;
 			door4.SetTopLeft(posx, posy);
 			posx += 15;
 			door4.ShowBitmap();
-			//TRACE("Onshow:%d\n", tmp);
-			break;
-		default:
-			break;
 		}
 	}
 	void CNDoor::SetAimPos(int nx, int ny)
 	{
 		x = nx;
 		y = ny;
-	}
-	void CNDoor::ReSet()
-	{
-		tmp = 1 + rand() % 4;
 	}
 	void CNDoor::SetCPos(int nx, int ny)
 	{

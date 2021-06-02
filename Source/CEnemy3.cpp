@@ -4,30 +4,30 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CEnemy.h"
+#include "CEnemy3.h"
 namespace game_framework
 {
-	CEnemy::CEnemy()
+	CEnemy3::CEnemy3()
 	{
 		healty = 5;
 	}
-	int CEnemy::GetX1()
+	int CEnemy3::GetX1()
 	{
 		return x;
 	}
-	int CEnemy::GetY1()
+	int CEnemy3::GetY1()
 	{
 		return y;
 	}
-	int CEnemy::GetX2()
+	int CEnemy3::GetX2()
 	{
 		return x + animation.Width();
 	}
-	int CEnemy::GetY2()
+	int CEnemy3::GetY2()
 	{
 		return y + animation.Height();
 	}
-	void CEnemy::Initialize()
+	void CEnemy3::Initialize()
 	{
 		int X_POS = 170 + rand() % 700;
 		int Y_POS = 80 + rand() % 320;
@@ -35,33 +35,36 @@ namespace game_framework
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = isdead = false;
 	}
-	void CEnemy::LoadBitmap()
+	void CEnemy3::LoadBitmap()
 	{
-		char *filename0 =  ".\\bitmaps\\e\\enemy4\\1.bmp";
-		char *filename1[9] = { ".\\bitmaps\\e\\enemy4\\1.bmp",".\\bitmaps\\e\\enemy4\\2.bmp",".\\bitmaps\\e\\enemy4\\3.bmp",
-								".\\bitmaps\\e\\enemy4\\4.bmp",".\\bitmaps\\e\\enemy4\\5.bmp",".\\bitmaps\\e\\enemy4\\6.bmp",
-								".\\bitmaps\\e\\enemy4\\7.bmp",".\\bitmaps\\e\\enemy4\\8.bmp",".\\bitmaps\\e\\enemy4\\9.bmp" };
-		
-		
+
+		char *filename0 = ".\\bitmaps\\e\\enemy3\\1.bmp";
+		char *filename1[13] = { ".\\bitmaps\\e\\enemy3\\1.bmp",".\\bitmaps\\e\\enemy3\\2.bmp",".\\bitmaps\\e\\enemy3\\3.bmp",
+								".\\bitmaps\\e\\enemy3\\4.bmp",".\\bitmaps\\e\\enemy3\\5.bmp",".\\bitmaps\\e\\enemy3\\6.bmp",
+								".\\bitmaps\\e\\enemy3\\7.bmp",".\\bitmaps\\e\\enemy3\\8.bmp",".\\bitmaps\\e\\enemy3\\9.bmp",
+								".\\bitmaps\\e\\enemy3\\10.bmp",".\\bitmaps\\e\\enemy3\\11.bmp",".\\bitmaps\\e\\enemy3\\12.bmp",
+								".\\bitmaps\\e\\enemy3\\13.bmp" };
+
+
 		animation.AddBitmap(filename0, RGB(109, 33, 115));
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 13; i++)
 		{
 			isaacWalkDonw.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 13; i++)
 		{
 			isaacWalkUp.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 13; i++)
 		{
 			isaacWalkLeft.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
-		for (int i = 0; i < 9; i++)
+		for (int i = 0; i < 13; i++)
 		{
 			isaacWalkRight.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
 	}
-	void CEnemy::OnMove()
+	void CEnemy3::OnMove()
 	{
 		const int STEP_SIZE = 1;
 		animation.SetTopLeft(x, y);
@@ -128,7 +131,7 @@ namespace game_framework
 
 		}
 	}
-	void CEnemy::OnShow()
+	void CEnemy3::OnShow()
 	{
 		if (x > posx&&y > posy)
 		{
@@ -172,11 +175,11 @@ namespace game_framework
 		}
 	}
 	
-	bool CEnemy::GetAttack()
+	bool CEnemy3::GetAttack()
 	{
 		return isAttack2;
 	}
-	void CEnemy::Reset()
+	void CEnemy3::Reset()
 	{
 		animation.Reset();
 		isaacWalkDonw.Reset();
@@ -184,17 +187,17 @@ namespace game_framework
 		isaacWalkUp.Reset();
 		isaacWalkLeft.Reset();
 	}
-	void CEnemy::SetXY(int x, int y)
+	void CEnemy3::SetXY(int x, int y)
 	{
 		posx = x;
 		posy = y;
 	}
-	void CEnemy::SetBulXY(int x, int y)
+	void CEnemy3::SetBulXY(int x, int y)
 	{
 		bx = x;
 		by = y;
 	}
-	void CEnemy::Healty()
+	void CEnemy3::Healty()
 	{
 		if (healty==0)
 		{
@@ -206,7 +209,7 @@ namespace game_framework
 			isdead = false;
 		}
 	}
-	bool CEnemy::GetAimPos()
+	bool CEnemy3::GetAimPos()
 	{
 		/*if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
 		{
@@ -222,7 +225,7 @@ namespace game_framework
 			return false;
 		}
 	}
-	bool CEnemy::GetDead()
+	bool CEnemy3::GetDead()
 	{
 		return isdead;
 	}

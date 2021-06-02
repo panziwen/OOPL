@@ -4,30 +4,30 @@
 #include <ddraw.h>
 #include "audio.h"
 #include "gamelib.h"
-#include "CEnemy.h"
+#include "CEnemy2.h"
 namespace game_framework
 {
-	CEnemy::CEnemy()
+	CEnemy2::CEnemy2()
 	{
 		healty = 5;
 	}
-	int CEnemy::GetX1()
+	int CEnemy2::GetX1()
 	{
 		return x;
 	}
-	int CEnemy::GetY1()
+	int CEnemy2::GetY1()
 	{
 		return y;
 	}
-	int CEnemy::GetX2()
+	int CEnemy2::GetX2()
 	{
 		return x + animation.Width();
 	}
-	int CEnemy::GetY2()
+	int CEnemy2::GetY2()
 	{
 		return y + animation.Height();
 	}
-	void CEnemy::Initialize()
+	void CEnemy2::Initialize()
 	{
 		int X_POS = 170 + rand() % 700;
 		int Y_POS = 80 + rand() % 320;
@@ -35,7 +35,7 @@ namespace game_framework
 		y = Y_POS;
 		isMovingLeft = isMovingRight = isMovingUp = isMovingDown = isAttack = isdead = false;
 	}
-	void CEnemy::LoadBitmap()
+	void CEnemy2::LoadBitmap()
 	{
 		char *filename0 =  ".\\bitmaps\\e\\enemy4\\1.bmp";
 		char *filename1[9] = { ".\\bitmaps\\e\\enemy4\\1.bmp",".\\bitmaps\\e\\enemy4\\2.bmp",".\\bitmaps\\e\\enemy4\\3.bmp",
@@ -61,7 +61,7 @@ namespace game_framework
 			isaacWalkRight.AddBitmap(filename1[i], RGB(109, 33, 115));
 		}
 	}
-	void CEnemy::OnMove()
+	void CEnemy2::OnMove()
 	{
 		const int STEP_SIZE = 1;
 		animation.SetTopLeft(x, y);
@@ -128,7 +128,7 @@ namespace game_framework
 
 		}
 	}
-	void CEnemy::OnShow()
+	void CEnemy2::OnShow()
 	{
 		if (x > posx&&y > posy)
 		{
@@ -172,11 +172,11 @@ namespace game_framework
 		}
 	}
 	
-	bool CEnemy::GetAttack()
+	bool CEnemy2::GetAttack()
 	{
 		return isAttack2;
 	}
-	void CEnemy::Reset()
+	void CEnemy2::Reset()
 	{
 		animation.Reset();
 		isaacWalkDonw.Reset();
@@ -184,17 +184,17 @@ namespace game_framework
 		isaacWalkUp.Reset();
 		isaacWalkLeft.Reset();
 	}
-	void CEnemy::SetXY(int x, int y)
+	void CEnemy2::SetXY(int x, int y)
 	{
 		posx = x;
 		posy = y;
 	}
-	void CEnemy::SetBulXY(int x, int y)
+	void CEnemy2::SetBulXY(int x, int y)
 	{
 		bx = x;
 		by = y;
 	}
-	void CEnemy::Healty()
+	void CEnemy2::Healty()
 	{
 		if (healty==0)
 		{
@@ -206,7 +206,7 @@ namespace game_framework
 			isdead = false;
 		}
 	}
-	bool CEnemy::GetAimPos()
+	bool CEnemy2::GetAimPos()
 	{
 		/*if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
 		{
@@ -222,7 +222,7 @@ namespace game_framework
 			return false;
 		}
 	}
-	bool CEnemy::GetDead()
+	bool CEnemy2::GetDead()
 	{
 		return isdead;
 	}
