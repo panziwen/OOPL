@@ -24,6 +24,7 @@ namespace game_framework
 		void SetMovingRight(bool flag);
 		void SetMovingUp(bool flag);
 		void SetAttack(bool flag, bool flag2);
+		void ReSetPos();
 		void SetPos(int x, int y);
 		void Reset();
 		void MP();

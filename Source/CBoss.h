@@ -6,6 +6,7 @@ namespace game_framework
 	{
 	public:
 		CBoss();
+		~CBoss();
 		int  GetX1();
 		int  GetY1();
 		int  GetX2();
@@ -18,18 +19,14 @@ namespace game_framework
 		void SetBulXY(int x, int y);
 		void OnMove();
 		void OnShow();
+		bool GetCtrPos();
 		bool GetAttack();
 		bool GetDead();
-		/*void SetInSize(bool flag);
-		void SetMovingDown(bool flag);
-		void SetMovingLeft(bool flag);
-		void SetMovingRight(bool flag);
-		void SetMovingUp(bool flag);
-		void SetAttack(bool flag, bool flag2);*/
 		void Reset();
 	private:
-		int healty;
+		int healty, bodynub;
 		CAnimation animation, isaacWalkUp, isaacWalkDonw, isaacWalkRight, isaacWalkLeft;
+		vector <CAnimation*>body;
 
 		int x, y, bx, by;
 		int posx, posy;

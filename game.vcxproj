@@ -251,6 +251,7 @@
     <ClCompile Include="Source\CGamemap.cpp" />
     <ClCompile Include="Source\audio.cpp" />
     <ClCompile Include="Source\CCharaterCtrol.cpp" />
+    <ClCompile Include="Source\CGameOver.cpp" />
     <ClCompile Include="Source\CNDoor.cpp" />
     <ClCompile Include="Source\CNmap.cpp" />
     <ClCompile Include="Source\CPDoor.cpp" />
@@ -312,6 +313,7 @@
     <ClInclude Include="Source\CGamemap.h" />
     <ClInclude Include="Source\CCharaterCtrol.h" />
     <ClInclude Include="Source\audio.h" />
+    <ClInclude Include="Source\CGameOver.h" />
     <ClInclude Include="Source\CNDoor.h" />
     <ClInclude Include="Source\CNmap.h" />
     <ClInclude Include="Source\CPDoor.h" />

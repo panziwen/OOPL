@@ -192,13 +192,16 @@ namespace game_framework
 	}
 	void CEnemy1::Healty()
 	{
-		if (healty==0)
+		if (healty<=0)
 		{
 			isdead = true;
 		}
 		else
 		{
-			healty -= 1;
+			if (healty != 0)
+			{
+				healty -= 1;
+			}
 			isdead = false;
 		}
 	}
@@ -210,7 +213,6 @@ namespace game_framework
 		}*/
 		if (bx >= x && by >= y && bx <= x + animation.Width() && by <= y + animation.Height())
 		{
-			//Healty();
 			return true;
 		}
 		else
@@ -221,5 +223,13 @@ namespace game_framework
 	bool CEnemy1::GetDead()
 	{
 		return isdead;
+	}
+	bool CEnemy1::GetCtrPos()
+	{
+		if (x >= posx && y >= posy && x <= posx + 10 && y <= posy + 20)
+		{
+			return true;
+		}
+		return false;
 	}
 }

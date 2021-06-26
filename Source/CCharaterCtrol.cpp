@@ -5,6 +5,8 @@
 #include "audio.h"
 #include "gamelib.h"
 #include "CCharaterCtrol.h"
+const int X_POS = SIZE_X / 2;
+const int Y_POS = (SIZE_Y / 5) * 4 - 50;
 namespace game_framework
 {
 	CCharaterCtrol::CCharaterCtrol()
@@ -34,8 +36,6 @@ namespace game_framework
 	void CCharaterCtrol::Initialize()
 	{
 		bullt = 0;
-		const int X_POS = SIZE_X/2;
-		const int Y_POS = (SIZE_Y / 5) * 4 - 50;
 		x = X_POS;
 		y = Y_POS;
 		isaacAttack.SetXY((nx+x)/2, (ny+y)/2);
@@ -350,6 +350,12 @@ namespace game_framework
 		isaacWalkRight.Reset();
 		isaacWalkUp.Reset();
 		isaacWalkLeft.Reset();
+	}
+	void CCharaterCtrol::ReSetPos()
+	{
+		x = X_POS;
+		y = Y_POS;
+		animation.SetTopLeft(x, y);
 	}
 	void CCharaterCtrol::SetPos(int x, int y)
 	{

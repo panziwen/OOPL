@@ -26,6 +26,9 @@
     <Filter Include="MyGame\INTERFACE">
       <UniqueIdentifier>{f8c24810-ecf1-4c4a-b706-5752228e8127}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MyGame\GAMEOVER">
+      <UniqueIdentifier>{4c3a2d43-492c-4e6d-9301-ba69e9621925}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\game.ico">
@@ -120,6 +123,9 @@
     <ClCompile Include="Source\CBoss.cpp">
       <Filter>MyGame\CHARAERCONTROL</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CGameOver.cpp">
+      <Filter>MyGame\GAMEOVER</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\audio.h">
@@ -202,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="Source\CBoss.h">
       <Filter>MyGame\CHARAERCONTROL</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CGameOver.h">
+      <Filter>MyGame\GAMEOVER</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

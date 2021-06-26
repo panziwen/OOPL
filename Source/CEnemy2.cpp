@@ -208,10 +208,7 @@ namespace game_framework
 	}
 	bool CEnemy2::GetAimPos()
 	{
-		/*if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
-		{
-			return true;
-		}*/
+		
 		if (bx >= x && by >= y && bx <= x + animation.Width() && by <= y + animation.Height())
 		{
 			//Healty();
@@ -225,5 +222,13 @@ namespace game_framework
 	bool CEnemy2::GetDead()
 	{
 		return isdead;
+	}
+	bool CEnemy2::GetCtrPos()
+	{
+		if (x >= posx && y >= posy && x <= posx+10 && y <= posy+20 )
+		{
+			return true;
+		}
+		return false;
 	}
 }

@@ -76,7 +76,7 @@
 #define ENABLE_GAME_PAUSE	 true		// 是否允許以 Ctrl-Q 暫停遊戲
 #define ENABLE_AUDIO		 true		// 啟動音效介面
 #define SIZE_PUX				 SIZE_X / 2 - 50		// 設定遊戲畫面的解析度為640x480
-#define SIZE_PUY				 SIZE_Y - 150
+#define SIZE_PUY				 SIZE_Y - 170
 #define SIZE_PDX				 SIZE_X / 2 - 50		// 設定遊戲畫面的解析度為640x480
 #define SIZE_PDY				 80
 #define SIZE_PLX				 SIZE_X - 180		// 設定遊戲畫面的解析度為640x480
@@ -314,6 +314,7 @@ protected:
 	//
 	virtual void OnMove() {}								// 移動這個狀態的遊戲元素
 	virtual void OnShow() = 0;								// 顯示這個狀態的遊戲畫面
+	bool isbdead;
 	CGame *game;
 };
 

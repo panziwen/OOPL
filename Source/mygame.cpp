@@ -67,6 +67,7 @@ namespace game_framework {
 	CGameStateInit::CGameStateInit(CGame *g)
 	: CGameState(g)
 	{
+		isbdead = false;
 	}
 
 	void CGameStateInit::OnInit()
@@ -132,6 +133,7 @@ namespace game_framework {
 
 	void CGameStateOver::OnMove()
 	{
+		gameover.OnMove();
 		counter--;
 		if (counter < 0)
 			GotoGameState(GAME_STATE_INIT);
@@ -139,11 +141,12 @@ namespace game_framework {
 
 	void CGameStateOver::OnBeginState()
 	{
-		counter = 30 * 5; // 5 seconds
+		counter = 30 * 2; // 5 seconds
 	}
 
 	void CGameStateOver::OnInit()
 	{
+		gameover.LoadBitmapA();
 		ShowInitProgress(66);	
 		Sleep(300);		
 		ShowInitProgress(100);
@@ -151,17 +154,7 @@ namespace game_framework {
 
 	void CGameStateOver::OnShow()
 	{
-		CDC *pDC = CDDraw::GetBackCDC();			
-		CFont f, *fp;
-		f.CreatePointFont(160, "Times New Roman");	
-		fp = pDC->SelectObject(&f);					
-		pDC->SetBkColor(RGB(0, 0, 0));
-		pDC->SetTextColor(RGB(255, 255, 0));
-		char str[80];							
-		sprintf(str, "Game Over ! (%d)", counter / 30);
-		pDC->TextOut(240, 210, str);
-		pDC->SelectObject(fp);					
-		CDDraw::ReleaseBackCDC();
+		gameover.BackOnShow2();
 	}
 
 
@@ -172,25 +165,37 @@ namespace game_framework {
 
 	CGameStateRun::~CGameStateRun()
 	{
+
 	}
 
 	void CGameStateRun::OnBeginState()
 	{
-		gamemap.LoadBitmap();
+		counter = 30 * 2; // 5 seconds
+		gamemap.SetPAlive(false);
 	}
 
 	void CGameStateRun::OnMove()
 	{
+		gameover.OnMove();
+		counter--;
+		if (counter < 0)
+			GotoGameState(GAME_STATE_RUN);
+
 		gamemap.OnMove();
 		if (gamemap.GetAimPos())
 		{
-			;
+			if (gamemap.IsBDead())
+			{
+				GotoGameState(GAME_STATE_OVER);
+			}
 		}
 	}
 
 	void CGameStateRun::OnInit()  			
 	{
 		gamemap.Initialize();
+		gameover.LoadBitmap();
+		gamemap.LoadBitmap();
 		Sleep(300); 							
 		CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
@@ -206,8 +211,9 @@ namespace game_framework {
 		const char KEY_SPACE = ' ';
 		const char KEY_W = 'W'; 
 		const char KEY_A = 'A'; 
-		const char KEY_S = 'S'; 
-		const char KEY_D = 'D'; 
+		const char KEY_S = 'S';
+		const char KEY_D = 'D';
+		const char KEY_K = 'K';
 
 		if (nChar == KEY_LEFT || nChar == KEY_A)
 		{
@@ -224,6 +230,10 @@ namespace game_framework {
 		if (nChar == KEY_DOWN || nChar == KEY_S)
 		{
 			gamemap.SetMovingDown(true);
+		}
+		if (nChar == KEY_K)
+		{
+			gamemap.Key(true);
 		}
 		if (nChar == KEY_SPACE)
 		{
@@ -242,6 +252,7 @@ namespace game_framework {
 		const char KEY_A = 'A';
 		const char KEY_S = 'S';
 		const char KEY_D = 'D';
+		const char KEY_K = 'K';
 
 		if (nChar == KEY_LEFT || nChar == KEY_A)
 		{
@@ -262,6 +273,11 @@ namespace game_framework {
 		if (nChar == KEY_SPACE)
 		{
 			gamemap.SetAttack(false, true);
+		}
+		if (nChar == KEY_K)
+		{
+			Sleep(600);
+			gamemap.Key(false);
 		}
 		gamemap.Reset();
 	}
@@ -290,5 +306,39 @@ namespace game_framework {
 	void CGameStateRun::OnShow()
 	{
 		gamemap.OnShow();
+		CDC *pDC = CDDraw::GetBackCDC();			// 取得 Back Plain 的 CDC 
+		CFont f, *fp;
+		f.CreatePointFont(160, "Times New Roman");	// 產生 font f; 160表示16 point的字
+		fp = pDC->SelectObject(&f);					// 選用 font f
+		pDC->SetBkColor(RGB(0, 0, 0));
+		pDC->SetTextColor(RGB(133, 132, 132));
+		pDC->TextOut(50, 100, "00 ");
+		pDC->TextOut(50, 130, "00 ");
+		pDC->TextOut(50, 160, "00 ");
+		pDC->TextOut(50, 190, "1.00 ");
+		pDC->TextOut(50, 220, "23.75 ");
+		pDC->TextOut(50, 250, "10 ");
+		pDC->TextOut(50, 280, "1.00 ");
+		pDC->TextOut(50, 310, "3.5 ");
+		pDC->TextOut(50, 340, "0.00 ");
+		pDC->TextOut(50, 370, "0.00% ");
+		pDC->TextOut(50, 400, "0.00% ");
+		pDC->SelectObject(fp);						// 放掉 font f (千萬不要漏了放掉)
+		CDDraw::ReleaseBackCDC();
+		if (gamemap.IsPDead())
+		{
+			gameover.BackOnShow();
+			CDC *pDC = CDDraw::GetBackCDC();
+			CFont f, *fp;
+			f.CreatePointFont(160, "Times New Roman");
+			fp = pDC->SelectObject(&f);
+			pDC->SetBkColor(RGB(0, 0, 0));
+			pDC->SetTextColor(RGB(255, 255, 0));
+			char str[80];
+			sprintf(str, "You Dead ! (%d)", counter / 30);
+			pDC->TextOut(440, 250, str);
+			pDC->SelectObject(fp);
+			CDDraw::ReleaseBackCDC();
+		}
 	}
 }

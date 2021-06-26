@@ -11,8 +11,11 @@ namespace game_framework
 	CNmap::CNmap()
 	{
 		//enemyNum = 1 + rand() % 8;
-		enemyNum = 2;
-		k1 = k2 = enemyNum / 2;
+		enemyNum = 4;
+		if (enemyNum % 2 == 0)
+		{
+			k1 = k2 = enemyNum / 2;
+		}
 		//item = enemyNum;
 		if (enemyNum%2==0)
 		{
@@ -32,9 +35,9 @@ namespace game_framework
 				enemy2.push_back(new CEnemy2());
 			}
 		}
-		boss = new CBoss();
+		boss.push_back(new CBoss());
 		door = new CDoor();
-		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = isdead = false;
+		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = isdead = isbdead = false;
 	}
 	CNmap::~CNmap()
 	{
@@ -57,6 +60,10 @@ namespace game_framework
 			}
 		}
 		delete door;
+		if (boss.size()!=0)
+		{
+			delete boss[0];
+		}
 	}
 	bool CNmap::IsInADoor()
 	{
@@ -103,7 +110,7 @@ namespace game_framework
 		y = (SIZE_Y / 5) * 4 - 50;
 		if (isboss)
 		{
-			boss->Initialize();
+			boss[0]->Initialize();
 		}
 		else
 		{
@@ -139,29 +146,29 @@ namespace game_framework
 		map7.LoadBitmap(".\\bitmaps\\map\\nomal\\8.bmp");
 		map8.LoadBitmap(".\\bitmaps\\map\\nomal\\9.bmp");
 		map9.LoadBitmap(".\\bitmaps\\map\\nomal\\5.bmp");
-		if (isboss)
+		char *filename[4] = { ".\\bitmaps\\e\\boss1\\i0.bmp",".\\bitmaps\\e\\boss1\\i1.bmp",
+							  ".\\bitmaps\\e\\boss1\\i2.bmp" ,".\\bitmaps\\e\\boss1\\i3.bmp" };
+		for (int i = 0; i < 4; i++)
 		{
-			boss->LoadBitmap();
+			bossInterface.AddBitmap(filename[i], RGB(109, 33, 115));
+		}
+		boss[0]->LoadBitmap();
+		if (enemyNum % 2 == 0)
+		{
+			for (int i = 0; i < enemyNum / 2; i++)
+			{
+				enemy[i]->LoadBitmap();
+			}
+			for (int i = 0; i < enemyNum / 2; i++)
+			{
+				enemy1[i]->LoadBitmap();
+			}
 		}
 		else
 		{
-			if (enemyNum % 2 == 0)
+			for (int i = 0; i < enemyNum; i++)
 			{
-				for (int i = 0; i < enemyNum / 2; i++)
-				{
-					enemy[i]->LoadBitmap();
-				}
-				for (int i = 0; i < enemyNum / 2; i++)
-				{
-					enemy1[i]->LoadBitmap();
-				}
-			}
-			else
-			{
-				for (int i = 0; i < enemyNum; i++)
-				{
-					enemy2[i]->LoadBitmap();
-				}
+				enemy2[i]->LoadBitmap();
 			}
 		}
 		door->LoadBitmap();
@@ -169,40 +176,42 @@ namespace game_framework
 	
 	void CNmap::CreateEn()
 	{
+		bossInterface.OnMove();
 		door->OnMove();
-		if (isboss)
+		if (isboss && boss.size() != 0)
 		{
-			boss->SetXY(x, y);
-			boss->SetBulXY(bx, by);
-			boss->OnMove();
+			boss[0]->SetXY(x, y);
+			boss[0]->SetBulXY(bx, by);
+			boss[0]->OnMove();
+		}
+		if (enemyNum % 2 == 0)
+		{
+			for (int i = 0; i < k1; i++)
+			{
+				enemy[i]->SetXY(x, y);
+				enemy[i]->SetBulXY(bx, by);
+				enemy[i]->OnMove();
+			}
+			for (int i = 0; i < k2; i++)
+			{
+				enemy1[i]->SetXY(x, y);
+				enemy1[i]->SetBulXY(bx, by);
+				enemy1[i]->OnMove();
+			}
 		}
 		else
 		{
-			if (enemyNum % 2 == 0)
+			for (int i = 0; i < enemyNum; i++)
 			{
-				for (int i = 0; i < k1; i++)
-				{
-					enemy[i]->SetXY(x, y);
-					enemy[i]->SetBulXY(bx, by);
-					enemy[i]->OnMove();
-				}
-				for (int i = 0; i < k2; i++)
-				{
-					enemy1[i]->SetXY(x, y);
-					enemy1[i]->SetBulXY(bx, by);
-					enemy1[i]->OnMove();
-				}
-			}
-			else
-			{
-				for (int i = 0; i < enemyNum; i++)
-				{
-					enemy2[i]->SetXY(x, y);
-					enemy2[i]->SetBulXY(bx, by);
-					enemy2[i]->OnMove();
-				}
+				enemy2[i]->SetXY(x, y);
+				enemy2[i]->SetBulXY(bx, by);
+				enemy2[i]->OnMove();
 			}
 		}
+	}
+	void CNmap::BossIntetface()
+	{
+		bossInterface.OnShow(2);
 	}
 	void CNmap::OnShow()
 	{
@@ -244,9 +253,9 @@ namespace game_framework
 		map4.ShowBitmap();
 
 		door->OnShow();
-		if (isboss)
+		if (isboss && boss.size() != 0)
 		{
-			boss->OnShow();
+			boss[0]->OnShow();
 		}
 		else
 		{
@@ -286,12 +295,12 @@ namespace game_framework
 	}
 	void CNmap::SetBulPos(int nx, int ny)
 	{
-		if (isboss)
+		if (isboss && boss.size() != 0)
 		{
-			boss->SetBulXY(nx, ny);
-			if (boss->GetAimPos())
+			boss[0]->SetBulXY(nx, ny);
+			if (boss[0]->GetAimPos())
 			{
-				delete boss;
+				KillBoss(0);
 				isdead = true;
 			}
 		}
@@ -332,6 +341,17 @@ namespace game_framework
 				}
 			}
 		}
+	}
+	void CNmap::KillBoss(int x)
+	{
+		CBoss *t;
+		if (boss.size() == 1 && x == 0)
+		{
+			t = boss[x];
+			boss.pop_back();
+		}
+		delete t;
+		isbdead = true;
 	}
 	void CNmap::KillEnemy(int x)
 	{
@@ -420,7 +440,7 @@ namespace game_framework
 	}
 	void CNmap::Reset()
 	{
-		isDoor = false;
+		isDoor = isInADoor = isInDDoor = isInNDoor = isInPDoor = isdead = isbdead = false;
 	}
 	bool CNmap::GetAimPos()
 	{
@@ -428,10 +448,72 @@ namespace game_framework
 	}
 	bool CNmap::IsInDoor()
 	{
-		if (((px >= door->GetX1() && px <= door->GetX2()) && (py > door->GetY1() && py <= door->GetY2())) || ((pnx >= door->GetX1() && pnx <= door->GetX2()) && (pny > door->GetY1() && pny <= door->GetY2())))
+		if (((px >= door->GetUX1() && px <= door->GetUX2()) && (py > door->GetUY1() && py <= door->GetUY2())) || ((pnx >= door->GetUX1() && pnx <= door->GetUX2()) && (pny > door->GetUY1() && pny <= door->GetUY2())))
+		{
+			isDoor = true;
+		}
+		else if (((px >= door->GetDX1() && px <= door->GetDX2()) && (py > door->GetDY1() && py <= door->GetDY2())) || ((pnx >= door->GetDX1() && pnx <= door->GetDX2()) && (pny > door->GetDY1() && pny <= door->GetDY2())))
+		{
+			isDoor = true;
+		}
+		else if (((px >= door->GetRX1() && px <= door->GetRX2()) && (py > door->GetRY1() && py <= door->GetRY2())) || ((pnx >= door->GetRX1() && pnx <= door->GetRX2()) && (pny > door->GetRY1() && pny <= door->GetRY2())))
+		{
+			isDoor = true;
+		}
+		else if (((px >= door->GetLX1() && px <= door->GetLX2()) && (py > door->GetLY1() && py <= door->GetLY2())) || ((pnx >= door->GetRX1() && pnx <= door->GetLX2()) && (pny > door->GetLY1() && pny <= door->GetLY2())))
 		{
 			isDoor = true;
 		}
 		return isDoor;
+	}
+	bool CNmap::GetCtrPos()
+	{
+		if (isboss && boss.size() != 0)
+		{
+			if (boss[0]->GetCtrPos())
+			{
+				return true;
+			}
+		}
+		else
+		{
+
+			if (enemyNum % 2 == 0)
+			{
+				for (int i = 0; i < k1; i++)
+				{
+					if (enemy[i]->GetCtrPos())
+					{
+						return true;
+					}
+				}
+				for (int i = 0; i < k2; i++)
+				{
+					if (enemy1[i]->GetCtrPos())
+					{
+						return true;
+					}
+				}
+			}
+			else
+			{
+				for (int i = 0; i < enemyNum; i++)
+				{
+					if (enemy2[i]->GetCtrPos())
+					{
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	bool CNmap::IsBDead()
+	{
+		return isbdead;
+	}
+	bool CNmap::IsBoss()
+	{
+		return isboss;
 	}
 }

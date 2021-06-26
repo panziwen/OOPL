@@ -40,6 +40,7 @@
 
 #include "CGamemap.h"
 #include "CInterface.h"
+#include "CGameOver.h"
 
 namespace game_framework {
 
@@ -86,7 +87,9 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		const int		NUMBALLS;	// 球的總數
+		int				counter;
 		CGamemap		gamemap;
+		CGameOver		gameover;
 	};
 
 	/////////////////////////////////////////////////////////////////////////////
@@ -104,6 +107,7 @@ namespace game_framework {
 		void OnShow();									// 顯示這個狀態的遊戲畫面
 	private:
 		int counter;	// 倒數之計數器
+		CGameOver gameover;
 	};
 
 }

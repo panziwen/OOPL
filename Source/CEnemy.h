@@ -18,6 +18,7 @@ namespace game_framework
 		void SetBulXY(int x, int y);
 		void OnMove();
 		void OnShow();
+		bool GetCtrPos();
 		bool GetAttack();
 		bool GetDead();
 		/*void SetInSize(bool flag);

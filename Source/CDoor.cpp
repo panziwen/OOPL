@@ -20,25 +20,9 @@ namespace game_framework
 	{
 		delete ndoor;
 	}
-	int CDoor::GetX1()
-	{
-		return dx;
-	}
-	int CDoor::GetY1()
-	{
-		return dy;
-	}
-	int CDoor::GetX2()
-	{
-		return dnx;
-	}
-	int CDoor::GetY2()
-	{
-		return dny;
-	}
 	void CDoor::Initialize(bool flag, bool flag2, bool flag3, bool flag4)
 	{
-		GetDPos(0,0,0,0);
+		GetDPos(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 		isInDDoor = isInNDoor = isInADoor = isInPDoor = false;
 		isUp = isDown = isLeft = isRight = false;
 		ddoor.Initialize();
@@ -100,29 +84,8 @@ namespace game_framework
 		{
 			ndoor->OnShow();
 			isInNDoor = true;
-			GetDPos(ndoor->GetX1(), ndoor->GetY1(), ndoor->GetX2(), ndoor->GetY2());
+			GetDPos(ndoor->GetUX1(), ndoor->GetUY1(), ndoor->GetUX2(), ndoor->GetUY2(), ndoor->GetDX1(), ndoor->GetDY1(), ndoor->GetDX2(), ndoor->GetDY2(), ndoor->GetRX1(), ndoor->GetRY1(), ndoor->GetRX2(), ndoor->GetRY2(), ndoor->GetLX1(), ndoor->GetLY1(), ndoor->GetLX2(), ndoor->GetLY2());
 			isInDDoor = isInADoor = isInPDoor = false;
-		}
-		if (tmp <= 90 && tmp > 70)
-		{
-			pdoor.OnShow();
-			isInPDoor = true;
-			GetDPos(pdoor.GetX1(), pdoor.GetY1(), pdoor.GetX2(), pdoor.GetY2());
-			isInDDoor = isInNDoor = isInADoor = false;
-		}
-		if (tmp <= 95 && tmp >= 90)
-		{
-			ddoor.OnShow();
-			isInDDoor = true;
-			GetDPos(ddoor.GetX1(), ddoor.GetY1(), ddoor.GetX2(), ddoor.GetY2());
-			isInNDoor = isInADoor = isInPDoor = false;
-		}
-		if (tmp <= 100 && tmp > 95)
-		{
-			adoor.OnShow();
-			isInADoor = true;
-			GetDPos(adoor.GetX1(), adoor.GetY1(), adoor.GetX2(), adoor.GetY2());
-			isInDDoor = isInNDoor = isInPDoor = false;
 		}
 	}
 	void CDoor::SetAimPos(int nx, int ny)
@@ -133,31 +96,107 @@ namespace game_framework
 	{
 		ddoor.SetCPos(cx, cy);
 	}
-	void CDoor::GetDPos(int dx, int dy, int dnx, int dny)
+	void CDoor::GetDPos(int dx, int dy, int dnx, int dny, int dx2, int dy2, int dnx2, int dny2, int dx3, int dy3, int dnx3, int dny3, int dx4, int dy4, int dnx4, int dny4)
 	{
-		this->dx = dx;
-		this->dy = dy;
-		this->dnx = dnx;
-		this->dny = dny;
-		if (dx == (SIZE_X / 2 - 50) && dy == 15)
+		this->dx1 = dx;
+		this->dy1 = dy;
+		this->dnx1 = dnx;
+		this->dny1 = dny;
+		this->dx2 = dx2;
+		this->dy2 = dy2;
+		this->dnx2 = dnx2;
+		this->dny2 = dny2;
+		this->dx3 = dx3;
+		this->dy3 = dy3;
+		this->dnx3 = dnx3;
+		this->dny3 = dny3;
+		this->dx4 = dx4;
+		this->dy4 = dy4;
+		this->dnx4 = dnx4;
+		this->dny4 = dny4;
+		if (dx1 == (SIZE_X / 2 - 50) && dy1 == 15)
 		{
 			isUp = true;
 			isDown = isLeft = isRight = false;
 		}
-		else if (dx == (SIZE_X / 2 - 50) && dy == (SIZE_Y - 110))
+		else if (this->dx2 == (SIZE_X / 2 - 50) && this->dy2 == (SIZE_Y - 110))
 		{
 			isDown = true;
 			isUp = isLeft = isRight = false;
 		}
-		else if (dx == 110 && dy == (SIZE_Y / 2))
-		{
-			isLeft = true;
-			isUp = isDown = isRight = false;
-		}
-		else if (dx == (SIZE_X - 145) && dy == (SIZE_Y / 2))
+		else if (this->dx3 == (SIZE_X - 145) && this->dy3 == (SIZE_Y / 2))
 		{
 			isRight = true;
 			isUp = isDown = isLeft = false;
 		}
+		else if (this->dx4 == 110 && this->dy4 == (SIZE_Y / 2))
+		{
+			isLeft = true;
+			isUp = isDown = isRight = false;
+		}
+	}
+	int CDoor::GetUX1()
+	{
+		return dx1;
+	}
+	int CDoor::GetUY1()
+	{
+		return dy1;
+	}
+	int CDoor::GetUX2()
+	{
+		return dnx1;
+	}
+	int CDoor::GetUY2()
+	{
+		return dny1;
+	}
+	int CDoor::GetDX1()
+	{
+		return dx2;
+	}
+	int CDoor::GetDY1()
+	{
+		return dy2;
+	}
+	int CDoor::GetDX2()
+	{
+		return dnx2;
+	}
+	int CDoor::GetDY2()
+	{
+		return dny2;
+	}
+	int CDoor::GetRX1()
+	{
+		return dx3;
+	}
+	int CDoor::GetRY1()
+	{
+		return dy3;
+	}
+	int CDoor::GetRX2()
+	{
+		return dnx3;
+	}
+	int CDoor::GetRY2()
+	{
+		return dny3;
+	}
+	int CDoor::GetLX1()
+	{
+		return dx4;
+	}
+	int CDoor::GetLY1()
+	{
+		return dy4;
+	}
+	int CDoor::GetLX2()
+	{
+		return dnx4;
+	}
+	int CDoor::GetLY2()
+	{
+		return dny4;
 	}
 }

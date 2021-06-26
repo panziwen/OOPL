@@ -17,6 +17,7 @@ namespace game_framework
 		void SetXY(int x, int y);
 		void SetBulXY(int x, int y);
 		void OnMove();
+		bool GetCtrPos();
 		void OnShow();
 		bool GetAttack();
 		bool GetDead();

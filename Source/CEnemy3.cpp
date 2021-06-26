@@ -229,4 +229,12 @@ namespace game_framework
 	{
 		return isdead;
 	}
+	bool CEnemy3::GetCtrPos()
+	{
+		if (x >= posx && y >= posy && x <= posx + 10 && y <= posy + 20)
+		{
+			return true;
+		}
+		return false;
+	}
 }

@@ -16,6 +16,7 @@ namespace game_framework
 		bool GetAimPos();
 		void SetXY(int x, int y);
 		void SetBulXY(int x, int y);
+		bool GetCtrPos();
 		void OnMove();
 		void OnShow();
 		bool GetAttack();
