@@ -31,9 +31,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\game.ico">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="res\game.rc2">
       <Filter>Resource Files</Filter>
     </None>
@@ -219,6 +216,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="RES\isaac.png" />
+    <Image Include="..\game4.10\RES\GAME.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

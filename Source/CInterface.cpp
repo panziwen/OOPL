@@ -12,7 +12,7 @@ namespace game_framework
 	}
 	void CInterface::LoadBitmap()
 	{
-		char *filename = ".\\Bitmaps\\interface\\interface_background.bmp";
+		char *filename = ".\\bitmaps\\interface\\interface_background.bmp";
 
 		char *filename2[7] = { ".\\Bitmaps\\interface\\interface_logo1.bmp",".\\Bitmaps\\interface\\interface_logo2.bmp",
 								".\\Bitmaps\\interface\\interface_logo3.bmp",".\\Bitmaps\\interface\\interface_logo4.bmp" ,

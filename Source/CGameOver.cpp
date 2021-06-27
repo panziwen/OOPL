@@ -12,10 +12,10 @@ namespace game_framework
 	}
 	void CGameOver::LoadBitmap()
 	{
-		char *filename[3] = { ".\\Bitmaps\\gameover\\1.bmp",".\\Bitmaps\\gameover\\2.bmp",".\\Bitmaps\\gameover\\3.bmp" };
-		char *filename2[8] = { ".\\Bitmaps\\gameover\\6.bmp",".\\Bitmaps\\gameover\\7.bmp" ,
-								".\\Bitmaps\\gameover\\8.bmp",".\\Bitmaps\\gameover\\9.bmp",".\\Bitmaps\\gameover\\10.bmp" ,
-								".\\Bitmaps\\gameover\\11.bmp",".\\Bitmaps\\gameover\\12.bmp",".\\Bitmaps\\gameover\\13.bmp"  };
+		char *filename[3] = { ".\\bitmaps\\gameover\\1.bmp",".\\bitmaps\\gameover\\2.bmp",".\\bitmaps\\gameover\\3.bmp" };
+		char *filename2[8] = { ".\\bitmaps\\gameover\\6.bmp",".\\bitmaps\\gameover\\7.bmp" ,
+								".\\bitmaps\\gameover\\8.bmp",".\\bitmaps\\gameover\\9.bmp",".\\bitmaps\\gameover\\10.bmp" ,
+								".\\bitmaps\\gameover\\11.bmp",".\\bitmaps\\gameover\\12.bmp",".\\bitmaps\\gameover\\13.bmp"  };
 
 		
 
@@ -27,7 +27,7 @@ namespace game_framework
 		{
 			background2.AddBitmap(filename2[i], RGB(0, 0, 0));
 		}
-		a.LoadBitmap(".\\Bitmaps\\gameover\\4.bmp");
+		a.LoadBitmap(".\\bitmaps\\gameover\\4.bmp");
 	}
 	void CGameOver::OnMove()
 	{
