@@ -182,7 +182,10 @@ namespace game_framework
 		{
 			boss[0]->SetXY(x, y);
 			boss[0]->SetBulXY(bx, by);
-			boss[0]->OnMove();
+			if (!ispdead)
+			{
+				boss[0]->OnMove();
+			}
 		}
 		if (enemyNum % 2 == 0)
 		{
@@ -190,13 +193,19 @@ namespace game_framework
 			{
 				enemy[i]->SetXY(x, y);
 				enemy[i]->SetBulXY(bx, by);
-				enemy[i]->OnMove();
+				if (!ispdead)
+				{
+					enemy[i]->OnMove();
+				}
 			}
 			for (int i = 0; i < k2; i++)
 			{
 				enemy1[i]->SetXY(x, y);
 				enemy1[i]->SetBulXY(bx, by);
-				enemy1[i]->OnMove();
+				if (!ispdead)
+				{
+					enemy1[i]->OnMove();
+				}
 			}
 		}
 		else
@@ -205,7 +214,10 @@ namespace game_framework
 			{
 				enemy2[i]->SetXY(x, y);
 				enemy2[i]->SetBulXY(bx, by);
-				enemy2[i]->OnMove();
+				if (!ispdead)
+				{
+					enemy2[i]->OnMove();
+				}
 			}
 		}
 	}
@@ -287,6 +299,7 @@ namespace game_framework
 		py = y;
 		pnx = nx;
 		pny = ny;
+		door->SetCPos(px, py, pnx, pny);
 	}
 	void CNmap::SetAimPos(int nx, int ny)
 	{
@@ -515,5 +528,9 @@ namespace game_framework
 	bool CNmap::IsBoss()
 	{
 		return isboss;
+	}
+	void CNmap::IsPdead(bool flag)
+	{
+		ispdead = flag;
 	}
 }

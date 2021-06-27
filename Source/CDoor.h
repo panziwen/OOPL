@@ -38,11 +38,11 @@ namespace game_framework
 		bool Left();
 		bool Right();
 		void SetDoor(int x, int y);
-		void SetCPos(int x, int y);
+		void SetCPos(int x, int y, int nx, int ny);
 		void SetAimPos(int x, int y);
 	private:
 		bool isInSize;
-		int x, y, tmp;
+		int x, y, tmp, cx, cy, cnx, cny;
 		int  dx1, dy1, dnx1, dny1;
 		int  dx2, dy2, dnx2, dny2;
 		int  dx3, dy3, dnx3, dny3;

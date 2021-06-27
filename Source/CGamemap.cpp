@@ -155,6 +155,7 @@ namespace game_framework
 			{
 				if (b[i][j]==1)
 				{
+					a[i][j]->IsPdead(ispdead);
 					a[i][j]->CreateEn();
 				}
 			}
@@ -165,12 +166,12 @@ namespace game_framework
 			{
 				if (b[i][j] == 1)
 				{
+					a[i][j]->IsPdead(ispdead);
 					a[i][j]->SetAimPos(x, y);
 				}
 			}
 		}
 
-		
 		ctr->OnMove();
 	}
 	void CGamemap::OnShow()
@@ -192,11 +193,13 @@ namespace game_framework
 			fx = 0;
 			fy = 0;
 			a[fx][fy]->Reset();
+			a[fx][fy]->SetCPos(ctr->GetX1(), ctr->GetY1(), ctr->GetX2(), ctr->GetY2());
 			ctr->Reset();
 			SetDoor(fx, fy);
 			ctr->ReSetPos();
 			ispdead = true;
 		}
+
 		a[fx][fy]->Reset();
 	}
 	void CGamemap::SetAimPos()

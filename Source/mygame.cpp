@@ -113,8 +113,10 @@ namespace game_framework {
 		fp=pDC->SelectObject(&f);					// ¿ï¥Î font f
 		pDC->SetBkColor(RGB(0,0,0));
 		pDC->SetTextColor(RGB(255,255,0));
-		pDC->TextOut(120,220,"Please click mouse or press SPACE to begin.");
-		pDC->TextOut(5,395,"Press Ctrl-F to switch in between window mode and full screen mode.");
+		pDC->TextOut(5, 220, "Please click mouse or press SPACE to begin.");
+		pDC->TextOut(5, 335, "Press W A S d to move");
+		pDC->TextOut(5, 365, "After entering the game, press the SPACE bar to shoot.");
+		pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
 		if (ENABLE_GAME_PAUSE)
 			pDC->TextOut(5,425,"Press Ctrl-Q to pause the Game.");
 		pDC->TextOut(5,455,"Press Alt-F4 or ESC to Quit.");
@@ -141,7 +143,7 @@ namespace game_framework {
 
 	void CGameStateOver::OnBeginState()
 	{
-		counter = 30 * 2; // 5 seconds
+		counter = 30 * 5; // 5 seconds
 	}
 
 	void CGameStateOver::OnInit()
@@ -154,6 +156,7 @@ namespace game_framework {
 
 	void CGameStateOver::OnShow()
 	{
+		Sleep(100);
 		gameover.BackOnShow2();
 	}
 
@@ -170,8 +173,8 @@ namespace game_framework {
 
 	void CGameStateRun::OnBeginState()
 	{
-		counter = 30 * 2; // 5 seconds
 		gamemap.SetPAlive(false);
+		counter = 30 * 5; // 5 seconds
 	}
 
 	void CGameStateRun::OnMove()
@@ -179,7 +182,10 @@ namespace game_framework {
 		gameover.OnMove();
 		counter--;
 		if (counter < 0)
+		{
+			gamemap.SetPAlive(false);
 			GotoGameState(GAME_STATE_RUN);
+		}
 
 		gamemap.OnMove();
 		if (gamemap.GetAimPos())
@@ -276,7 +282,6 @@ namespace game_framework {
 		}
 		if (nChar == KEY_K)
 		{
-			Sleep(600);
 			gamemap.Key(false);
 		}
 		gamemap.Reset();

@@ -17,6 +17,7 @@ namespace game_framework
 		void Reset();
 		void BossIntetface();
 		void CreateEn();
+		void IsPdead(bool flag);
 		bool IsInDDoor();
 		bool Up();
 		bool Down();
@@ -49,7 +50,7 @@ namespace game_framework
 		CMovingBitmap map11, map22, map33, map44, map55, map66, map77, map88, map99;
 
 		bool isDoor;
-		bool isdead, isbdead;
+		bool isdead, isbdead, ispdead;
 		bool isInNDoor, isInDDoor, isInADoor, isInPDoor, isboss;
 		void KillBoss(int x);
 		void KillEnemy(int x);

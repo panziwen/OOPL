@@ -84,16 +84,20 @@ namespace game_framework
 		{
 			ndoor->OnShow();
 			isInNDoor = true;
-			GetDPos(ndoor->GetUX1(), ndoor->GetUY1(), ndoor->GetUX2(), ndoor->GetUY2(), ndoor->GetDX1(), ndoor->GetDY1(), ndoor->GetDX2(), ndoor->GetDY2(), ndoor->GetRX1(), ndoor->GetRY1(), ndoor->GetRX2(), ndoor->GetRY2(), ndoor->GetLX1(), ndoor->GetLY1(), ndoor->GetLX2(), ndoor->GetLY2());
 			isInDDoor = isInADoor = isInPDoor = false;
 		}
+		GetDPos(ndoor->GetUX1(), ndoor->GetUY1(), ndoor->GetUX2(), ndoor->GetUY2(), ndoor->GetDX1(), ndoor->GetDY1(), ndoor->GetDX2(), ndoor->GetDY2(), ndoor->GetRX1(), ndoor->GetRY1(), ndoor->GetRX2(), ndoor->GetRY2(), ndoor->GetLX1(), ndoor->GetLY1(), ndoor->GetLX2(), ndoor->GetLY2());
 	}
 	void CDoor::SetAimPos(int nx, int ny)
 	{
 		ddoor.SetAimPos(nx, ny);
 	}
-	void CDoor::SetCPos(int cx, int cy)
+	void CDoor::SetCPos(int x, int y, int nx, int ny)
 	{
+		this->cx = x;
+		this->cy = y;
+		this->cnx = nx;
+		this->cny = ny;
 		ddoor.SetCPos(cx, cy);
 	}
 	void CDoor::GetDPos(int dx, int dy, int dnx, int dny, int dx2, int dy2, int dnx2, int dny2, int dx3, int dy3, int dnx3, int dny3, int dx4, int dy4, int dnx4, int dny4)
@@ -114,25 +118,29 @@ namespace game_framework
 		this->dy4 = dy4;
 		this->dnx4 = dnx4;
 		this->dny4 = dny4;
-		if (dx1 == (SIZE_X / 2 - 50) && dy1 == 15)
+		if (cx >= dx1 && cx <= dnx1 && cy >= dy1 && cy <= dny1)
 		{
 			isUp = true;
 			isDown = isLeft = isRight = false;
+
 		}
-		else if (this->dx2 == (SIZE_X / 2 - 50) && this->dy2 == (SIZE_Y - 110))
+		else if (cx >= this->dx2 && cx <= this->dnx2 && cny >= this->dy2 && cny <= this->dny2)
 		{
 			isDown = true;
 			isUp = isLeft = isRight = false;
+
 		}
-		else if (this->dx3 == (SIZE_X - 145) && this->dy3 == (SIZE_Y / 2))
+		else if (cx >= this->dx3-30 && cx <= this->dnx3 && cy >= this->dy3 && cy <= this->dny3)
 		{
 			isRight = true;
 			isUp = isDown = isLeft = false;
+
 		}
-		else if (this->dx4 == 110 && this->dy4 == (SIZE_Y / 2))
+		else if (cx >= this->dx4 && cx <= this->dnx4 && cy >= this->dy4 && cy <= this->dny4)
 		{
 			isLeft = true;
 			isUp = isDown = isRight = false;
+
 		}
 	}
 	int CDoor::GetUX1()
