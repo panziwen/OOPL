@@ -335,7 +335,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\game4.10\RES\GAME.ICO" />
+    <Image Include="RES\game.ico" />
+    <Image Include="RES\game2.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

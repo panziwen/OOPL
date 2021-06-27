@@ -114,9 +114,10 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0,0,0));
 		pDC->SetTextColor(RGB(255,255,0));
 		pDC->TextOut(5, 220, "Please click mouse or press SPACE to begin.");
-		pDC->TextOut(5, 275, "Instructor: 陳碩漢");
-		pDC->TextOut(5, 305, "Author: 潘子文&劉榮");
-		pDC->TextOut(5, 335, "Press W A S d to move");
+		pDC->TextOut(5, 245, "Instructor: 陳碩漢");
+		pDC->TextOut(5, 275, "Author: 潘子文&劉榮");
+		pDC->TextOut(5, 305, "Press W A S D to move");
+		pDC->TextOut(5, 335, "Press K to the BOOS");
 		pDC->TextOut(5, 365, "After entering the game, press the SPACE bar to shoot.");
 		pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
 		if (ENABLE_GAME_PAUSE)
