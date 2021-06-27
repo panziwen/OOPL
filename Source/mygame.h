@@ -47,7 +47,9 @@ namespace game_framework {
 	enum AUDIO_ID {			
 		AUDIO_DING,				 
 		AUDIO_LAKE,				
-		AUDIO_NTUT				
+		AUDIO_NTUT,
+		AUDIO_ISAAC,
+		AUDIO_ISAAC2
 	};
 	
 	class CGameStateInit : public CGameState {

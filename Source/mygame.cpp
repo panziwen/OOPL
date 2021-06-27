@@ -114,6 +114,8 @@ namespace game_framework {
 		pDC->SetBkColor(RGB(0,0,0));
 		pDC->SetTextColor(RGB(255,255,0));
 		pDC->TextOut(5, 220, "Please click mouse or press SPACE to begin.");
+		pDC->TextOut(5, 275, "Instructor: ê´Th");
+		pDC->TextOut(5, 305, "Author: ÅË×ÓÎÄ&„¢˜s");
 		pDC->TextOut(5, 335, "Press W A S d to move");
 		pDC->TextOut(5, 365, "After entering the game, press the SPACE bar to shoot.");
 		pDC->TextOut(5, 395, "Press Ctrl-F to switch in between window mode and full screen mode.");
@@ -173,6 +175,7 @@ namespace game_framework {
 
 	void CGameStateRun::OnBeginState()
 	{
+		CAudio::Instance()->Play(AUDIO_ISAAC2, true);
 		gamemap.SetPAlive(false);
 		counter = 30 * 5; // 5 seconds
 	}
@@ -205,7 +208,9 @@ namespace game_framework {
 		Sleep(300); 							
 		CAudio::Instance()->Load(AUDIO_DING,  "sounds\\ding.wav");	
 		CAudio::Instance()->Load(AUDIO_LAKE,  "sounds\\lake.mp3");
-		CAudio::Instance()->Load(AUDIO_NTUT,  "sounds\\ntut.mid");
+		CAudio::Instance()->Load(AUDIO_NTUT, "sounds\\ntut.mid");
+		CAudio::Instance()->Load(AUDIO_ISAAC, "sounds\\walk.mp3");
+		CAudio::Instance()->Load(AUDIO_ISAAC2, "sounds\\isaac2.mid");
 	}
 
 	void CGameStateRun::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
@@ -220,6 +225,7 @@ namespace game_framework {
 		const char KEY_S = 'S';
 		const char KEY_D = 'D';
 		const char KEY_K = 'K';
+		CAudio::Instance()->Play(AUDIO_ISAAC);
 
 		if (nChar == KEY_LEFT || nChar == KEY_A)
 		{
@@ -260,6 +266,7 @@ namespace game_framework {
 		const char KEY_D = 'D';
 		const char KEY_K = 'K';
 
+		CAudio::Instance()->Stop(AUDIO_ISAAC);
 		if (nChar == KEY_LEFT || nChar == KEY_A)
 		{
 			gamemap.SetMovingLeft(false);
