@@ -29,6 +29,7 @@ namespace game_framework
 		doorNum = 0;
 		srand((unsigned)time(NULL));
 		mapnub = rand() % 3;
+		//mapnub = 0;
 		fx = 0;
 		fy = 0;
 		if (mapnub == 0)
